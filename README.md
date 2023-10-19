@@ -2,6 +2,7 @@
 
 TVDB API in Go
 
+[![Build Status](https://drone.dasho.net/api/badges/dashotv/tvdb/status.svg?ref=refs/heads/main)](https://drone.dasho.net/dashotv/tvdb)
 [![GoDoc](https://godoc.org/github.com/dashotv/tvdb?status.svg)](https://godoc.org/github.com/dashotv/tvdb)
 [![Go Report Card](https://goreportcard.com/badge/github.com/dashotv/tvdb)](https://goreportcard.com/report/github.com/dashotv/tvdb)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
