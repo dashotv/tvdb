@@ -472,7 +472,7 @@ type EntityUpdate struct {
 	RecordType        *string `json:"recordType,omitempty"`
 
 	// SeriesId Only present for episodes records
-	RecordID  *int64 `json:"seriesId,omitempty"`
+	SeriesID  *int64 `json:"seriesId,omitempty"`
 	TimeStamp *int64 `json:"timeStamp,omitempty"`
 	UserId    *int   `json:"userId,omitempty"`
 }
@@ -548,22 +548,22 @@ type EpisodeExtendedRecord struct {
 
 // FavoriteRecord Favorites record
 type FavoriteRecord struct {
-	artwork  *int `json:"artwork,omitempty"`
-	episodes *int `json:"episode,omitempty"`
-	list     *int `json:"list,omitempty"`
-	movies   *int `json:"movie,omitempty"`
-	people   *int `json:"people,omitempty"`
-	series   *int `json:"series,omitempty"`
+	Artwork  *int `json:"artwork,omitempty"`
+	Episodes *int `json:"episode,omitempty"`
+	List     *int `json:"list,omitempty"`
+	Movies   *int `json:"movie,omitempty"`
+	People   *int `json:"people,omitempty"`
+	Series   *int `json:"series,omitempty"`
 }
 
 // Favorites User favorites record
 type Favorites struct {
-	artwork  *[]int `json:"artwork,omitempty"`
-	episodes *[]int `json:"episodes,omitempty"`
-	list     *[]int `json:"lists,omitempty"`
-	movies   *[]int `json:"movies,omitempty"`
-	people   *[]int `json:"people,omitempty"`
-	series   *[]int `json:"series,omitempty"`
+	Artwork  *[]int `json:"artwork,omitempty"`
+	Episodes *[]int `json:"episodes,omitempty"`
+	List     *[]int `json:"lists,omitempty"`
+	Movies   *[]int `json:"movies,omitempty"`
+	People   *[]int `json:"people,omitempty"`
+	Series   *[]int `json:"series,omitempty"`
 }
 
 // Gender gender record
@@ -833,7 +833,7 @@ type SearchResult struct {
 	OfficialList         *string              `json:"officialList,omitempty"`
 	Overview             *string              `json:"overview,omitempty"`
 	OverviewTranslated   *[]string            `json:"overview_translated,omitempty"`
-	Overviews            *[]TranslationSimple `json:"overviews,omitempty"`
+	// Overviews            *[]TranslationSimple `json:"overviews,omitempty"` // TODO: fix this7
 	Poster               *string              `json:"poster,omitempty"`
 	Posters              *[]string            `json:"posters,omitempty"`
 	PrimaryLanguage      *string              `json:"primary_language,omitempty"`
@@ -843,7 +843,7 @@ type SearchResult struct {
 	Studios              *[]string            `json:"studios,omitempty"`
 	Thumbnail            *string              `json:"thumbnail,omitempty"`
 	Title                *string              `json:"title,omitempty"`
-	Translations         *[]TranslationSimple `json:"translations,omitempty"`
+	// Translations         *[]TranslationSimple `json:"translations,omitempty"` // TODO: fix this
 	TranslationsWithLang *[]string            `json:"translationsWithLang,omitempty"`
 	TvdbId               *string              `json:"tvdb_id,omitempty"`
 	Type                 *string              `json:"type,omitempty"`
@@ -896,7 +896,7 @@ type SeasonExtendedRecord struct {
 
 // SeasonType season type record
 type SeasonType struct {
-	Name *string `json:"alternateName,omitempty"`
+	AlernateName *string `json:"alternateName,omitempty"`
 	ID   *int64  `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -979,7 +979,7 @@ type SeriesExtendedRecord struct {
 	OverviewTranslations *[]string           `json:"overviewTranslations,omitempty"`
 	RemoteIDs            *[]RemoteID         `json:"remoteIds,omitempty"`
 	Score                *float64            `json:"score,omitempty"`
-	Seasons              *[]SeasonType       `json:"seasonTypes,omitempty"`
+	SeasonTypes              *[]SeasonType       `json:"seasonTypes,omitempty"`
 	Seasons              *[]SeasonBaseRecord `json:"seasons,omitempty"`
 	Slug                 *string             `json:"slug,omitempty"`
 
@@ -1362,7 +1362,7 @@ type Client struct {
 type ClientOption func(*Client) error
 
 // Creates a new Client, with reasonable defaults
-func NewClient(server string, opts ...ClientOption) (*Client, error) {
+func newClient(server string, opts ...ClientOption) (*Client, error) {
 	// create a client with sane default values
 	client := Client{
 		Server: server,
@@ -5553,8 +5553,8 @@ type ClientWithResponses struct {
 
 // NewClientWithResponses creates a new ClientWithResponses, which wraps
 // Client with return type handling
-func NewClientWithResponses(server string, opts ...ClientOption) (*ClientWithResponses, error) {
-	client, err := NewClient(server, opts...)
+func newClientWithResponses(server string, opts ...ClientOption) (*ClientWithResponses, error) {
+	client, err := newClient(server, opts...)
 	if err != nil {
 		return nil, err
 	}
