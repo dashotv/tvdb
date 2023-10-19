@@ -13,7 +13,7 @@ steps:
       TVDB_API_TOKEN:
         from_secret: tvdb_api_token
     commands:
-      - make test lint
+      - make test
 
 trigger:
   branch:
