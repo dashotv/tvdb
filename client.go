@@ -43,7 +43,7 @@ func New(url string) *Tvdb {
 }
 
 // Login authenticates with the TVDB API and sets the bearer token for future requests
-func (c *Tvdb) Login(apiKey string) error {
+func (c *Tvdb) Login(apiKey string) (string, error) {
 	c.Key = apiKey
 
 	b := PostLoginJSONRequestBody{}
@@ -51,13 +51,13 @@ func (c *Tvdb) Login(apiKey string) error {
 
 	resp, err := c.c.PostLoginWithResponse(c.ctx, b)
 	if err != nil {
-		return err
+		return "", err
 	}
 	if resp.StatusCode() != http.StatusOK {
-		return errors.Errorf("unexpected status code: %d", resp.StatusCode())
+		return "", errors.Errorf("unexpected status code: %d", resp.StatusCode())
 	}
 	if resp == nil || resp.JSON200 == nil || resp.JSON200.Data == nil || resp.JSON200.Data.Token == nil {
-		return errors.New("response does not contain valid token")
+		return "", errors.New("response does not contain valid token")
 	}
 
 	return c.SetAuthToken(*resp.JSON200.Data.Token)
@@ -68,20 +68,21 @@ func (c *Tvdb) Login(apiKey string) error {
 // Use this if you have your auth token stored elsewhere. These tokens
 // expire after 30 days, so it's best to store in your database and refresh
 // when needed.
-func (c *Tvdb) SetAuthToken(token string) (err error) {
+func (c *Tvdb) SetAuthToken(token string) (t string, err error) {
 	if token == "" {
-		return errors.Errorf("token cannot be empty")
+		return "", errors.Errorf("token cannot be empty")
 	}
 
+	t = token
 	c.token = token
 	c.ctx = context.WithValue(c.ctx, contextBearerToken, token)
 
 	c.c, err = newClientWithResponses(c.URL, WithRequestEditorFn(requestAuth))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return t, nil
 }
 
 // requestAuth wires up the bearer token to the request
