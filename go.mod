@@ -4,6 +4,7 @@ go 1.21
 
 require (
 	github.com/oapi-codegen/runtime v1.0.0
+	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.8.4
 )
 
