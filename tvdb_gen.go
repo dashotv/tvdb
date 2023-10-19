@@ -383,19 +383,19 @@ type Character struct {
 // Companies Companies by type record
 type Companies struct {
 	// Distributor A company record
-	Distributor *Company `json:"distributor,omitempty"`
+	Distributor *[]Company `json:"distributor,omitempty"`
 
 	// Network A company record
-	Network *Company `json:"network,omitempty"`
+	Network *[]Company `json:"network,omitempty"`
 
 	// Production A company record
-	Production *Company `json:"production,omitempty"`
+	Production *[]Company `json:"production,omitempty"`
 
 	// SpecialEffects A company record
-	SpecialEffects *Company `json:"special_effects,omitempty"`
+	SpecialEffects *[]Company `json:"special_effects,omitempty"`
 
 	// Studio A company record
-	Studio *Company `json:"studio,omitempty"`
+	Studio *[]Company `json:"studio,omitempty"`
 }
 
 // Company A company record

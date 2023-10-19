@@ -16,3 +16,14 @@ func StringValue(v *string) string {
 	}
 	return ""
 }
+
+func Float32(v float32) *float32 {
+	return &v
+}
+
+func Float32Value(v *float32) float32 {
+	if v != nil {
+		return *v
+	}
+	return 0
+}
