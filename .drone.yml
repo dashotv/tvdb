@@ -1,0 +1,16 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build
+    image: golang
+    commands:
+      - go test -v ./...
+      - go build
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
