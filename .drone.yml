@@ -14,9 +14,17 @@ steps:
         from_secret: tvdb_api_token
     commands:
       - make test
+  - name: slack
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: slack_webhook
+    when:
+      status: [success, failure]
 
 trigger:
   branch:
     - main
   event:
     - push
+    - custom
