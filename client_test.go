@@ -15,7 +15,7 @@ func testTvdb(t *testing.T) *Tvdb {
 	c := New(tvdbURL)
 	assert.NotNil(t, c)
 
-	err := c.SetAuthToken(tvdbToken)
+	_, err := c.SetAuthToken(tvdbToken)
 	assert.NoError(t, err)
 
 	return c
@@ -36,7 +36,7 @@ func TestTvdb_Login(t *testing.T) {
 	c := New(tvdbURL)
 	assert.NotNil(t, c)
 
-	err := c.Login(tvdbKey)
+	_, err := c.Login(tvdbKey)
 	assert.NoError(t, err)
 
 	_, err = c.GetSearchResults(&GetSearchResultsParams{Query: String("The Simpsons")})
@@ -47,7 +47,7 @@ func TestTvdb_SetAuthToken(t *testing.T) {
 	c := New(tvdbURL)
 	assert.NotNil(t, c)
 
-	err := c.SetAuthToken(tvdbToken)
+	_, err := c.SetAuthToken(tvdbToken)
 	assert.NoError(t, err)
 
 	_, err = c.GetSearchResults(&GetSearchResultsParams{Query: String("The Simpsons")})
@@ -58,7 +58,7 @@ func TestTvdb_Search(t *testing.T) {
 	c := New(tvdbURL)
 	assert.NotNil(t, c)
 
-	err := c.Login(tvdbKey)
+	_, err := c.Login(tvdbKey)
 	assert.NoError(t, err)
 
 	p := &GetSearchResultsParams{Query: String("The Simpsons")}

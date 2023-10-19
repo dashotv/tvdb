@@ -2,7 +2,6 @@ package tvdb
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -27,7 +26,6 @@ func testAuthClient(t *testing.T) (*ClientWithResponses, context.Context) {
 	assert.NoError(t, err)
 	assert.NotNil(t, resp)
 	assert.Equal(t, 200, resp.StatusCode())
-	fmt.Printf("Token: %s\n", *resp.JSON200.Data.Token)
 
 	ctx = context.WithValue(ctx, contextBearerToken, *resp.JSON200.Data.Token)
 
@@ -49,7 +47,6 @@ func TestClient_Login(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, resp)
 	assert.Equal(t, 200, resp.StatusCode())
-	fmt.Printf("Token: %s\n", *resp.JSON200.Data.Token)
 }
 
 func TestClient_Search(t *testing.T) {
@@ -62,5 +59,4 @@ func TestClient_Search(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, resp)
 	assert.Equal(t, 200, resp.StatusCode())
-	fmt.Printf("Search Results: %d\n", len(*resp.JSON200.Data))
 }
