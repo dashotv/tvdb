@@ -10,7 +10,7 @@ TVDB API in Go
 
 Install the package with:
 
-```go
+```bash
 go get github.com/dashotv/tvdb
 ```
 
