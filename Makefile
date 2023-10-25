@@ -25,6 +25,9 @@ all: help
 # 	mkdir -p out/bin
 # 	$(GOCMD) build -mod vendor -o out/bin/$(BINARY_NAME) .
 
+generate: ## Generate code from openapi.yml spec
+	scripts/generate.sh
+
 clean: ## Remove build related file
 	rm -fr ./bin
 	rm -fr ./out
