@@ -2,6 +2,7 @@
 
 VERSION=$(git describe --tags --always --dirty --match=v* 2>/dev/null || cat "${PWD}/.version" 2>/dev/null || echo v0)
 
+rm -rf openapi
 mkdir -p openapi
 printf "go:\n  packageName: github.com/dashotv/tvdb/openapi\n  version: %s" "$VERSION" >openapi/gen.yaml
 speakeasy generate sdk -l go -o openapi -s ./openapi.yml

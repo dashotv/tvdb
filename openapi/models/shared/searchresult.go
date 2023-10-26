@@ -4,38 +4,40 @@ package shared
 
 // SearchResult - search result
 type SearchResult struct {
-	Aliases              []string            `json:"aliases,omitempty"`
-	Companies            []string            `json:"companies,omitempty"`
-	CompanyType          *string             `json:"companyType,omitempty"`
-	Country              *string             `json:"country,omitempty"`
-	Director             *string             `json:"director,omitempty"`
-	FirstAirTime         *string             `json:"first_air_time,omitempty"`
-	Genres               []string            `json:"genres,omitempty"`
-	ID                   *string             `json:"id,omitempty"`
-	ImageURL             *string             `json:"image_url,omitempty"`
-	IsOfficial           *bool               `json:"is_official,omitempty"`
-	Name                 *string             `json:"name,omitempty"`
-	NameTranslated       *string             `json:"name_translated,omitempty"`
-	Network              *string             `json:"network,omitempty"`
-	ObjectID             *string             `json:"objectID,omitempty"`
-	OfficialList         *string             `json:"officialList,omitempty"`
-	Overview             *string             `json:"overview,omitempty"`
-	OverviewTranslated   []string            `json:"overview_translated,omitempty"`
-	Overviews            []TranslationSimple `json:"overviews,omitempty"`
-	Poster               *string             `json:"poster,omitempty"`
-	Posters              []string            `json:"posters,omitempty"`
-	PrimaryLanguage      *string             `json:"primary_language,omitempty"`
-	RemoteIds            []RemoteID          `json:"remote_ids,omitempty"`
-	Slug                 *string             `json:"slug,omitempty"`
-	Status               *string             `json:"status,omitempty"`
-	Studios              []string            `json:"studios,omitempty"`
-	Thumbnail            *string             `json:"thumbnail,omitempty"`
-	Title                *string             `json:"title,omitempty"`
-	Translations         []TranslationSimple `json:"translations,omitempty"`
-	TranslationsWithLang []string            `json:"translationsWithLang,omitempty"`
-	TvdbID               *string             `json:"tvdb_id,omitempty"`
-	Type                 *string             `json:"type,omitempty"`
-	Year                 *string             `json:"year,omitempty"`
+	Aliases            []string `json:"aliases,omitempty"`
+	Companies          []string `json:"companies,omitempty"`
+	CompanyType        *string  `json:"companyType,omitempty"`
+	Country            *string  `json:"country,omitempty"`
+	Director           *string  `json:"director,omitempty"`
+	FirstAirTime       *string  `json:"first_air_time,omitempty"`
+	Genres             []string `json:"genres,omitempty"`
+	ID                 *string  `json:"id,omitempty"`
+	ImageURL           *string  `json:"image_url,omitempty"`
+	IsOfficial         *bool    `json:"is_official,omitempty"`
+	Name               *string  `json:"name,omitempty"`
+	NameTranslated     *string  `json:"name_translated,omitempty"`
+	Network            *string  `json:"network,omitempty"`
+	ObjectID           *string  `json:"objectID,omitempty"`
+	OfficialList       *string  `json:"officialList,omitempty"`
+	Overview           *string  `json:"overview,omitempty"`
+	OverviewTranslated []string `json:"overview_translated,omitempty"`
+	// translation simple record
+	Overviews       map[string]string `json:"overviews,omitempty"`
+	Poster          *string           `json:"poster,omitempty"`
+	Posters         []string          `json:"posters,omitempty"`
+	PrimaryLanguage *string           `json:"primary_language,omitempty"`
+	RemoteIds       []RemoteID        `json:"remote_ids,omitempty"`
+	Slug            *string           `json:"slug,omitempty"`
+	Status          *string           `json:"status,omitempty"`
+	Studios         []string          `json:"studios,omitempty"`
+	Thumbnail       *string           `json:"thumbnail,omitempty"`
+	Title           *string           `json:"title,omitempty"`
+	// translation simple record
+	Translations         map[string]string `json:"translations,omitempty"`
+	TranslationsWithLang []string          `json:"translationsWithLang,omitempty"`
+	TvdbID               *string           `json:"tvdb_id,omitempty"`
+	Type                 *string           `json:"type,omitempty"`
+	Year                 *string           `json:"year,omitempty"`
 }
 
 func (o *SearchResult) GetAliases() []string {
@@ -157,7 +159,7 @@ func (o *SearchResult) GetOverviewTranslated() []string {
 	return o.OverviewTranslated
 }
 
-func (o *SearchResult) GetOverviews() []TranslationSimple {
+func (o *SearchResult) GetOverviews() map[string]string {
 	if o == nil {
 		return nil
 	}
@@ -227,7 +229,7 @@ func (o *SearchResult) GetTitle() *string {
 	return o.Title
 }
 
-func (o *SearchResult) GetTranslations() []TranslationSimple {
+func (o *SearchResult) GetTranslations() map[string]string {
 	if o == nil {
 		return nil
 	}

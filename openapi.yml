@@ -3685,9 +3685,10 @@ components:
         overview:
           type: string
         overviews:
-          items:
-            $ref: "#/components/schemas/TranslationSimple"
-          type: array
+          $ref: "#/components/schemas/TranslationSimple"
+          # items:
+          #   $ref: "#/components/schemas/TranslationSimple"
+          # type: array
         overview_translated:
           items:
             type: string
@@ -3719,9 +3720,10 @@ components:
         thumbnail:
           type: string
         translations:
-          items:
-            $ref: "#/components/schemas/TranslationSimple"
-          type: array
+          $ref: "#/components/schemas/TranslationSimple"
+          # items:
+          #   $ref: "#/components/schemas/TranslationSimple"
+          # type: array
         translationsWithLang:
           items:
             type: string
@@ -4236,11 +4238,13 @@ components:
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     TranslationSimple:
       description: translation simple record
-      properties:
-        language:
-          type: string
-          x-go-name: Language
       type: object
+      additionalProperties:
+        type: string
+        x-go-name: Language
+      # properties:
+      #   language:
+      #     type: string
     TranslationExtended:
       description: translation extended record
       properties:

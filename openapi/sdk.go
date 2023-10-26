@@ -168,9 +168,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "4.7.8",
-			SDKVersion:        "v0.1.0-5-g80905b6-dirty",
+			SDKVersion:        "v0.1.0-6-gc93f04c-dirty",
 			GenVersion:        "2.172.0",
-			UserAgent:         "speakeasy-sdk/go v0.1.0-5-g80905b6-dirty 2.172.0 4.7.8 github.com/dashotv/tvdb/openapi",
+			UserAgent:         "speakeasy-sdk/go v0.1.0-6-gc93f04c-dirty 2.172.0 4.7.8 github.com/dashotv/tvdb/openapi",
 		},
 	}
 	for _, opt := range opts {

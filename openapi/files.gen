@@ -167,7 +167,6 @@ models/shared/race.go
 models/shared/biography.go
 models/shared/peopletype.go
 models/shared/searchresult.go
-models/shared/translationsimple.go
 models/shared/searchbyremoteidresult.go
 models/shared/seasonextendedrecord.go
 models/shared/seriesextendedrecord.go
@@ -423,7 +422,6 @@ docs/models/shared/race.md
 docs/models/shared/biography.md
 docs/models/shared/peopletype.md
 docs/models/shared/searchresult.md
-docs/models/shared/translationsimple.md
 docs/models/shared/searchbyremoteidresult.md
 docs/models/shared/seasonextendedrecord.md
 docs/models/shared/seriesextendedrecord.md

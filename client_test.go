@@ -1,22 +1,51 @@
 package tvdb
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/dashotv/tvdb/openapi"
+	"github.com/dashotv/tvdb/openapi/models/operations"
 )
 
 var tvdbApiKey = os.Getenv("TVDB_API_KEY")
+var tvdbToken = os.Getenv("TVDB_API_TOKEN")
 
-func TestClient_Login(t *testing.T) {
+func TestLogin(t *testing.T) {
 	assert.NotEmpty(t, tvdbApiKey, "TVDB_API_KEY is empty")
 
-	c := New(tvdbApiKey)
-
-	token, err := c.Login()
+	c, err := Login(tvdbApiKey)
 	assert.NoError(t, err)
-	assert.NotEmpty(t, token)
+	assert.NotNil(t, c)
+}
 
-	// fmt.Printf("Token: %s\n", token)
+func TestNew(t *testing.T) {
+	assert.NotEmpty(t, tvdbToken, "TVDB_API_TOKEN is empty")
+
+	c := New(tvdbApiKey, tvdbToken)
+	assert.NotNil(t, c)
+}
+
+func TestClient_Search(t *testing.T) {
+	assert.NotEmpty(t, tvdbApiKey, "TVDB_API_KEY is empty")
+
+	c, err := Login(tvdbApiKey)
+	assert.NoError(t, err)
+	assert.NotNil(t, c)
+
+	p := operations.GetSearchResultsRequest{
+		Query: openapi.String("The Simpsons"),
+	}
+	r, err := c.GetSearchResults(p)
+	assert.NoError(t, err)
+	assert.NotNil(t, r)
+
+	for _, v := range r.Data {
+		assert.NotEmpty(t, *v.ID)
+		assert.NotEmpty(t, *v.Name)
+		fmt.Printf("%s: %s\n", *v.ID, *v.Name)
+	}
 }

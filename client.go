@@ -14,26 +14,36 @@ type Client struct {
 	ctx   context.Context
 }
 
-func New(apikey string) *Client {
-	s := openapi.New(openapi.WithSecurity(apikey))
-	return &Client{
+// Login creates a new client by logging in with an apikey
+func Login(apikey string) (*Client, error) {
+	s := openapi.New()
+	c := &Client{
 		Key:   apikey,
 		Token: "",
 		sdk:   s,
 		ctx:   context.Background(),
 	}
-}
 
-func (c *Client) Login() (string, error) {
 	p := operations.PostLoginRequestBody{
 		Apikey: c.Key,
 	}
 
 	r, err := c.PostLogin(p)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	c.Token = *r.Data.Token
-	return c.Token, nil
+	return New(apikey, *r.Data.Token), nil
+}
+
+// New creates a client with an existing token
+func New(apikey, token string) *Client {
+	s := openapi.New(openapi.WithSecurity(token))
+	return &Client{
+		Key:   apikey,
+		Token: token,
+		sdk:   s,
+		ctx:   context.Background(),
+	}
 }

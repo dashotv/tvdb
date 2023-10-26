@@ -24,7 +24,7 @@ import "github.com/dashotv/tvdb"
 Create a new client with:
 
 ```go
-client := tvdb.New("https://api4.thetvdb.com/v4")
+client := tvdb.New(apikey)
 ```
 
 If you don't already have a token, you can obtain one with:
@@ -32,22 +32,18 @@ If you don't already have a token, you can obtain one with:
 ```go
 // Authenticate with your API key. This will return the token and
 // will also configure the client with Bearer authentication.
-token, err := client.Login("your_api_key")
+token, err := client.Login()
 if err != nil {
-    panic(err) // ... etc ...
+    // handle error
 }
 ```
 
-You should store the token somewhere, by default the token is viable for 30 days. TVDB doesn't appear to
-care if you auth every call, but it adds a lot of overhead.
+You should store the token somewhere, by default the token is viable for 30 days. TVDB doesn't appear to care if you auth every call, but it adds a lot of overhead.
 
 If you already have the token, you can set it with:
 
 ```go
-_, err := client.SetAuthToken(token)
-if err != nil {
-    panic(err) // ... etc ...
-}
+client.SetToken(token)
 ```
 
 This will configure the client with the token and configure Bearer authentication.
