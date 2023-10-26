@@ -5,9 +5,8 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
-
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"net/http"
 )
 
 // GetSeriesFilterSort - sort by results

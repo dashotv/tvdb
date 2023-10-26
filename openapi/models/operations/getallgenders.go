@@ -3,9 +3,8 @@
 package operations
 
 import (
-	"net/http"
-
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"net/http"
 )
 
 // GetAllGenders200ApplicationJSON - response

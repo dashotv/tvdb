@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"io"
-	"net/http"
-	"strings"
-
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
 	"github.com/dashotv/tvdb/openapi/utils"
+	"io"
+	"net/http"
+	"strings"
 )
 
 type movies struct {

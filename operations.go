@@ -78,7 +78,7 @@ type GetUserInfo = operations.GetUserInfo200ApplicationJSON
 type GetUserInfoByID = operations.GetUserInfoByID200ApplicationJSON
 
 // GetArtworkBase wraps the generated openapi.SDK client call
-func (c *Client) GetArtworkBase(ctx context.Context, id float64) (*GetArtworkBase, error) {
+func (c *Client) GetArtworkBase(id float64) (*GetArtworkBase, error) {
 	r, err := c.sdk.Artwork.GetArtworkBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -90,7 +90,7 @@ func (c *Client) GetArtworkBase(ctx context.Context, id float64) (*GetArtworkBas
 }
 
 // GetArtworkExtended wraps the generated openapi.SDK client call
-func (c *Client) GetArtworkExtended(ctx context.Context, id float64) (*GetArtworkExtended, error) {
+func (c *Client) GetArtworkExtended(id float64) (*GetArtworkExtended, error) {
 	r, err := c.sdk.Artwork.GetArtworkExtended(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -126,7 +126,7 @@ func (c *Client) GetAllArtworkTypes(ctx context.Context) (*GetAllArtworkTypes, e
 }
 
 // GetAwardCategory wraps the generated openapi.SDK client call
-func (c *Client) GetAwardCategory(ctx context.Context, id float64) (*GetAwardCategory, error) {
+func (c *Client) GetAwardCategory(id float64) (*GetAwardCategory, error) {
 	r, err := c.sdk.AwardCategories.GetAwardCategory(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -138,7 +138,7 @@ func (c *Client) GetAwardCategory(ctx context.Context, id float64) (*GetAwardCat
 }
 
 // GetAwardCategoryExtended wraps the generated openapi.SDK client call
-func (c *Client) GetAwardCategoryExtended(ctx context.Context, id float64) (*GetAwardCategoryExtended, error) {
+func (c *Client) GetAwardCategoryExtended(id float64) (*GetAwardCategoryExtended, error) {
 	r, err := c.sdk.AwardCategories.GetAwardCategoryExtended(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -162,7 +162,7 @@ func (c *Client) GetAllAwards(ctx context.Context) (*GetAllAwards, error) {
 }
 
 // GetAward wraps the generated openapi.SDK client call
-func (c *Client) GetAward(ctx context.Context, id float64) (*GetAward, error) {
+func (c *Client) GetAward(id float64) (*GetAward, error) {
 	r, err := c.sdk.Awards.GetAward(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -174,7 +174,7 @@ func (c *Client) GetAward(ctx context.Context, id float64) (*GetAward, error) {
 }
 
 // GetAwardExtended wraps the generated openapi.SDK client call
-func (c *Client) GetAwardExtended(ctx context.Context, id float64) (*GetAwardExtended, error) {
+func (c *Client) GetAwardExtended(id float64) (*GetAwardExtended, error) {
 	r, err := c.sdk.Awards.GetAwardExtended(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -186,7 +186,7 @@ func (c *Client) GetAwardExtended(ctx context.Context, id float64) (*GetAwardExt
 }
 
 // GetCharacterBase wraps the generated openapi.SDK client call
-func (c *Client) GetCharacterBase(ctx context.Context, id float64) (*GetCharacterBase, error) {
+func (c *Client) GetCharacterBase(id float64) (*GetCharacterBase, error) {
 	r, err := c.sdk.Characters.GetCharacterBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -198,7 +198,7 @@ func (c *Client) GetCharacterBase(ctx context.Context, id float64) (*GetCharacte
 }
 
 // GetAllCompanies wraps the generated openapi.SDK client call
-func (c *Client) GetAllCompanies(ctx context.Context, page *float64) (*GetAllCompanies, error) {
+func (c *Client) GetAllCompanies(page *float64) (*GetAllCompanies, error) {
 	r, err := c.sdk.Companies.GetAllCompanies(c.ctx, page)
 	if err != nil {
 		return nil, err
@@ -210,7 +210,7 @@ func (c *Client) GetAllCompanies(ctx context.Context, page *float64) (*GetAllCom
 }
 
 // GetCompany wraps the generated openapi.SDK client call
-func (c *Client) GetCompany(ctx context.Context, id float64) (*GetCompany, error) {
+func (c *Client) GetCompany(id float64) (*GetCompany, error) {
 	r, err := c.sdk.Companies.GetCompany(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -270,7 +270,7 @@ func (c *Client) GetEntityTypes(ctx context.Context) (*GetEntityTypes, error) {
 }
 
 // GetAllEpisodes wraps the generated openapi.SDK client call
-func (c *Client) GetAllEpisodes(ctx context.Context, page *float64) (*GetAllEpisodes, error) {
+func (c *Client) GetAllEpisodes(page *float64) (*GetAllEpisodes, error) {
 	r, err := c.sdk.Episodes.GetAllEpisodes(c.ctx, page)
 	if err != nil {
 		return nil, err
@@ -282,7 +282,7 @@ func (c *Client) GetAllEpisodes(ctx context.Context, page *float64) (*GetAllEpis
 }
 
 // GetEpisodeBase wraps the generated openapi.SDK client call
-func (c *Client) GetEpisodeBase(ctx context.Context, id float64) (*GetEpisodeBase, error) {
+func (c *Client) GetEpisodeBase(id float64) (*GetEpisodeBase, error) {
 	r, err := c.sdk.Episodes.GetEpisodeBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -294,7 +294,7 @@ func (c *Client) GetEpisodeBase(ctx context.Context, id float64) (*GetEpisodeBas
 }
 
 // GetEpisodeExtended wraps the generated openapi.SDK client call
-func (c *Client) GetEpisodeExtended(ctx context.Context, id float64, meta *operations.GetEpisodeExtendedMeta) (*GetEpisodeExtended, error) {
+func (c *Client) GetEpisodeExtended(id float64, meta *operations.GetEpisodeExtendedMeta) (*GetEpisodeExtended, error) {
 	r, err := c.sdk.Episodes.GetEpisodeExtended(c.ctx, id, meta)
 	if err != nil {
 		return nil, err
@@ -306,7 +306,7 @@ func (c *Client) GetEpisodeExtended(ctx context.Context, id float64, meta *opera
 }
 
 // GetEpisodeTranslation wraps the generated openapi.SDK client call
-func (c *Client) GetEpisodeTranslation(ctx context.Context, id float64, language string) (*GetEpisodeTranslation, error) {
+func (c *Client) GetEpisodeTranslation(id float64, language string) (*GetEpisodeTranslation, error) {
 	r, err := c.sdk.Episodes.GetEpisodeTranslation(c.ctx, id, language)
 	if err != nil {
 		return nil, err
@@ -319,7 +319,7 @@ func (c *Client) GetEpisodeTranslation(ctx context.Context, id float64, language
 
 // CreateUserFavorites wraps the generated openapi.SDK client call
 //
-//	func (c *Client) CreateUserFavorites(ctx context.Context, request *shared.FavoriteRecord) (*CreateUserFavorites, error) {
+//	func (c *Client) CreateUserFavorites(request *shared.FavoriteRecord) (*CreateUserFavorites, error) {
 //		r, err := c.sdk.Favorites.CreateUserFavorites(c.ctx, request)
 //		if err != nil {
 //			return nil, err
@@ -367,7 +367,7 @@ func (c *Client) GetAllGenres(ctx context.Context) (*GetAllGenres, error) {
 }
 
 // GetGenreBase wraps the generated openapi.SDK client call
-func (c *Client) GetGenreBase(ctx context.Context, id float64) (*GetGenreBase, error) {
+func (c *Client) GetGenreBase(id float64) (*GetGenreBase, error) {
 	r, err := c.sdk.Genres.GetGenreBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -403,7 +403,7 @@ func (c *Client) GetAllLanguages(ctx context.Context) (*GetAllLanguages, error) 
 }
 
 // GetAllLists wraps the generated openapi.SDK client call
-func (c *Client) GetAllLists(ctx context.Context, page *float64) (*GetAllLists, error) {
+func (c *Client) GetAllLists(page *float64) (*GetAllLists, error) {
 	r, err := c.sdk.Lists.GetAllLists(c.ctx, page)
 	if err != nil {
 		return nil, err
@@ -415,7 +415,7 @@ func (c *Client) GetAllLists(ctx context.Context, page *float64) (*GetAllLists, 
 }
 
 // GetList wraps the generated openapi.SDK client call
-func (c *Client) GetList(ctx context.Context, id float64) (*GetList, error) {
+func (c *Client) GetList(id float64) (*GetList, error) {
 	r, err := c.sdk.Lists.GetList(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -427,7 +427,7 @@ func (c *Client) GetList(ctx context.Context, id float64) (*GetList, error) {
 }
 
 // GetListBySlug wraps the generated openapi.SDK client call
-func (c *Client) GetListBySlug(ctx context.Context, slug string) (*GetListBySlug, error) {
+func (c *Client) GetListBySlug(slug string) (*GetListBySlug, error) {
 	r, err := c.sdk.Lists.GetListBySlug(c.ctx, slug)
 	if err != nil {
 		return nil, err
@@ -439,7 +439,7 @@ func (c *Client) GetListBySlug(ctx context.Context, slug string) (*GetListBySlug
 }
 
 // GetListExtended wraps the generated openapi.SDK client call
-func (c *Client) GetListExtended(ctx context.Context, id float64) (*GetListExtended, error) {
+func (c *Client) GetListExtended(id float64) (*GetListExtended, error) {
 	r, err := c.sdk.Lists.GetListExtended(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -451,7 +451,7 @@ func (c *Client) GetListExtended(ctx context.Context, id float64) (*GetListExten
 }
 
 // GetListTranslation wraps the generated openapi.SDK client call
-func (c *Client) GetListTranslation(ctx context.Context, id float64, language string) (*GetListTranslation, error) {
+func (c *Client) GetListTranslation(id float64, language string) (*GetListTranslation, error) {
 	r, err := c.sdk.Lists.GetListTranslation(c.ctx, id, language)
 	if err != nil {
 		return nil, err
@@ -463,7 +463,7 @@ func (c *Client) GetListTranslation(ctx context.Context, id float64, language st
 }
 
 // PostLogin wraps the generated openapi.SDK client call
-func (c *Client) PostLogin(ctx context.Context, request operations.PostLoginRequestBody) (*PostLogin, error) {
+func (c *Client) PostLogin(request operations.PostLoginRequestBody) (*PostLogin, error) {
 	r, err := c.sdk.Login.PostLogin(c.ctx, request)
 	if err != nil {
 		return nil, err
@@ -475,7 +475,7 @@ func (c *Client) PostLogin(ctx context.Context, request operations.PostLoginRequ
 }
 
 // GetAllMovie wraps the generated openapi.SDK client call
-func (c *Client) GetAllMovie(ctx context.Context, page *float64) (*GetAllMovie, error) {
+func (c *Client) GetAllMovie(page *float64) (*GetAllMovie, error) {
 	r, err := c.sdk.Movies.GetAllMovie(c.ctx, page)
 	if err != nil {
 		return nil, err
@@ -487,7 +487,7 @@ func (c *Client) GetAllMovie(ctx context.Context, page *float64) (*GetAllMovie, 
 }
 
 // GetMovieBase wraps the generated openapi.SDK client call
-func (c *Client) GetMovieBase(ctx context.Context, id float64) (*GetMovieBase, error) {
+func (c *Client) GetMovieBase(id float64) (*GetMovieBase, error) {
 	r, err := c.sdk.Movies.GetMovieBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -499,7 +499,7 @@ func (c *Client) GetMovieBase(ctx context.Context, id float64) (*GetMovieBase, e
 }
 
 // GetMovieBaseBySlug wraps the generated openapi.SDK client call
-func (c *Client) GetMovieBaseBySlug(ctx context.Context, slug string) (*GetMovieBaseBySlug, error) {
+func (c *Client) GetMovieBaseBySlug(slug string) (*GetMovieBaseBySlug, error) {
 	r, err := c.sdk.Movies.GetMovieBaseBySlug(c.ctx, slug)
 	if err != nil {
 		return nil, err
@@ -511,7 +511,7 @@ func (c *Client) GetMovieBaseBySlug(ctx context.Context, slug string) (*GetMovie
 }
 
 // GetMovieExtended wraps the generated openapi.SDK client call
-func (c *Client) GetMovieExtended(ctx context.Context, id float64, meta *operations.GetMovieExtendedMeta, short *bool) (*GetMovieExtended, error) {
+func (c *Client) GetMovieExtended(id float64, meta *operations.GetMovieExtendedMeta, short *bool) (*GetMovieExtended, error) {
 	r, err := c.sdk.Movies.GetMovieExtended(c.ctx, id, meta, short)
 	if err != nil {
 		return nil, err
@@ -523,7 +523,7 @@ func (c *Client) GetMovieExtended(ctx context.Context, id float64, meta *operati
 }
 
 // GetMovieTranslation wraps the generated openapi.SDK client call
-func (c *Client) GetMovieTranslation(ctx context.Context, id float64, language string) (*GetMovieTranslation, error) {
+func (c *Client) GetMovieTranslation(id float64, language string) (*GetMovieTranslation, error) {
 	r, err := c.sdk.Movies.GetMovieTranslation(c.ctx, id, language)
 	if err != nil {
 		return nil, err
@@ -535,7 +535,7 @@ func (c *Client) GetMovieTranslation(ctx context.Context, id float64, language s
 }
 
 // GetMoviesFilter wraps the generated openapi.SDK client call
-func (c *Client) GetMoviesFilter(ctx context.Context, request operations.GetMoviesFilterRequest) (*GetMoviesFilter, error) {
+func (c *Client) GetMoviesFilter(request operations.GetMoviesFilterRequest) (*GetMoviesFilter, error) {
 	r, err := c.sdk.Movies.GetMoviesFilter(c.ctx, request)
 	if err != nil {
 		return nil, err
@@ -559,7 +559,7 @@ func (c *Client) GetAllMovieStatuses(ctx context.Context) (*GetAllMovieStatuses,
 }
 
 // GetAllPeople wraps the generated openapi.SDK client call
-func (c *Client) GetAllPeople(ctx context.Context, page *float64) (*GetAllPeople, error) {
+func (c *Client) GetAllPeople(page *float64) (*GetAllPeople, error) {
 	r, err := c.sdk.People.GetAllPeople(c.ctx, page)
 	if err != nil {
 		return nil, err
@@ -571,7 +571,7 @@ func (c *Client) GetAllPeople(ctx context.Context, page *float64) (*GetAllPeople
 }
 
 // GetPeopleBase wraps the generated openapi.SDK client call
-func (c *Client) GetPeopleBase(ctx context.Context, id float64) (*GetPeopleBase, error) {
+func (c *Client) GetPeopleBase(id float64) (*GetPeopleBase, error) {
 	r, err := c.sdk.People.GetPeopleBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -583,7 +583,7 @@ func (c *Client) GetPeopleBase(ctx context.Context, id float64) (*GetPeopleBase,
 }
 
 // GetPeopleExtended wraps the generated openapi.SDK client call
-func (c *Client) GetPeopleExtended(ctx context.Context, id float64, meta *operations.GetPeopleExtendedMeta) (*GetPeopleExtended, error) {
+func (c *Client) GetPeopleExtended(id float64, meta *operations.GetPeopleExtendedMeta) (*GetPeopleExtended, error) {
 	r, err := c.sdk.People.GetPeopleExtended(c.ctx, id, meta)
 	if err != nil {
 		return nil, err
@@ -595,7 +595,7 @@ func (c *Client) GetPeopleExtended(ctx context.Context, id float64, meta *operat
 }
 
 // GetPeopleTranslation wraps the generated openapi.SDK client call
-func (c *Client) GetPeopleTranslation(ctx context.Context, id float64, language string) (*GetPeopleTranslation, error) {
+func (c *Client) GetPeopleTranslation(id float64, language string) (*GetPeopleTranslation, error) {
 	r, err := c.sdk.People.GetPeopleTranslation(c.ctx, id, language)
 	if err != nil {
 		return nil, err
@@ -632,7 +632,7 @@ func (c *Client) GetAllPeopleTypes(ctx context.Context) (*GetAllPeopleTypes, err
 // }
 
 // GetSearchResults wraps the generated openapi.SDK client call
-func (c *Client) GetSearchResults(ctx context.Context, request operations.GetSearchResultsRequest) (*GetSearchResults, error) {
+func (c *Client) GetSearchResults(request operations.GetSearchResultsRequest) (*GetSearchResults, error) {
 	r, err := c.sdk.Search.GetSearchResults(c.ctx, request)
 	if err != nil {
 		return nil, err
@@ -644,7 +644,7 @@ func (c *Client) GetSearchResults(ctx context.Context, request operations.GetSea
 }
 
 // GetSearchResultsByRemoteID wraps the generated openapi.SDK client call
-func (c *Client) GetSearchResultsByRemoteID(ctx context.Context, remoteID string) (*GetSearchResultsByRemoteID, error) {
+func (c *Client) GetSearchResultsByRemoteID(remoteID string) (*GetSearchResultsByRemoteID, error) {
 	r, err := c.sdk.Search.GetSearchResultsByRemoteID(c.ctx, remoteID)
 	if err != nil {
 		return nil, err
@@ -656,7 +656,7 @@ func (c *Client) GetSearchResultsByRemoteID(ctx context.Context, remoteID string
 }
 
 // GetAllSeasons wraps the generated openapi.SDK client call
-func (c *Client) GetAllSeasons(ctx context.Context, page *float64) (*GetAllSeasons, error) {
+func (c *Client) GetAllSeasons(page *float64) (*GetAllSeasons, error) {
 	r, err := c.sdk.Seasons.GetAllSeasons(c.ctx, page)
 	if err != nil {
 		return nil, err
@@ -668,7 +668,7 @@ func (c *Client) GetAllSeasons(ctx context.Context, page *float64) (*GetAllSeaso
 }
 
 // GetSeasonBase wraps the generated openapi.SDK client call
-func (c *Client) GetSeasonBase(ctx context.Context, id float64) (*GetSeasonBase, error) {
+func (c *Client) GetSeasonBase(id float64) (*GetSeasonBase, error) {
 	r, err := c.sdk.Seasons.GetSeasonBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -680,7 +680,7 @@ func (c *Client) GetSeasonBase(ctx context.Context, id float64) (*GetSeasonBase,
 }
 
 // GetSeasonExtended wraps the generated openapi.SDK client call
-func (c *Client) GetSeasonExtended(ctx context.Context, id float64) (*GetSeasonExtended, error) {
+func (c *Client) GetSeasonExtended(id float64) (*GetSeasonExtended, error) {
 	r, err := c.sdk.Seasons.GetSeasonExtended(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -692,7 +692,7 @@ func (c *Client) GetSeasonExtended(ctx context.Context, id float64) (*GetSeasonE
 }
 
 // GetSeasonTranslation wraps the generated openapi.SDK client call
-func (c *Client) GetSeasonTranslation(ctx context.Context, id float64, language string) (*GetSeasonTranslation, error) {
+func (c *Client) GetSeasonTranslation(id float64, language string) (*GetSeasonTranslation, error) {
 	r, err := c.sdk.Seasons.GetSeasonTranslation(c.ctx, id, language)
 	if err != nil {
 		return nil, err
@@ -716,7 +716,7 @@ func (c *Client) GetSeasonTypes(ctx context.Context) (*GetSeasonTypes, error) {
 }
 
 // GetAllSeries wraps the generated openapi.SDK client call
-func (c *Client) GetAllSeries(ctx context.Context, page *float64) (*GetAllSeries, error) {
+func (c *Client) GetAllSeries(page *float64) (*GetAllSeries, error) {
 	r, err := c.sdk.Series.GetAllSeries(c.ctx, page)
 	if err != nil {
 		return nil, err
@@ -728,7 +728,7 @@ func (c *Client) GetAllSeries(ctx context.Context, page *float64) (*GetAllSeries
 }
 
 // GetSeriesArtworks wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesArtworks(ctx context.Context, id float64, lang *string, type_ *int64) (*GetSeriesArtworks, error) {
+func (c *Client) GetSeriesArtworks(id float64, lang *string, type_ *int64) (*GetSeriesArtworks, error) {
 	r, err := c.sdk.Series.GetSeriesArtworks(c.ctx, id, lang, type_)
 	if err != nil {
 		return nil, err
@@ -740,7 +740,7 @@ func (c *Client) GetSeriesArtworks(ctx context.Context, id float64, lang *string
 }
 
 // GetSeriesBase wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesBase(ctx context.Context, id float64) (*GetSeriesBase, error) {
+func (c *Client) GetSeriesBase(id float64) (*GetSeriesBase, error) {
 	r, err := c.sdk.Series.GetSeriesBase(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -752,7 +752,7 @@ func (c *Client) GetSeriesBase(ctx context.Context, id float64) (*GetSeriesBase,
 }
 
 // GetSeriesBaseBySlug wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesBaseBySlug(ctx context.Context, slug string) (*GetSeriesBaseBySlug, error) {
+func (c *Client) GetSeriesBaseBySlug(slug string) (*GetSeriesBaseBySlug, error) {
 	r, err := c.sdk.Series.GetSeriesBaseBySlug(c.ctx, slug)
 	if err != nil {
 		return nil, err
@@ -764,7 +764,7 @@ func (c *Client) GetSeriesBaseBySlug(ctx context.Context, slug string) (*GetSeri
 }
 
 // GetSeriesEpisodes wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesEpisodes(ctx context.Context, request operations.GetSeriesEpisodesRequest) (*GetSeriesEpisodes, error) {
+func (c *Client) GetSeriesEpisodes(request operations.GetSeriesEpisodesRequest) (*GetSeriesEpisodes, error) {
 	r, err := c.sdk.Series.GetSeriesEpisodes(c.ctx, request)
 	if err != nil {
 		return nil, err
@@ -776,7 +776,7 @@ func (c *Client) GetSeriesEpisodes(ctx context.Context, request operations.GetSe
 }
 
 // GetSeriesExtended wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesExtended(ctx context.Context, id float64, meta *operations.GetSeriesExtendedMeta, short *bool) (*GetSeriesExtended, error) {
+func (c *Client) GetSeriesExtended(id float64, meta *operations.GetSeriesExtendedMeta, short *bool) (*GetSeriesExtended, error) {
 	r, err := c.sdk.Series.GetSeriesExtended(c.ctx, id, meta, short)
 	if err != nil {
 		return nil, err
@@ -788,7 +788,7 @@ func (c *Client) GetSeriesExtended(ctx context.Context, id float64, meta *operat
 }
 
 // GetSeriesFilter wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesFilter(ctx context.Context, request operations.GetSeriesFilterRequest) (*GetSeriesFilter, error) {
+func (c *Client) GetSeriesFilter(request operations.GetSeriesFilterRequest) (*GetSeriesFilter, error) {
 	r, err := c.sdk.Series.GetSeriesFilter(c.ctx, request)
 	if err != nil {
 		return nil, err
@@ -800,7 +800,7 @@ func (c *Client) GetSeriesFilter(ctx context.Context, request operations.GetSeri
 }
 
 // GetSeriesNextAired wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesNextAired(ctx context.Context, id float64) (*GetSeriesNextAired, error) {
+func (c *Client) GetSeriesNextAired(id float64) (*GetSeriesNextAired, error) {
 	r, err := c.sdk.Series.GetSeriesNextAired(c.ctx, id)
 	if err != nil {
 		return nil, err
@@ -812,7 +812,7 @@ func (c *Client) GetSeriesNextAired(ctx context.Context, id float64) (*GetSeries
 }
 
 // GetSeriesSeasonEpisodesTranslated wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id float64, lang string, page int64, seasonType string) (*GetSeriesSeasonEpisodesTranslated, error) {
+func (c *Client) GetSeriesSeasonEpisodesTranslated(id float64, lang string, page int64, seasonType string) (*GetSeriesSeasonEpisodesTranslated, error) {
 	r, err := c.sdk.Series.GetSeriesSeasonEpisodesTranslated(c.ctx, id, lang, page, seasonType)
 	if err != nil {
 		return nil, err
@@ -824,7 +824,7 @@ func (c *Client) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id float
 }
 
 // GetSeriesTranslation wraps the generated openapi.SDK client call
-func (c *Client) GetSeriesTranslation(ctx context.Context, id float64, language string) (*GetSeriesTranslation, error) {
+func (c *Client) GetSeriesTranslation(id float64, language string) (*GetSeriesTranslation, error) {
 	r, err := c.sdk.Series.GetSeriesTranslation(c.ctx, id, language)
 	if err != nil {
 		return nil, err
@@ -860,7 +860,7 @@ func (c *Client) GetAllSourceTypes(ctx context.Context) (*GetAllSourceTypes, err
 }
 
 // Updates wraps the generated openapi.SDK client call
-func (c *Client) Updates(ctx context.Context, since float64, action *operations.UpdatesAction, page *float64, type_ *operations.UpdatesType) (*Updates, error) {
+func (c *Client) Updates(since float64, action *operations.UpdatesAction, page *float64, type_ *operations.UpdatesType) (*Updates, error) {
 	r, err := c.sdk.Updates.Updates(c.ctx, since, action, page, type_)
 	if err != nil {
 		return nil, err
@@ -884,7 +884,7 @@ func (c *Client) GetUserInfo(ctx context.Context) (*GetUserInfo, error) {
 }
 
 // GetUserInfoByID wraps the generated openapi.SDK client call
-func (c *Client) GetUserInfoByID(ctx context.Context, id float64) (*GetUserInfoByID, error) {
+func (c *Client) GetUserInfoByID(id float64) (*GetUserInfoByID, error) {
 	r, err := c.sdk.UserInfo.GetUserInfoByID(c.ctx, id)
 	if err != nil {
 		return nil, err

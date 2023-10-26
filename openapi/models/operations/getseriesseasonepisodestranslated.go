@@ -3,10 +3,9 @@
 package operations
 
 import (
-	"net/http"
-
 	"github.com/dashotv/tvdb/openapi/models/shared"
 	"github.com/dashotv/tvdb/openapi/utils"
+	"net/http"
 )
 
 type GetSeriesSeasonEpisodesTranslatedRequest struct {
