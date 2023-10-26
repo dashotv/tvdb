@@ -1,0 +1,18 @@
+# ArtworkBaseRecord
+
+base artwork record
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `Height`                                                                  | **int64*                                                                  | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `ID`                                                                      | **int64*                                                                  | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Image`                                                                   | **string*                                                                 | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `IncludesText`                                                            | **bool*                                                                   | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Language`                                                                | **string*                                                                 | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Score`                                                                   | **float64*                                                                | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Thumbnail`                                                               | **string*                                                                 | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Type`                                                                    | **int64*                                                                  | :heavy_minus_sign:                                                        | The artwork type corresponds to the ids from the /artwork/types endpoint. |
+| `Width`                                                                   | **int64*                                                                  | :heavy_minus_sign:                                                        | N/A                                                                       |
