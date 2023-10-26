@@ -1,4 +1,4 @@
-# openapi
+# github.com/dashotv/tvdb/openapi
 
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
@@ -13,7 +13,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
 <!-- Start SDK Installation -->
-## SDK Installation
+# SDK Installation
 
 ```bash
 go get github.com/dashotv/tvdb/openapi
@@ -22,6 +22,8 @@ go get github.com/dashotv/tvdb/openapi
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 
@@ -54,85 +56,85 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## Available Resources and Operations
+# Available Resources and Operations
 
 
-### [Artwork](docs/sdks/artwork/README.md)
+## [Artwork](docs/sdks/artwork/README.md)
 
 * [GetArtworkBase](docs/sdks/artwork/README.md#getartworkbase) - Returns a single artwork base record.
 * [GetArtworkExtended](docs/sdks/artwork/README.md#getartworkextended) - Returns a single artwork extended record.
 
-### [ArtworkStatuses](docs/sdks/artworkstatuses/README.md)
+## [ArtworkStatuses](docs/sdks/artworkstatuses/README.md)
 
 * [GetAllArtworkStatuses](docs/sdks/artworkstatuses/README.md#getallartworkstatuses) - Returns list of artwork status records.
 
-### [ArtworkTypes](docs/sdks/artworktypes/README.md)
+## [ArtworkTypes](docs/sdks/artworktypes/README.md)
 
 * [GetAllArtworkTypes](docs/sdks/artworktypes/README.md#getallartworktypes) - Returns a list of artworkType records
 
-### [AwardCategories](docs/sdks/awardcategories/README.md)
+## [AwardCategories](docs/sdks/awardcategories/README.md)
 
 * [GetAwardCategory](docs/sdks/awardcategories/README.md#getawardcategory) - Returns a single award category base record
 * [GetAwardCategoryExtended](docs/sdks/awardcategories/README.md#getawardcategoryextended) - Returns a single award category extended record
 
-### [Awards](docs/sdks/awards/README.md)
+## [Awards](docs/sdks/awards/README.md)
 
 * [GetAllAwards](docs/sdks/awards/README.md#getallawards) - Returns a list of award base records
 * [GetAward](docs/sdks/awards/README.md#getaward) - Returns a single award base record
 * [GetAwardExtended](docs/sdks/awards/README.md#getawardextended) - Returns a single award extended record
 
-### [Characters](docs/sdks/characters/README.md)
+## [Characters](docs/sdks/characters/README.md)
 
 * [GetCharacterBase](docs/sdks/characters/README.md#getcharacterbase) - Returns character base record
 
-### [Companies](docs/sdks/companies/README.md)
+## [Companies](docs/sdks/companies/README.md)
 
 * [GetAllCompanies](docs/sdks/companies/README.md#getallcompanies) - returns a paginated list of company records
 * [GetCompany](docs/sdks/companies/README.md#getcompany) - returns a company record
 * [GetCompanyTypes](docs/sdks/companies/README.md#getcompanytypes) - returns all company type records
 
-### [ContentRatings](docs/sdks/contentratings/README.md)
+## [ContentRatings](docs/sdks/contentratings/README.md)
 
 * [GetAllContentRatings](docs/sdks/contentratings/README.md#getallcontentratings) - returns list content rating records
 
-### [Countries](docs/sdks/countries/README.md)
+## [Countries](docs/sdks/countries/README.md)
 
 * [GetAllCountries](docs/sdks/countries/README.md#getallcountries) - returns list of country records
 
-### [EntityTypes](docs/sdks/entitytypes/README.md)
+## [EntityTypes](docs/sdks/entitytypes/README.md)
 
 * [GetEntityTypes](docs/sdks/entitytypes/README.md#getentitytypes) - returns the active entity types
 
-### [Episodes](docs/sdks/episodes/README.md)
+## [Episodes](docs/sdks/episodes/README.md)
 
 * [GetAllEpisodes](docs/sdks/episodes/README.md#getallepisodes) - Returns a list of episodes base records with the basic attributes.<br> Note that all episodes are returned, even those that may not be included in a series' default season order.
 * [GetEpisodeBase](docs/sdks/episodes/README.md#getepisodebase) - Returns episode base record
 * [GetEpisodeExtended](docs/sdks/episodes/README.md#getepisodeextended) - Returns episode extended record
 * [GetEpisodeTranslation](docs/sdks/episodes/README.md#getepisodetranslation) - Returns episode translation record
 
-### [Favorites](docs/sdks/favorites/README.md)
+## [Favorites](docs/sdks/favorites/README.md)
 
 * [CreateUserFavorites](docs/sdks/favorites/README.md#createuserfavorites) - creates a new user favorite
 * [GetUserFavorites](docs/sdks/favorites/README.md#getuserfavorites) - returns user favorites
 
-### [Genders](docs/sdks/genders/README.md)
+## [Genders](docs/sdks/genders/README.md)
 
 * [GetAllGenders](docs/sdks/genders/README.md#getallgenders) - returns list of gender records
 
-### [Genres](docs/sdks/genres/README.md)
+## [Genres](docs/sdks/genres/README.md)
 
 * [GetAllGenres](docs/sdks/genres/README.md#getallgenres) - returns list of genre records
 * [GetGenreBase](docs/sdks/genres/README.md#getgenrebase) - Returns genre record
 
-### [InspirationTypes](docs/sdks/inspirationtypes/README.md)
+## [InspirationTypes](docs/sdks/inspirationtypes/README.md)
 
 * [GetAllInspirationTypes](docs/sdks/inspirationtypes/README.md#getallinspirationtypes) - returns list of inspiration types records
 
-### [Languages](docs/sdks/languages/README.md)
+## [Languages](docs/sdks/languages/README.md)
 
 * [GetAllLanguages](docs/sdks/languages/README.md#getalllanguages) - returns list of language records
 
-### [Lists](docs/sdks/lists/README.md)
+## [Lists](docs/sdks/lists/README.md)
 
 * [GetAllLists](docs/sdks/lists/README.md#getalllists) - returns list of list base records
 * [GetList](docs/sdks/lists/README.md#getlist) - returns an list base record
@@ -140,15 +142,15 @@ func main() {
 * [GetListExtended](docs/sdks/lists/README.md#getlistextended) - returns a list extended record
 * [GetListTranslation](docs/sdks/lists/README.md#getlisttranslation) - Returns list translation record
 
-### [Login](docs/sdks/login/README.md)
+## [Login](docs/sdks/login/README.md)
 
 * [PostLogin](docs/sdks/login/README.md#postlogin) - create an auth token. The token has one month validation length.
 
-### [MovieStatuses](docs/sdks/moviestatuses/README.md)
+## [MovieStatuses](docs/sdks/moviestatuses/README.md)
 
 * [GetAllMovieStatuses](docs/sdks/moviestatuses/README.md#getallmoviestatuses) - returns list of status records
 
-### [Movies](docs/sdks/movies/README.md)
+## [Movies](docs/sdks/movies/README.md)
 
 * [GetAllMovie](docs/sdks/movies/README.md#getallmovie) - returns list of movie base records
 * [GetMovieBase](docs/sdks/movies/README.md#getmoviebase) - Returns movie base record
@@ -157,23 +159,23 @@ func main() {
 * [GetMovieTranslation](docs/sdks/movies/README.md#getmovietranslation) - Returns movie translation record
 * [GetMoviesFilter](docs/sdks/movies/README.md#getmoviesfilter) - Search movies based on filter parameters
 
-### [People](docs/sdks/people/README.md)
+## [People](docs/sdks/people/README.md)
 
 * [GetAllPeople](docs/sdks/people/README.md#getallpeople) - Returns a list of people base records with the basic attributes.
 * [GetPeopleBase](docs/sdks/people/README.md#getpeoplebase) - Returns people base record
 * [GetPeopleExtended](docs/sdks/people/README.md#getpeopleextended) - Returns people extended record
 * [GetPeopleTranslation](docs/sdks/people/README.md#getpeopletranslation) - Returns people translation record
 
-### [PeopleTypes](docs/sdks/peopletypes/README.md)
+## [PeopleTypes](docs/sdks/peopletypes/README.md)
 
 * [GetAllPeopleTypes](docs/sdks/peopletypes/README.md#getallpeopletypes) - returns list of peopleType records
 
-### [Search](docs/sdks/search/README.md)
+## [Search](docs/sdks/search/README.md)
 
 * [GetSearchResults](docs/sdks/search/README.md#getsearchresults) - Our search index includes series, movies, people, and companies. Search is limited to 5k results max.
 * [GetSearchResultsByRemoteID](docs/sdks/search/README.md#getsearchresultsbyremoteid) - Search a series, movie, people, episode, company or season by specific remote id and returns a base record for that entity.
 
-### [Seasons](docs/sdks/seasons/README.md)
+## [Seasons](docs/sdks/seasons/README.md)
 
 * [GetAllSeasons](docs/sdks/seasons/README.md#getallseasons) - returns list of seasons base records
 * [GetSeasonBase](docs/sdks/seasons/README.md#getseasonbase) - Returns season base record
@@ -181,7 +183,7 @@ func main() {
 * [GetSeasonTranslation](docs/sdks/seasons/README.md#getseasontranslation) - Returns season translation record
 * [GetSeasonTypes](docs/sdks/seasons/README.md#getseasontypes) - Returns season type records
 
-### [Series](docs/sdks/series/README.md)
+## [Series](docs/sdks/series/README.md)
 
 * [GetAllSeries](docs/sdks/series/README.md#getallseries) - returns list of series base records
 * [GetSeriesArtworks](docs/sdks/series/README.md#getseriesartworks) - Returns series artworks base on language and type. <br> Note&#58; Artwork type is an id that can be found using **/artwork/types** endpoint.
@@ -194,19 +196,19 @@ func main() {
 * [GetSeriesSeasonEpisodesTranslated](docs/sdks/series/README.md#getseriesseasonepisodestranslated) - Returns series base record with episodes from the specified season type and language. Default returns the episodes in the series default season type.
 * [GetSeriesTranslation](docs/sdks/series/README.md#getseriestranslation) - Returns series translation record
 
-### [SeriesStatuses](docs/sdks/seriesstatuses/README.md)
+## [SeriesStatuses](docs/sdks/seriesstatuses/README.md)
 
 * [GetAllSeriesStatuses](docs/sdks/seriesstatuses/README.md#getallseriesstatuses) - returns list of status records
 
-### [SourceTypes](docs/sdks/sourcetypes/README.md)
+## [SourceTypes](docs/sdks/sourcetypes/README.md)
 
 * [GetAllSourceTypes](docs/sdks/sourcetypes/README.md#getallsourcetypes) - returns list of sourceType records
 
-### [Updates](docs/sdks/updates/README.md)
+## [Updates](docs/sdks/updates/README.md)
 
 * [Updates](docs/sdks/updates/README.md#updates) - Returns updated entities.  methodInt indicates a created record (1), an updated record (2), or a deleted record (3).  If a record is deleted because it was a duplicate of another record, the target record's information is provided in mergeToType and mergeToId.
 
-### [UserInfo](docs/sdks/userinfo/README.md)
+## [UserInfo](docs/sdks/userinfo/README.md)
 
 * [GetUserInfo](docs/sdks/userinfo/README.md#getuserinfo) - returns user info
 * [GetUserInfoByID](docs/sdks/userinfo/README.md#getuserinfobyid) - returns user info by user id
@@ -214,21 +216,21 @@ func main() {
 
 <!-- Start Dev Containers -->
 
+
+
 <!-- End Dev Containers -->
-
-<!-- Start Go Types -->
-
-<!-- End Go Types -->
-
-
 
 <!-- Start Error Handling -->
 # Error Handling
 
 Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+
+
 <!-- End Error Handling -->
 
+<!-- Start Go Types -->
 
+<!-- End Go Types -->
 
 <!-- Start Custom HTTP Client -->
 # Custom HTTP Client
