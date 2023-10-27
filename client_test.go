@@ -7,7 +7,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/dashotv/tvdb/openapi"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 )
 
@@ -37,7 +36,8 @@ func TestClient_Search(t *testing.T) {
 	assert.NotNil(t, c)
 
 	p := operations.GetSearchResultsRequest{
-		Query: openapi.String("The Simpsons"),
+		Query: String("The Simpsons"),
+		Type:  String("series"),
 	}
 	r, err := c.GetSearchResults(p)
 	assert.NoError(t, err)
