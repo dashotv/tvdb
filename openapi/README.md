@@ -228,9 +228,88 @@ Handling errors in your SDK should largely match your expectations.  All operati
 
 <!-- End Error Handling -->
 
-<!-- Start Go Types -->
+<!-- Start Server Selection -->
+# Server Selection
 
-<!-- End Go Types -->
+## Select Server by Index
+
+You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| # | Server | Variables |
+| - | ------ | --------- |
+| 0 | `https://api4.thetvdb.com/v4` | None |
+
+For example:
+
+
+```go
+package main
+
+import (
+	"context"
+	"github.com/dashotv/tvdb/openapi"
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"log"
+)
+
+func main() {
+	s := openapi.New(
+		openapi.WithSecurity(""),
+		openapi.WithServerIndex(0),
+	)
+
+	var id float64 = 6050.48
+
+	ctx := context.Background()
+	res, err := s.Artwork.GetArtworkBase(ctx, id)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.GetArtworkBase200ApplicationJSONObject != nil {
+		// handle response
+	}
+}
+
+```
+
+
+## Override Server URL Per-Client
+
+The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+
+
+```go
+package main
+
+import (
+	"context"
+	"github.com/dashotv/tvdb/openapi"
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"log"
+)
+
+func main() {
+	s := openapi.New(
+		openapi.WithSecurity(""),
+		openapi.WithServerURL("https://api4.thetvdb.com/v4"),
+	)
+
+	var id float64 = 6050.48
+
+	ctx := context.Background()
+	res, err := s.Artwork.GetArtworkBase(ctx, id)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.GetArtworkBase200ApplicationJSONObject != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Server Selection -->
 
 <!-- Start Custom HTTP Client -->
 # Custom HTTP Client
@@ -260,6 +339,10 @@ var (
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client -->
+
+<!-- Start Go Types -->
+
+<!-- End Go Types -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

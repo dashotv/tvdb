@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
-# VERSION=$(git describe --tags --always --dirty --match=v* 2>/dev/null || cat "${PWD}/.version" 2>/dev/null || echo v0)
-#
-# rm -rf openapi
-# mkdir -p openapi
-# # set golang defaults for generator
-# printf "go:\n  packageName: github.com/dashotv/tvdb/openapi\n  version: %s" "$VERSION" >openapi/gen.yaml
-# # generate go sdk
-# speakeasy generate sdk -l go -o openapi -s ./openapi.yml
-# # cleanup generated mod files
-# rm -rf openapi/go.*
-# # remove pkg folder
-# mv openapi/pkg/* openapi/
-# rm -rf openapi/pkg
-# # remove pkg from imports
-# find ./openapi -type f -exec sed -i '.backup' "s/pkg\///g" {} \;
-# find ./openapi -type f -name '*.backup' -delete
+VERSION=$(cat "${PWD}/.version" 2>/dev/null || echo v0)
+
+rm -rf openapi
+mkdir -p openapi
+# set golang defaults for generator
+printf "go:\n  packageName: github.com/dashotv/tvdb/openapi\n  version: %s" "$VERSION" >openapi/gen.yaml
+# generate go sdk
+speakeasy generate sdk -l go -o openapi -s ./openapi.yml
+# cleanup generated mod files
+rm -rf openapi/go.*
+# remove pkg folder
+mv openapi/pkg/* openapi/
+rm -rf openapi/pkg
+# remove pkg from imports
+find ./openapi -type f -exec sed -i '.backup' "s/pkg\///g" {} \;
+find ./openapi -type f -name '*.backup' -delete
+
 # copy types to root
 {
   echo "package tvdb"

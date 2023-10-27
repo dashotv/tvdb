@@ -246,18 +246,6 @@ func (c *Client) GetEpisodeTranslation(id float64, language string) (*GetEpisode
 	return r.GetEpisodeTranslation200ApplicationJSONObject, nil
 }
 
-// CreateUserFavorites wraps the generated openapi.SDK.Favorites.CreateUserFavorites call
-// func (c *Client) CreateUserFavorites(request *shared.FavoriteRecord) (*CreateUserFavoritesResponse, error) {
-//   r, err := c.sdk.Favorites.CreateUserFavorites(c.ctx, request)
-//   if err != nil {
-//           return nil, err
-//   }
-//   if r.StatusCode != 200 {
-//           return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
-//   }
-//   return r.CreateUserFavorites200ApplicationJSONObject, nil
-// }
-
 // GetUserFavorites wraps the generated openapi.SDK.Favorites.GetUserFavorites call
 func (c *Client) GetUserFavorites() (*GetUserFavoritesResponse, error) {
 	r, err := c.sdk.Favorites.GetUserFavorites(c.ctx)
