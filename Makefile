@@ -1,5 +1,5 @@
 -include .env
-export $(shell [[ -f ".env" ]] && sed 's/=.*//' .env)
+export $(shell [ -f ".env" ] && sed 's/=.*//' .env)
 
 GOCMD = go
 GOTEST = $(GOCMD) test
