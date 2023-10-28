@@ -5,9 +5,137 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
+
+// GetSeriesFilterGenre - Genre id. This id can be found using **/genres** endpoint.
+type GetSeriesFilterGenre int64
+
+const (
+	GetSeriesFilterGenreOne         GetSeriesFilterGenre = 1
+	GetSeriesFilterGenreTwo         GetSeriesFilterGenre = 2
+	GetSeriesFilterGenreThree       GetSeriesFilterGenre = 3
+	GetSeriesFilterGenreFour        GetSeriesFilterGenre = 4
+	GetSeriesFilterGenreFive        GetSeriesFilterGenre = 5
+	GetSeriesFilterGenreSix         GetSeriesFilterGenre = 6
+	GetSeriesFilterGenreSeven       GetSeriesFilterGenre = 7
+	GetSeriesFilterGenreEight       GetSeriesFilterGenre = 8
+	GetSeriesFilterGenreNine        GetSeriesFilterGenre = 9
+	GetSeriesFilterGenreTen         GetSeriesFilterGenre = 10
+	GetSeriesFilterGenreEleven      GetSeriesFilterGenre = 11
+	GetSeriesFilterGenreTwelve      GetSeriesFilterGenre = 12
+	GetSeriesFilterGenreThirteen    GetSeriesFilterGenre = 13
+	GetSeriesFilterGenreFourteen    GetSeriesFilterGenre = 14
+	GetSeriesFilterGenreFifteen     GetSeriesFilterGenre = 15
+	GetSeriesFilterGenreSixteen     GetSeriesFilterGenre = 16
+	GetSeriesFilterGenreSeventeen   GetSeriesFilterGenre = 17
+	GetSeriesFilterGenreEighteen    GetSeriesFilterGenre = 18
+	GetSeriesFilterGenreNineteen    GetSeriesFilterGenre = 19
+	GetSeriesFilterGenreTwentyOne   GetSeriesFilterGenre = 21
+	GetSeriesFilterGenreTwentyTwo   GetSeriesFilterGenre = 22
+	GetSeriesFilterGenreTwentyThree GetSeriesFilterGenre = 23
+	GetSeriesFilterGenreTwentyFour  GetSeriesFilterGenre = 24
+	GetSeriesFilterGenreTwentyFive  GetSeriesFilterGenre = 25
+	GetSeriesFilterGenreTwentySix   GetSeriesFilterGenre = 26
+	GetSeriesFilterGenreTwentySeven GetSeriesFilterGenre = 27
+	GetSeriesFilterGenreTwentyEight GetSeriesFilterGenre = 28
+	GetSeriesFilterGenreTwentyNine  GetSeriesFilterGenre = 29
+	GetSeriesFilterGenreThirty      GetSeriesFilterGenre = 30
+	GetSeriesFilterGenreThirtyOne   GetSeriesFilterGenre = 31
+	GetSeriesFilterGenreThirtyTwo   GetSeriesFilterGenre = 32
+	GetSeriesFilterGenreThirtyThree GetSeriesFilterGenre = 33
+	GetSeriesFilterGenreThirtyFour  GetSeriesFilterGenre = 34
+	GetSeriesFilterGenreThirtyFive  GetSeriesFilterGenre = 35
+	GetSeriesFilterGenreThirtySix   GetSeriesFilterGenre = 36
+)
+
+func (e GetSeriesFilterGenre) ToPointer() *GetSeriesFilterGenre {
+	return &e
+}
+
+func (e *GetSeriesFilterGenre) UnmarshalJSON(data []byte) error {
+	var v int64
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 1:
+		fallthrough
+	case 2:
+		fallthrough
+	case 3:
+		fallthrough
+	case 4:
+		fallthrough
+	case 5:
+		fallthrough
+	case 6:
+		fallthrough
+	case 7:
+		fallthrough
+	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
+		fallthrough
+	case 11:
+		fallthrough
+	case 12:
+		fallthrough
+	case 13:
+		fallthrough
+	case 14:
+		fallthrough
+	case 15:
+		fallthrough
+	case 16:
+		fallthrough
+	case 17:
+		fallthrough
+	case 18:
+		fallthrough
+	case 19:
+		fallthrough
+	case 21:
+		fallthrough
+	case 22:
+		fallthrough
+	case 23:
+		fallthrough
+	case 24:
+		fallthrough
+	case 25:
+		fallthrough
+	case 26:
+		fallthrough
+	case 27:
+		fallthrough
+	case 28:
+		fallthrough
+	case 29:
+		fallthrough
+	case 30:
+		fallthrough
+	case 31:
+		fallthrough
+	case 32:
+		fallthrough
+	case 33:
+		fallthrough
+	case 34:
+		fallthrough
+	case 35:
+		fallthrough
+	case 36:
+		*e = GetSeriesFilterGenre(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSeriesFilterGenre: %v", v)
+	}
+}
 
 // GetSeriesFilterSort - sort by results
 type GetSeriesFilterSort string
@@ -71,15 +199,46 @@ func (e *GetSeriesFilterSortType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// GetSeriesFilterStatus - status
+type GetSeriesFilterStatus int64
+
+const (
+	GetSeriesFilterStatusOne   GetSeriesFilterStatus = 1
+	GetSeriesFilterStatusTwo   GetSeriesFilterStatus = 2
+	GetSeriesFilterStatusThree GetSeriesFilterStatus = 3
+)
+
+func (e GetSeriesFilterStatus) ToPointer() *GetSeriesFilterStatus {
+	return &e
+}
+
+func (e *GetSeriesFilterStatus) UnmarshalJSON(data []byte) error {
+	var v int64
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 1:
+		fallthrough
+	case 2:
+		fallthrough
+	case 3:
+		*e = GetSeriesFilterStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSeriesFilterStatus: %v", v)
+	}
+}
+
 type GetSeriesFilterRequest struct {
 	// production company
-	Company *float64 `queryParam:"style=form,explode=true,name=company"`
+	Company *int64 `queryParam:"style=form,explode=true,name=company"`
 	// content rating id base on a country
-	ContentRating *float64 `queryParam:"style=form,explode=true,name=contentRating"`
+	ContentRating *int64 `queryParam:"style=form,explode=true,name=contentRating"`
 	// country of origin
 	Country string `queryParam:"style=form,explode=true,name=country"`
 	// Genre id. This id can be found using **/genres** endpoint.
-	Genre *float64 `queryParam:"style=form,explode=true,name=genre"`
+	Genre *GetSeriesFilterGenre `queryParam:"style=form,explode=true,name=genre"`
 	// original language
 	Lang string `queryParam:"style=form,explode=true,name=lang"`
 	// sort by results
@@ -87,19 +246,19 @@ type GetSeriesFilterRequest struct {
 	// sort type ascending or descending
 	SortType *GetSeriesFilterSortType `queryParam:"style=form,explode=true,name=sortType"`
 	// status
-	Status *float64 `queryParam:"style=form,explode=true,name=status"`
+	Status *GetSeriesFilterStatus `queryParam:"style=form,explode=true,name=status"`
 	// release year
-	Year *float64 `queryParam:"style=form,explode=true,name=year"`
+	Year *int64 `queryParam:"style=form,explode=true,name=year"`
 }
 
-func (o *GetSeriesFilterRequest) GetCompany() *float64 {
+func (o *GetSeriesFilterRequest) GetCompany() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Company
 }
 
-func (o *GetSeriesFilterRequest) GetContentRating() *float64 {
+func (o *GetSeriesFilterRequest) GetContentRating() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -113,7 +272,7 @@ func (o *GetSeriesFilterRequest) GetCountry() string {
 	return o.Country
 }
 
-func (o *GetSeriesFilterRequest) GetGenre() *float64 {
+func (o *GetSeriesFilterRequest) GetGenre() *GetSeriesFilterGenre {
 	if o == nil {
 		return nil
 	}
@@ -141,14 +300,14 @@ func (o *GetSeriesFilterRequest) GetSortType() *GetSeriesFilterSortType {
 	return o.SortType
 }
 
-func (o *GetSeriesFilterRequest) GetStatus() *float64 {
+func (o *GetSeriesFilterRequest) GetStatus() *GetSeriesFilterStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *GetSeriesFilterRequest) GetYear() *float64 {
+func (o *GetSeriesFilterRequest) GetYear() *int64 {
 	if o == nil {
 		return nil
 	}

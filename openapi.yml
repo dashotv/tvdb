@@ -59,7 +59,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -91,7 +91,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -192,7 +192,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -224,7 +224,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -256,7 +256,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -288,7 +288,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -320,7 +320,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -350,7 +350,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -403,7 +403,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -497,7 +497,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -528,7 +528,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -559,7 +559,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: meta
           in: query
           name: meta
@@ -598,7 +598,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: language
           in: path
           name: language
@@ -681,7 +681,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -755,7 +755,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -786,7 +786,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -848,7 +848,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -879,7 +879,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: language
           in: path
           name: language
@@ -918,7 +918,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -949,7 +949,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -980,7 +980,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: meta
           in: query
           name: meta
@@ -1026,14 +1026,14 @@ paths:
           name: company
           required: false
           schema:
-            type: number
+            type: integer
             example: 1
         - description: content rating id base on a country
           in: query
           name: contentRating
           required: false
           schema:
-            type: number
+            type: integer
             example: 245
         - description: country of origin
           in: query
@@ -1047,7 +1047,7 @@ paths:
           name: genre
           required: false
           schema:
-            type: number
+            type: integer
             example: 3
             enum:
               [
@@ -1106,14 +1106,14 @@ paths:
           name: status
           required: false
           schema:
-            type: number
+            type: integer
             enum: [1, 2, 3]
         - description: release year
           in: query
           name: year
           required: false
           schema:
-            type: number
+            type: integer
             example: 2020
       responses:
         "200":
@@ -1176,7 +1176,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: language
           in: path
           name: language
@@ -1234,7 +1234,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1266,7 +1266,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1297,7 +1297,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: meta
           in: query
           name: meta
@@ -1336,7 +1336,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: language
           in: path
           name: language
@@ -1408,7 +1408,7 @@ paths:
           in: query
           name: year
           schema:
-            type: number
+            type: integer
         - description: Restrict results to a specific company (original network, production company, studio, etc).  As an example, "The Walking Dead" would have companies of "AMC", "AMC+", and "Disney+".
           in: query
           name: company
@@ -1450,12 +1450,12 @@ paths:
           in: query
           name: offset
           schema:
-            type: number
+            type: integer
         - description: Limit results.
           in: query
           name: limit
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1517,7 +1517,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1546,7 +1546,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1577,7 +1577,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1630,7 +1630,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: language
           in: path
           name: language
@@ -1666,7 +1666,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1697,7 +1697,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1728,7 +1728,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: lang
           in: query
           name: lang
@@ -1773,7 +1773,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -1804,7 +1804,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: meta
           in: query
           name: meta
@@ -1856,7 +1856,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: season-type
           in: path
           name: season-type
@@ -1937,7 +1937,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: season-type
           in: path
           name: season-type
@@ -1996,14 +1996,14 @@ paths:
           name: company
           required: false
           schema:
-            type: number
+            type: integer
             example: 1
         - description: content rating id base on a country
           in: query
           name: contentRating
           required: false
           schema:
-            type: number
+            type: integer
             example: 245
         - description: country of origin
           in: query
@@ -2017,7 +2017,7 @@ paths:
           name: genre
           required: false
           schema:
-            type: number
+            type: integer
             example: 3
             enum:
               [
@@ -2083,14 +2083,14 @@ paths:
           name: status
           required: false
           schema:
-            type: number
+            type: integer
             enum: [1, 2, 3]
         - description: release year
           in: query
           name: year
           required: false
           schema:
-            type: number
+            type: integer
             example: 2020
       responses:
         "200":
@@ -2151,7 +2151,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
         - description: language
           in: path
           name: language
@@ -2231,7 +2231,7 @@ paths:
           name: since
           required: true
           schema:
-            type: number
+            type: integer
         - in: query
           name: type
           required: false
@@ -2286,7 +2286,7 @@ paths:
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -2342,7 +2342,7 @@ paths:
           name: id
           required: true
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: response
@@ -4327,19 +4327,24 @@ components:
       properties:
         studio:
           type: array
-          $ref: "#/components/schemas/Company"
+          items:
+            $ref: "#/components/schemas/Company"
         network:
           type: array
-          $ref: "#/components/schemas/Company"
+          items:
+            $ref: "#/components/schemas/Company"
         production:
           type: array
-          $ref: "#/components/schemas/Company"
+          items:
+            $ref: "#/components/schemas/Company"
         distributor:
           type: array
-          $ref: "#/components/schemas/Company"
+          items:
+            $ref: "#/components/schemas/Company"
         special_effects:
           type: array
-          $ref: "#/components/schemas/Company"
+          items:
+            $ref: "#/components/schemas/Company"
     Links:
       description: Links for next, previous and current record
       properties:

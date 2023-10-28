@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type updates struct {
@@ -25,7 +26,7 @@ func newUpdates(sdkConfig sdkConfiguration) *updates {
 }
 
 // Updates - Returns updated entities.  methodInt indicates a created record (1), an updated record (2), or a deleted record (3).  If a record is deleted because it was a duplicate of another record, the target record's information is provided in mergeToType and mergeToId.
-func (s *updates) Updates(ctx context.Context, since float64, action *operations.UpdatesAction, page *float64, type_ *operations.UpdatesType) (*operations.UpdatesResponse, error) {
+func (s *updates) Updates(ctx context.Context, since int64, action *operations.UpdatesAction, page *int64, type_ *operations.UpdatesType) (*operations.UpdatesResponse, error) {
 	request := operations.UpdatesRequest{
 		Since:  since,
 		Action: action,

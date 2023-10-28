@@ -6,11 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
+	"net/http"
+
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
 	"github.com/dashotv/tvdb/openapi/utils"
-	"io"
-	"net/http"
 )
 
 type awardCategories struct {
@@ -24,7 +25,7 @@ func newAwardCategories(sdkConfig sdkConfiguration) *awardCategories {
 }
 
 // GetAwardCategory - Returns a single award category base record
-func (s *awardCategories) GetAwardCategory(ctx context.Context, id float64) (*operations.GetAwardCategoryResponse, error) {
+func (s *awardCategories) GetAwardCategory(ctx context.Context, id int64) (*operations.GetAwardCategoryResponse, error) {
 	request := operations.GetAwardCategoryRequest{
 		ID: id,
 	}
@@ -90,7 +91,7 @@ func (s *awardCategories) GetAwardCategory(ctx context.Context, id float64) (*op
 }
 
 // GetAwardCategoryExtended - Returns a single award category extended record
-func (s *awardCategories) GetAwardCategoryExtended(ctx context.Context, id float64) (*operations.GetAwardCategoryExtendedResponse, error) {
+func (s *awardCategories) GetAwardCategoryExtended(ctx context.Context, id int64) (*operations.GetAwardCategoryExtendedResponse, error) {
 	request := operations.GetAwardCategoryExtendedRequest{
 		ID: id,
 	}

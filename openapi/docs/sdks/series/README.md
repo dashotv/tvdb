@@ -36,7 +36,7 @@ func main() {
     )
 
 
-    var page *float64 = 2844.5
+    var page *int64 = 284450
 
     ctx := context.Background()
     res, err := s.Series.GetAllSeries(ctx, page)
@@ -55,7 +55,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `page`                                                | **float64*                                            | :heavy_minus_sign:                                    | page number                                           |
+| `page`                                                | **int64*                                              | :heavy_minus_sign:                                    | page number                                           |
 
 
 ### Response
@@ -85,7 +85,7 @@ func main() {
     )
 
 
-    var id float64 = 681.34
+    var id int64 = 68134
 
     var lang *string = "eng, spa"
 
@@ -108,7 +108,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |                                                       |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |                                                       |
 | `lang`                                                | **string*                                             | :heavy_minus_sign:                                    | lang                                                  | eng, spa                                              |
 | `type_`                                               | **int64*                                              | :heavy_minus_sign:                                    | type                                                  | 1,2,3                                                 |
 
@@ -140,7 +140,7 @@ func main() {
     )
 
 
-    var id float64 = 7004.04
+    var id int64 = 700404
 
     ctx := context.Background()
     res, err := s.Series.GetSeriesBase(ctx, id)
@@ -159,7 +159,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -240,7 +240,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Series.GetSeriesEpisodes(ctx, operations.GetSeriesEpisodesRequest{
-        ID: 3113.63,
+        ID: 311363,
         Page: 737433,
         SeasonType: "string",
     })
@@ -290,7 +290,7 @@ func main() {
     )
 
 
-    var id float64 = 4780.9
+    var id int64 = 478090
 
     var meta *operations.GetSeriesExtendedMeta = operations.GetSeriesExtendedMetaTranslations
 
@@ -313,7 +313,7 @@ func main() {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                           | :heavy_check_mark:                                                                              | The context to use for the request.                                                             |                                                                                                 |
-| `id`                                                                                            | *float64*                                                                                       | :heavy_check_mark:                                                                              | id                                                                                              |                                                                                                 |
+| `id`                                                                                            | *int64*                                                                                         | :heavy_check_mark:                                                                              | id                                                                                              |                                                                                                 |
 | `meta`                                                                                          | [*operations.GetSeriesExtendedMeta](../../models/operations/getseriesextendedmeta.md)           | :heavy_minus_sign:                                                                              | meta                                                                                            | translations                                                                                    |
 | `short`                                                                                         | **bool*                                                                                         | :heavy_minus_sign:                                                                              | reduce the payload and returns the short version of this record without characters and artworks |                                                                                                 |
 
@@ -347,12 +347,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Series.GetSeriesFilter(ctx, operations.GetSeriesFilterRequest{
-        Company: openapi.Float64(1),
-        ContentRating: openapi.Float64(245),
+        Company: openapi.Int64(1),
+        ContentRating: openapi.Int64(245),
         Country: "usa",
-        Genre: openapi.Float64(3),
+        Genre: operations.GetSeriesFilterGenreThree.ToPointer(),
         Lang: "eng",
-        Year: openapi.Float64(2020),
+        Year: openapi.Int64(2020),
     })
     if err != nil {
         log.Fatal(err)
@@ -399,7 +399,7 @@ func main() {
     )
 
 
-    var id float64 = 7399.64
+    var id int64 = 739964
 
     ctx := context.Background()
     res, err := s.Series.GetSeriesNextAired(ctx, id)
@@ -418,7 +418,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -448,7 +448,7 @@ func main() {
     )
 
 
-    var id float64 = 4718.81
+    var id int64 = 471881
 
     var lang string = "string"
 
@@ -473,7 +473,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 | `lang`                                                | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 | `page`                                                | *int64*                                               | :heavy_check_mark:                                    | N/A                                                   |
 | `seasonType`                                          | *string*                                              | :heavy_check_mark:                                    | season-type                                           |
@@ -506,7 +506,7 @@ func main() {
     )
 
 
-    var id float64 = 8327.38
+    var id int64 = 832738
 
     var language string = "string"
 
@@ -527,7 +527,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 | `language`                                            | *string*                                              | :heavy_check_mark:                                    | language                                              |
 
 

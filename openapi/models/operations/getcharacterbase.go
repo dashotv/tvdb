@@ -3,18 +3,19 @@
 package operations
 
 import (
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 type GetCharacterBaseRequest struct {
 	// id
-	ID float64 `pathParam:"style=simple,explode=false,name=id"`
+	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetCharacterBaseRequest) GetID() float64 {
+func (o *GetCharacterBaseRequest) GetID() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.ID
 }

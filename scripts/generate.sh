@@ -46,14 +46,27 @@ find ./openapi -type f -name '*.backup' -delete
 } >types.go
 
 # copy functions to root
-{
-  echo "package $NAME"
-  echo
-  echo 'import ('
-  echo '	"github.com/pkg/errors"'
-  echo
-  echo '	"github.com/dashotv/'"$NAME"'/openapi/models/operations"'
-  echo ')'
-  echo
-  grep -E '^func \(' openapi/*.go | awk -F':' '{print $2}' | "$SCRIPT_DIR/rewrite_funcs.rb"
-} >functions.go
+cat <<HERE >functions.go
+package ${NAME}
+
+import (
+	"github.com/pkg/errors"
+
+	"github.com/dashotv/${NAME}/openapi/models/operations"
+)
+
+HERE
+cat <<HERE >functions_test.go
+package ${NAME}
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+
+	"github.com/dashotv/${NAME}/openapi/models/operations"
+)
+
+HERE
+
+grep --with-filename -E '^func \(' openapi/*.go | awk -F':' '{print $2}' | "$SCRIPT_DIR/rewrite_funcs.rb"

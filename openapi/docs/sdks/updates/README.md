@@ -28,11 +28,11 @@ func main() {
     )
 
 
-    var since float64 = 756.6
+    var since int64 = 75660
 
     var action *operations.UpdatesAction = operations.UpdatesActionDelete
 
-    var page *float64 = 7456.24
+    var page *int64 = 745624
 
     var type_ *operations.UpdatesType = operations.UpdatesTypeMovies
 
@@ -53,9 +53,9 @@ func main() {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `ctx`                                                                 | [context.Context](https://pkg.go.dev/context#Context)                 | :heavy_check_mark:                                                    | The context to use for the request.                                   |                                                                       |
-| `since`                                                               | *float64*                                                             | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
+| `since`                                                               | *int64*                                                               | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
 | `action`                                                              | [*operations.UpdatesAction](../../models/operations/updatesaction.md) | :heavy_minus_sign:                                                    | N/A                                                                   | movies                                                                |
-| `page`                                                                | **float64*                                                            | :heavy_minus_sign:                                                    | name                                                                  |                                                                       |
+| `page`                                                                | **int64*                                                              | :heavy_minus_sign:                                                    | name                                                                  |                                                                       |
 | `type_`                                                               | [*operations.UpdatesType](../../models/operations/updatestype.md)     | :heavy_minus_sign:                                                    | N/A                                                                   | movies                                                                |
 
 

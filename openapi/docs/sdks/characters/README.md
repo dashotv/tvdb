@@ -27,7 +27,7 @@ func main() {
     )
 
 
-    var id float64 = 1956.5
+    var id int64 = 195650
 
     ctx := context.Background()
     res, err := s.Characters.GetCharacterBase(ctx, id)
@@ -46,7 +46,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response

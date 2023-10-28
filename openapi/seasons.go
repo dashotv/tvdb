@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type seasons struct {
@@ -25,7 +26,7 @@ func newSeasons(sdkConfig sdkConfiguration) *seasons {
 }
 
 // GetAllSeasons - returns list of seasons base records
-func (s *seasons) GetAllSeasons(ctx context.Context, page *float64) (*operations.GetAllSeasonsResponse, error) {
+func (s *seasons) GetAllSeasons(ctx context.Context, page *int64) (*operations.GetAllSeasonsResponse, error) {
 	request := operations.GetAllSeasonsRequest{
 		Page: page,
 	}
@@ -88,7 +89,7 @@ func (s *seasons) GetAllSeasons(ctx context.Context, page *float64) (*operations
 }
 
 // GetSeasonBase - Returns season base record
-func (s *seasons) GetSeasonBase(ctx context.Context, id float64) (*operations.GetSeasonBaseResponse, error) {
+func (s *seasons) GetSeasonBase(ctx context.Context, id int64) (*operations.GetSeasonBaseResponse, error) {
 	request := operations.GetSeasonBaseRequest{
 		ID: id,
 	}
@@ -154,7 +155,7 @@ func (s *seasons) GetSeasonBase(ctx context.Context, id float64) (*operations.Ge
 }
 
 // GetSeasonExtended - Returns season extended record
-func (s *seasons) GetSeasonExtended(ctx context.Context, id float64) (*operations.GetSeasonExtendedResponse, error) {
+func (s *seasons) GetSeasonExtended(ctx context.Context, id int64) (*operations.GetSeasonExtendedResponse, error) {
 	request := operations.GetSeasonExtendedRequest{
 		ID: id,
 	}
@@ -220,7 +221,7 @@ func (s *seasons) GetSeasonExtended(ctx context.Context, id float64) (*operation
 }
 
 // GetSeasonTranslation - Returns season translation record
-func (s *seasons) GetSeasonTranslation(ctx context.Context, id float64, language string) (*operations.GetSeasonTranslationResponse, error) {
+func (s *seasons) GetSeasonTranslation(ctx context.Context, id int64, language string) (*operations.GetSeasonTranslationResponse, error) {
 	request := operations.GetSeasonTranslationRequest{
 		ID:       id,
 		Language: language,

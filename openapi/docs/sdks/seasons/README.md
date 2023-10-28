@@ -31,7 +31,7 @@ func main() {
     )
 
 
-    var page *float64 = 8175.94
+    var page *int64 = 817594
 
     ctx := context.Background()
     res, err := s.Seasons.GetAllSeasons(ctx, page)
@@ -50,7 +50,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `page`                                                | **float64*                                            | :heavy_minus_sign:                                    | page number                                           |
+| `page`                                                | **int64*                                              | :heavy_minus_sign:                                    | page number                                           |
 
 
 ### Response
@@ -80,7 +80,7 @@ func main() {
     )
 
 
-    var id float64 = 9987.23
+    var id int64 = 998723
 
     ctx := context.Background()
     res, err := s.Seasons.GetSeasonBase(ctx, id)
@@ -99,7 +99,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -129,7 +129,7 @@ func main() {
     )
 
 
-    var id float64 = 8663.11
+    var id int64 = 866311
 
     ctx := context.Background()
     res, err := s.Seasons.GetSeasonExtended(ctx, id)
@@ -148,7 +148,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -178,7 +178,7 @@ func main() {
     )
 
 
-    var id float64 = 5660.49
+    var id int64 = 566049
 
     var language string = "string"
 
@@ -199,7 +199,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 | `language`                                            | *string*                                              | :heavy_check_mark:                                    | language                                              |
 
 

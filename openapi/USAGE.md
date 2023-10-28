@@ -16,7 +16,7 @@ func main() {
 		openapi.WithSecurity(""),
 	)
 
-	var id float64 = 6050.48
+	var id int64 = 605048
 
 	ctx := context.Background()
 	res, err := s.Artwork.GetArtworkBase(ctx, id)

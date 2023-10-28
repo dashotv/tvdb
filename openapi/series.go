@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type series struct {
@@ -25,7 +26,7 @@ func newSeries(sdkConfig sdkConfiguration) *series {
 }
 
 // GetAllSeries - returns list of series base records
-func (s *series) GetAllSeries(ctx context.Context, page *float64) (*operations.GetAllSeriesResponse, error) {
+func (s *series) GetAllSeries(ctx context.Context, page *int64) (*operations.GetAllSeriesResponse, error) {
 	request := operations.GetAllSeriesRequest{
 		Page: page,
 	}
@@ -88,7 +89,7 @@ func (s *series) GetAllSeries(ctx context.Context, page *float64) (*operations.G
 }
 
 // GetSeriesArtworks - Returns series artworks base on language and type. <br> Note&#58; Artwork type is an id that can be found using **/artwork/types** endpoint.
-func (s *series) GetSeriesArtworks(ctx context.Context, id float64, lang *string, type_ *int64) (*operations.GetSeriesArtworksResponse, error) {
+func (s *series) GetSeriesArtworks(ctx context.Context, id int64, lang *string, type_ *int64) (*operations.GetSeriesArtworksResponse, error) {
 	request := operations.GetSeriesArtworksRequest{
 		ID:   id,
 		Lang: lang,
@@ -160,7 +161,7 @@ func (s *series) GetSeriesArtworks(ctx context.Context, id float64, lang *string
 }
 
 // GetSeriesBase - Returns series base record
-func (s *series) GetSeriesBase(ctx context.Context, id float64) (*operations.GetSeriesBaseResponse, error) {
+func (s *series) GetSeriesBase(ctx context.Context, id int64) (*operations.GetSeriesBaseResponse, error) {
 	request := operations.GetSeriesBaseRequest{
 		ID: id,
 	}
@@ -358,7 +359,7 @@ func (s *series) GetSeriesEpisodes(ctx context.Context, request operations.GetSe
 }
 
 // GetSeriesExtended - Returns series extended record
-func (s *series) GetSeriesExtended(ctx context.Context, id float64, meta *operations.GetSeriesExtendedMeta, short *bool) (*operations.GetSeriesExtendedResponse, error) {
+func (s *series) GetSeriesExtended(ctx context.Context, id int64, meta *operations.GetSeriesExtendedMeta, short *bool) (*operations.GetSeriesExtendedResponse, error) {
 	request := operations.GetSeriesExtendedRequest{
 		ID:    id,
 		Meta:  meta,
@@ -491,7 +492,7 @@ func (s *series) GetSeriesFilter(ctx context.Context, request operations.GetSeri
 }
 
 // GetSeriesNextAired - Returns series base record including the nextAired field. <br> Note&#58; nextAired was included in the base record endpoint but that field will deprecated in the future so developers should use the nextAired endpoint.
-func (s *series) GetSeriesNextAired(ctx context.Context, id float64) (*operations.GetSeriesNextAiredResponse, error) {
+func (s *series) GetSeriesNextAired(ctx context.Context, id int64) (*operations.GetSeriesNextAiredResponse, error) {
 	request := operations.GetSeriesNextAiredRequest{
 		ID: id,
 	}
@@ -557,7 +558,7 @@ func (s *series) GetSeriesNextAired(ctx context.Context, id float64) (*operation
 }
 
 // GetSeriesSeasonEpisodesTranslated - Returns series base record with episodes from the specified season type and language. Default returns the episodes in the series default season type.
-func (s *series) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id float64, lang string, page int64, seasonType string) (*operations.GetSeriesSeasonEpisodesTranslatedResponse, error) {
+func (s *series) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id int64, lang string, page int64, seasonType string) (*operations.GetSeriesSeasonEpisodesTranslatedResponse, error) {
 	request := operations.GetSeriesSeasonEpisodesTranslatedRequest{
 		ID:         id,
 		Lang:       lang,
@@ -630,7 +631,7 @@ func (s *series) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id float
 }
 
 // GetSeriesTranslation - Returns series translation record
-func (s *series) GetSeriesTranslation(ctx context.Context, id float64, language string) (*operations.GetSeriesTranslationResponse, error) {
+func (s *series) GetSeriesTranslation(ctx context.Context, id int64, language string) (*operations.GetSeriesTranslationResponse, error) {
 	request := operations.GetSeriesTranslationRequest{
 		ID:       id,
 		Language: language,

@@ -5,8 +5,9 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 type UpdatesAction string
@@ -160,16 +161,16 @@ func (e *UpdatesType) UnmarshalJSON(data []byte) error {
 }
 
 type UpdatesRequest struct {
-	Since  float64        `queryParam:"style=form,explode=true,name=since"`
+	Since  int64          `queryParam:"style=form,explode=true,name=since"`
 	Action *UpdatesAction `queryParam:"style=form,explode=true,name=action"`
 	// name
-	Page *float64     `queryParam:"style=form,explode=true,name=page"`
+	Page *int64       `queryParam:"style=form,explode=true,name=page"`
 	Type *UpdatesType `queryParam:"style=form,explode=true,name=type"`
 }
 
-func (o *UpdatesRequest) GetSince() float64 {
+func (o *UpdatesRequest) GetSince() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Since
 }
@@ -181,7 +182,7 @@ func (o *UpdatesRequest) GetAction() *UpdatesAction {
 	return o.Action
 }
 
-func (o *UpdatesRequest) GetPage() *float64 {
+func (o *UpdatesRequest) GetPage() *int64 {
 	if o == nil {
 		return nil
 	}

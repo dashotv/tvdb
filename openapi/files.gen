@@ -281,7 +281,9 @@ docs/models/operations/getmovieextendedresponse.md
 docs/models/operations/getmovietranslationrequest.md
 docs/models/operations/getmovietranslation200applicationjson.md
 docs/models/operations/getmovietranslationresponse.md
+docs/models/operations/getmoviesfiltergenre.md
 docs/models/operations/getmoviesfiltersort.md
+docs/models/operations/getmoviesfilterstatus.md
 docs/models/operations/getmoviesfilterrequest.md
 docs/models/operations/getmoviesfilter200applicationjson.md
 docs/models/operations/getmoviesfilterresponse.md
@@ -340,8 +342,10 @@ docs/models/operations/getseriesextendedmeta.md
 docs/models/operations/getseriesextendedrequest.md
 docs/models/operations/getseriesextended200applicationjson.md
 docs/models/operations/getseriesextendedresponse.md
+docs/models/operations/getseriesfiltergenre.md
 docs/models/operations/getseriesfiltersort.md
 docs/models/operations/getseriesfiltersorttype.md
+docs/models/operations/getseriesfilterstatus.md
 docs/models/operations/getseriesfilterrequest.md
 docs/models/operations/getseriesfilter200applicationjson.md
 docs/models/operations/getseriesfilterresponse.md

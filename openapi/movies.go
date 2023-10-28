@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type movies struct {
@@ -25,7 +26,7 @@ func newMovies(sdkConfig sdkConfiguration) *movies {
 }
 
 // GetAllMovie - returns list of movie base records
-func (s *movies) GetAllMovie(ctx context.Context, page *float64) (*operations.GetAllMovieResponse, error) {
+func (s *movies) GetAllMovie(ctx context.Context, page *int64) (*operations.GetAllMovieResponse, error) {
 	request := operations.GetAllMovieRequest{
 		Page: page,
 	}
@@ -88,7 +89,7 @@ func (s *movies) GetAllMovie(ctx context.Context, page *float64) (*operations.Ge
 }
 
 // GetMovieBase - Returns movie base record
-func (s *movies) GetMovieBase(ctx context.Context, id float64) (*operations.GetMovieBaseResponse, error) {
+func (s *movies) GetMovieBase(ctx context.Context, id int64) (*operations.GetMovieBaseResponse, error) {
 	request := operations.GetMovieBaseRequest{
 		ID: id,
 	}
@@ -220,7 +221,7 @@ func (s *movies) GetMovieBaseBySlug(ctx context.Context, slug string) (*operatio
 }
 
 // GetMovieExtended - Returns movie extended record
-func (s *movies) GetMovieExtended(ctx context.Context, id float64, meta *operations.GetMovieExtendedMeta, short *bool) (*operations.GetMovieExtendedResponse, error) {
+func (s *movies) GetMovieExtended(ctx context.Context, id int64, meta *operations.GetMovieExtendedMeta, short *bool) (*operations.GetMovieExtendedResponse, error) {
 	request := operations.GetMovieExtendedRequest{
 		ID:    id,
 		Meta:  meta,
@@ -292,7 +293,7 @@ func (s *movies) GetMovieExtended(ctx context.Context, id float64, meta *operati
 }
 
 // GetMovieTranslation - Returns movie translation record
-func (s *movies) GetMovieTranslation(ctx context.Context, id float64, language string) (*operations.GetMovieTranslationResponse, error) {
+func (s *movies) GetMovieTranslation(ctx context.Context, id int64, language string) (*operations.GetMovieTranslationResponse, error) {
 	request := operations.GetMovieTranslationRequest{
 		ID:       id,
 		Language: language,

@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type awards struct {
@@ -80,7 +81,7 @@ func (s *awards) GetAllAwards(ctx context.Context) (*operations.GetAllAwardsResp
 }
 
 // GetAward - Returns a single award base record
-func (s *awards) GetAward(ctx context.Context, id float64) (*operations.GetAwardResponse, error) {
+func (s *awards) GetAward(ctx context.Context, id int64) (*operations.GetAwardResponse, error) {
 	request := operations.GetAwardRequest{
 		ID: id,
 	}
@@ -146,7 +147,7 @@ func (s *awards) GetAward(ctx context.Context, id float64) (*operations.GetAward
 }
 
 // GetAwardExtended - Returns a single award extended record
-func (s *awards) GetAwardExtended(ctx context.Context, id float64) (*operations.GetAwardExtendedResponse, error) {
+func (s *awards) GetAwardExtended(ctx context.Context, id int64) (*operations.GetAwardExtendedResponse, error) {
 	request := operations.GetAwardExtendedRequest{
 		ID: id,
 	}

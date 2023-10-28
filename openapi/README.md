@@ -39,7 +39,7 @@ func main() {
 		openapi.WithSecurity(""),
 	)
 
-	var id float64 = 6050.48
+	var id int64 = 605048
 
 	ctx := context.Background()
 	res, err := s.Artwork.GetArtworkBase(ctx, id)
@@ -258,7 +258,7 @@ func main() {
 		openapi.WithServerIndex(0),
 	)
 
-	var id float64 = 6050.48
+	var id int64 = 605048
 
 	ctx := context.Background()
 	res, err := s.Artwork.GetArtworkBase(ctx, id)
@@ -295,7 +295,7 @@ func main() {
 		openapi.WithServerURL("https://api4.thetvdb.com/v4"),
 	)
 
-	var id float64 = 6050.48
+	var id int64 = 605048
 
 	ctx := context.Background()
 	res, err := s.Artwork.GetArtworkBase(ctx, id)

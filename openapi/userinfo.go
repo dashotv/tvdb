@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type userInfo struct {
@@ -80,7 +81,7 @@ func (s *userInfo) GetUserInfo(ctx context.Context) (*operations.GetUserInfoResp
 }
 
 // GetUserInfoByID - returns user info by user id
-func (s *userInfo) GetUserInfoByID(ctx context.Context, id float64) (*operations.GetUserInfoByIDResponse, error) {
+func (s *userInfo) GetUserInfoByID(ctx context.Context, id int64) (*operations.GetUserInfoByIDResponse, error) {
 	request := operations.GetUserInfoByIDRequest{
 		ID: id,
 	}

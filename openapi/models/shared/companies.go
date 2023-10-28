@@ -4,47 +4,42 @@ package shared
 
 // Companies by type record
 type Companies struct {
-	// A company record
-	Distributor *Company `json:"distributor,omitempty"`
-	// A company record
-	Network *Company `json:"network,omitempty"`
-	// A company record
-	Production *Company `json:"production,omitempty"`
-	// A company record
-	SpecialEffects *Company `json:"special_effects,omitempty"`
-	// A company record
-	Studio *Company `json:"studio,omitempty"`
+	Distributor    []Company `json:"distributor,omitempty"`
+	Network        []Company `json:"network,omitempty"`
+	Production     []Company `json:"production,omitempty"`
+	SpecialEffects []Company `json:"special_effects,omitempty"`
+	Studio         []Company `json:"studio,omitempty"`
 }
 
-func (o *Companies) GetDistributor() *Company {
+func (o *Companies) GetDistributor() []Company {
 	if o == nil {
 		return nil
 	}
 	return o.Distributor
 }
 
-func (o *Companies) GetNetwork() *Company {
+func (o *Companies) GetNetwork() []Company {
 	if o == nil {
 		return nil
 	}
 	return o.Network
 }
 
-func (o *Companies) GetProduction() *Company {
+func (o *Companies) GetProduction() []Company {
 	if o == nil {
 		return nil
 	}
 	return o.Production
 }
 
-func (o *Companies) GetSpecialEffects() *Company {
+func (o *Companies) GetSpecialEffects() []Company {
 	if o == nil {
 		return nil
 	}
 	return o.SpecialEffects
 }
 
-func (o *Companies) GetStudio() *Company {
+func (o *Companies) GetStudio() []Company {
 	if o == nil {
 		return nil
 	}

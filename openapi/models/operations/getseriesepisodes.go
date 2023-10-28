@@ -3,9 +3,10 @@
 package operations
 
 import (
+	"net/http"
+
 	"github.com/dashotv/tvdb/openapi/models/shared"
 	"github.com/dashotv/tvdb/openapi/utils"
-	"net/http"
 )
 
 type GetSeriesEpisodesRequest struct {
@@ -13,9 +14,9 @@ type GetSeriesEpisodesRequest struct {
 	AirDate       *string `queryParam:"style=form,explode=true,name=airDate"`
 	EpisodeNumber *int64  `default:"0" queryParam:"style=form,explode=true,name=episodeNumber"`
 	// id
-	ID     float64 `pathParam:"style=simple,explode=false,name=id"`
-	Page   int64   `default:"0" queryParam:"style=form,explode=true,name=page"`
-	Season *int64  `default:"0" queryParam:"style=form,explode=true,name=season"`
+	ID     int64  `pathParam:"style=simple,explode=false,name=id"`
+	Page   int64  `default:"0" queryParam:"style=form,explode=true,name=page"`
+	Season *int64 `default:"0" queryParam:"style=form,explode=true,name=season"`
 	// season-type
 	SeasonType string `pathParam:"style=simple,explode=false,name=season-type"`
 }
@@ -45,9 +46,9 @@ func (o *GetSeriesEpisodesRequest) GetEpisodeNumber() *int64 {
 	return o.EpisodeNumber
 }
 
-func (o *GetSeriesEpisodesRequest) GetID() float64 {
+func (o *GetSeriesEpisodesRequest) GetID() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.ID
 }

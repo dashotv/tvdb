@@ -32,7 +32,7 @@ func main() {
     )
 
 
-    var page *float64 = 9632.57
+    var page *int64 = 963257
 
     ctx := context.Background()
     res, err := s.Movies.GetAllMovie(ctx, page)
@@ -51,7 +51,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `page`                                                | **float64*                                            | :heavy_minus_sign:                                    | page number                                           |
+| `page`                                                | **int64*                                              | :heavy_minus_sign:                                    | page number                                           |
 
 
 ### Response
@@ -81,7 +81,7 @@ func main() {
     )
 
 
-    var id float64 = 3592.32
+    var id int64 = 359232
 
     ctx := context.Background()
     res, err := s.Movies.GetMovieBase(ctx, id)
@@ -100,7 +100,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -180,7 +180,7 @@ func main() {
     )
 
 
-    var id float64 = 4597.44
+    var id int64 = 459744
 
     var meta *operations.GetMovieExtendedMeta = operations.GetMovieExtendedMetaTranslations
 
@@ -203,7 +203,7 @@ func main() {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                | Example                                                                                                    |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |                                                                                                            |
-| `id`                                                                                                       | *float64*                                                                                                  | :heavy_check_mark:                                                                                         | id                                                                                                         |                                                                                                            |
+| `id`                                                                                                       | *int64*                                                                                                    | :heavy_check_mark:                                                                                         | id                                                                                                         |                                                                                                            |
 | `meta`                                                                                                     | [*operations.GetMovieExtendedMeta](../../models/operations/getmovieextendedmeta.md)                        | :heavy_minus_sign:                                                                                         | meta                                                                                                       | translations                                                                                               |
 | `short`                                                                                                    | **bool*                                                                                                    | :heavy_minus_sign:                                                                                         | reduce the payload and returns the short version of this record without characters, artworks and trailers. |                                                                                                            |
 
@@ -235,7 +235,7 @@ func main() {
     )
 
 
-    var id float64 = 3544.29
+    var id int64 = 354429
 
     var language string = "string"
 
@@ -256,7 +256,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 | `language`                                            | *string*                                              | :heavy_check_mark:                                    | language                                              |
 
 
@@ -289,12 +289,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Movies.GetMoviesFilter(ctx, operations.GetMoviesFilterRequest{
-        Company: openapi.Float64(1),
-        ContentRating: openapi.Float64(245),
+        Company: openapi.Int64(1),
+        ContentRating: openapi.Int64(245),
         Country: "usa",
-        Genre: openapi.Float64(3),
+        Genre: operations.GetMoviesFilterGenreThree.ToPointer(),
         Lang: "eng",
-        Year: openapi.Float64(2020),
+        Year: openapi.Int64(2020),
     })
     if err != nil {
         log.Fatal(err)

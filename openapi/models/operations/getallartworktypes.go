@@ -3,8 +3,9 @@
 package operations
 
 import (
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 // GetAllArtworkTypes200ApplicationJSON - response

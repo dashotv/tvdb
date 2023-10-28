@@ -28,7 +28,7 @@ func main() {
     )
 
 
-    var id float64 = 6050.48
+    var id int64 = 605048
 
     ctx := context.Background()
     res, err := s.Artwork.GetArtworkBase(ctx, id)
@@ -47,7 +47,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -77,7 +77,7 @@ func main() {
     )
 
 
-    var id float64 = 111.13
+    var id int64 = 11113
 
     ctx := context.Background()
     res, err := s.Artwork.GetArtworkExtended(ctx, id)
@@ -96,7 +96,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response

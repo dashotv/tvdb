@@ -73,7 +73,7 @@ func main() {
     )
 
 
-    var id float64 = 3392.98
+    var id int64 = 339298
 
     ctx := context.Background()
     res, err := s.UserInfo.GetUserInfoByID(ctx, id)
@@ -92,7 +92,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response

@@ -6,11 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
+	"net/http"
+
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
 	"github.com/dashotv/tvdb/openapi/utils"
-	"io"
-	"net/http"
 )
 
 type artwork struct {
@@ -24,7 +25,7 @@ func newArtwork(sdkConfig sdkConfiguration) *artwork {
 }
 
 // GetArtworkBase - Returns a single artwork base record.
-func (s *artwork) GetArtworkBase(ctx context.Context, id float64) (*operations.GetArtworkBaseResponse, error) {
+func (s *artwork) GetArtworkBase(ctx context.Context, id int64) (*operations.GetArtworkBaseResponse, error) {
 	request := operations.GetArtworkBaseRequest{
 		ID: id,
 	}
@@ -90,7 +91,7 @@ func (s *artwork) GetArtworkBase(ctx context.Context, id float64) (*operations.G
 }
 
 // GetArtworkExtended - Returns a single artwork extended record.
-func (s *artwork) GetArtworkExtended(ctx context.Context, id float64) (*operations.GetArtworkExtendedResponse, error) {
+func (s *artwork) GetArtworkExtended(ctx context.Context, id int64) (*operations.GetArtworkExtendedResponse, error) {
 	request := operations.GetArtworkExtendedRequest{
 		ID: id,
 	}

@@ -5,10 +5,11 @@ package openapi
 import (
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/shared"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"net/http"
 	"time"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 // ServerList contains the list of servers available to the SDK
@@ -168,9 +169,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "4.7.8",
-			SDKVersion:        "v0.2.0",
-			GenVersion:        "2.172.4",
-			UserAgent:         "speakeasy-sdk/go v0.2.0 2.172.4 4.7.8 github.com/dashotv/tvdb/openapi",
+			SDKVersion:        "v0.2.1",
+			GenVersion:        "2.173.0",
+			UserAgent:         "speakeasy-sdk/go v0.2.1 2.173.0 4.7.8 github.com/dashotv/tvdb/openapi",
 		},
 	}
 	for _, opt := range opts {

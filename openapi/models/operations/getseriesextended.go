@@ -5,8 +5,9 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 // GetSeriesExtendedMeta - meta
@@ -39,16 +40,16 @@ func (e *GetSeriesExtendedMeta) UnmarshalJSON(data []byte) error {
 
 type GetSeriesExtendedRequest struct {
 	// id
-	ID float64 `pathParam:"style=simple,explode=false,name=id"`
+	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 	// meta
 	Meta *GetSeriesExtendedMeta `queryParam:"style=form,explode=true,name=meta"`
 	// reduce the payload and returns the short version of this record without characters and artworks
 	Short *bool `queryParam:"style=form,explode=true,name=short"`
 }
 
-func (o *GetSeriesExtendedRequest) GetID() float64 {
+func (o *GetSeriesExtendedRequest) GetID() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.ID
 }

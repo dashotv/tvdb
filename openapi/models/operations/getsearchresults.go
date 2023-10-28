@@ -3,8 +3,9 @@
 package operations
 
 import (
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 type GetSearchResultsRequest struct {
@@ -17,11 +18,11 @@ type GetSearchResultsRequest struct {
 	// Restrict results to a specific primary language.  Should include the 3 character language code.  Currently only used for series and movies.
 	Language *string `queryParam:"style=form,explode=true,name=language"`
 	// Limit results.
-	Limit *float64 `queryParam:"style=form,explode=true,name=limit"`
+	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Restrict results to a specific network.  Used for TV and TV movies, and functions the same as the company parameter with more specificity.
 	Network *string `queryParam:"style=form,explode=true,name=network"`
 	// Offset results.
-	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
+	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 	// Restrict results to a specific type of company.  Should include the full name of the type of company, such as "Production Company".  Only used for companies.
 	PrimaryType *string `queryParam:"style=form,explode=true,name=primaryType"`
 	// Alias of the "query" parameter.  Recommend using query instead as this field will eventually be deprecated.
@@ -33,7 +34,7 @@ type GetSearchResultsRequest struct {
 	// Restrict results to a specific entity type.  Can be movie, series, person, or company.
 	Type *string `queryParam:"style=form,explode=true,name=type"`
 	// Restrict results to a specific year. Currently only used for series and movies.
-	Year *float64 `queryParam:"style=form,explode=true,name=year"`
+	Year *int64 `queryParam:"style=form,explode=true,name=year"`
 }
 
 func (o *GetSearchResultsRequest) GetCompany() *string {
@@ -64,7 +65,7 @@ func (o *GetSearchResultsRequest) GetLanguage() *string {
 	return o.Language
 }
 
-func (o *GetSearchResultsRequest) GetLimit() *float64 {
+func (o *GetSearchResultsRequest) GetLimit() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -78,7 +79,7 @@ func (o *GetSearchResultsRequest) GetNetwork() *string {
 	return o.Network
 }
 
-func (o *GetSearchResultsRequest) GetOffset() *float64 {
+func (o *GetSearchResultsRequest) GetOffset() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -120,7 +121,7 @@ func (o *GetSearchResultsRequest) GetType() *string {
 	return o.Type
 }
 
-func (o *GetSearchResultsRequest) GetYear() *float64 {
+func (o *GetSearchResultsRequest) GetYear() *int64 {
 	if o == nil {
 		return nil
 	}

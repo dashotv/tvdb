@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type genres struct {
@@ -80,7 +81,7 @@ func (s *genres) GetAllGenres(ctx context.Context) (*operations.GetAllGenresResp
 }
 
 // GetGenreBase - Returns genre record
-func (s *genres) GetGenreBase(ctx context.Context, id float64) (*operations.GetGenreBaseResponse, error) {
+func (s *genres) GetGenreBase(ctx context.Context, id int64) (*operations.GetGenreBaseResponse, error) {
 	request := operations.GetGenreBaseRequest{
 		ID: id,
 	}

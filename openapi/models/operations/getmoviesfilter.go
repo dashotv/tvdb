@@ -5,9 +5,137 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
+
+// GetMoviesFilterGenre - genre
+type GetMoviesFilterGenre int64
+
+const (
+	GetMoviesFilterGenreOne         GetMoviesFilterGenre = 1
+	GetMoviesFilterGenreTwo         GetMoviesFilterGenre = 2
+	GetMoviesFilterGenreThree       GetMoviesFilterGenre = 3
+	GetMoviesFilterGenreFour        GetMoviesFilterGenre = 4
+	GetMoviesFilterGenreFive        GetMoviesFilterGenre = 5
+	GetMoviesFilterGenreSix         GetMoviesFilterGenre = 6
+	GetMoviesFilterGenreSeven       GetMoviesFilterGenre = 7
+	GetMoviesFilterGenreEight       GetMoviesFilterGenre = 8
+	GetMoviesFilterGenreNine        GetMoviesFilterGenre = 9
+	GetMoviesFilterGenreTen         GetMoviesFilterGenre = 10
+	GetMoviesFilterGenreEleven      GetMoviesFilterGenre = 11
+	GetMoviesFilterGenreTwelve      GetMoviesFilterGenre = 12
+	GetMoviesFilterGenreThirteen    GetMoviesFilterGenre = 13
+	GetMoviesFilterGenreFourteen    GetMoviesFilterGenre = 14
+	GetMoviesFilterGenreFifteen     GetMoviesFilterGenre = 15
+	GetMoviesFilterGenreSixteen     GetMoviesFilterGenre = 16
+	GetMoviesFilterGenreSeventeen   GetMoviesFilterGenre = 17
+	GetMoviesFilterGenreEighteen    GetMoviesFilterGenre = 18
+	GetMoviesFilterGenreNineteen    GetMoviesFilterGenre = 19
+	GetMoviesFilterGenreTwentyOne   GetMoviesFilterGenre = 21
+	GetMoviesFilterGenreTwentyTwo   GetMoviesFilterGenre = 22
+	GetMoviesFilterGenreTwentyThree GetMoviesFilterGenre = 23
+	GetMoviesFilterGenreTwentyFour  GetMoviesFilterGenre = 24
+	GetMoviesFilterGenreTwentyFive  GetMoviesFilterGenre = 25
+	GetMoviesFilterGenreTwentySix   GetMoviesFilterGenre = 26
+	GetMoviesFilterGenreTwentySeven GetMoviesFilterGenre = 27
+	GetMoviesFilterGenreTwentyEight GetMoviesFilterGenre = 28
+	GetMoviesFilterGenreTwentyNine  GetMoviesFilterGenre = 29
+	GetMoviesFilterGenreThirty      GetMoviesFilterGenre = 30
+	GetMoviesFilterGenreThirtyOne   GetMoviesFilterGenre = 31
+	GetMoviesFilterGenreThirtyTwo   GetMoviesFilterGenre = 32
+	GetMoviesFilterGenreThirtyThree GetMoviesFilterGenre = 33
+	GetMoviesFilterGenreThirtyFour  GetMoviesFilterGenre = 34
+	GetMoviesFilterGenreThirtyFive  GetMoviesFilterGenre = 35
+	GetMoviesFilterGenreThirtySix   GetMoviesFilterGenre = 36
+)
+
+func (e GetMoviesFilterGenre) ToPointer() *GetMoviesFilterGenre {
+	return &e
+}
+
+func (e *GetMoviesFilterGenre) UnmarshalJSON(data []byte) error {
+	var v int64
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 1:
+		fallthrough
+	case 2:
+		fallthrough
+	case 3:
+		fallthrough
+	case 4:
+		fallthrough
+	case 5:
+		fallthrough
+	case 6:
+		fallthrough
+	case 7:
+		fallthrough
+	case 8:
+		fallthrough
+	case 9:
+		fallthrough
+	case 10:
+		fallthrough
+	case 11:
+		fallthrough
+	case 12:
+		fallthrough
+	case 13:
+		fallthrough
+	case 14:
+		fallthrough
+	case 15:
+		fallthrough
+	case 16:
+		fallthrough
+	case 17:
+		fallthrough
+	case 18:
+		fallthrough
+	case 19:
+		fallthrough
+	case 21:
+		fallthrough
+	case 22:
+		fallthrough
+	case 23:
+		fallthrough
+	case 24:
+		fallthrough
+	case 25:
+		fallthrough
+	case 26:
+		fallthrough
+	case 27:
+		fallthrough
+	case 28:
+		fallthrough
+	case 29:
+		fallthrough
+	case 30:
+		fallthrough
+	case 31:
+		fallthrough
+	case 32:
+		fallthrough
+	case 33:
+		fallthrough
+	case 34:
+		fallthrough
+	case 35:
+		fallthrough
+	case 36:
+		*e = GetMoviesFilterGenre(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetMoviesFilterGenre: %v", v)
+	}
+}
 
 // GetMoviesFilterSort - sort by results
 type GetMoviesFilterSort string
@@ -40,33 +168,64 @@ func (e *GetMoviesFilterSort) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// GetMoviesFilterStatus - status
+type GetMoviesFilterStatus int64
+
+const (
+	GetMoviesFilterStatusOne   GetMoviesFilterStatus = 1
+	GetMoviesFilterStatusTwo   GetMoviesFilterStatus = 2
+	GetMoviesFilterStatusThree GetMoviesFilterStatus = 3
+)
+
+func (e GetMoviesFilterStatus) ToPointer() *GetMoviesFilterStatus {
+	return &e
+}
+
+func (e *GetMoviesFilterStatus) UnmarshalJSON(data []byte) error {
+	var v int64
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case 1:
+		fallthrough
+	case 2:
+		fallthrough
+	case 3:
+		*e = GetMoviesFilterStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetMoviesFilterStatus: %v", v)
+	}
+}
+
 type GetMoviesFilterRequest struct {
 	// production company
-	Company *float64 `queryParam:"style=form,explode=true,name=company"`
+	Company *int64 `queryParam:"style=form,explode=true,name=company"`
 	// content rating id base on a country
-	ContentRating *float64 `queryParam:"style=form,explode=true,name=contentRating"`
+	ContentRating *int64 `queryParam:"style=form,explode=true,name=contentRating"`
 	// country of origin
 	Country string `queryParam:"style=form,explode=true,name=country"`
 	// genre
-	Genre *float64 `queryParam:"style=form,explode=true,name=genre"`
+	Genre *GetMoviesFilterGenre `queryParam:"style=form,explode=true,name=genre"`
 	// original language
 	Lang string `queryParam:"style=form,explode=true,name=lang"`
 	// sort by results
 	Sort *GetMoviesFilterSort `queryParam:"style=form,explode=true,name=sort"`
 	// status
-	Status *float64 `queryParam:"style=form,explode=true,name=status"`
+	Status *GetMoviesFilterStatus `queryParam:"style=form,explode=true,name=status"`
 	// release year
-	Year *float64 `queryParam:"style=form,explode=true,name=year"`
+	Year *int64 `queryParam:"style=form,explode=true,name=year"`
 }
 
-func (o *GetMoviesFilterRequest) GetCompany() *float64 {
+func (o *GetMoviesFilterRequest) GetCompany() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Company
 }
 
-func (o *GetMoviesFilterRequest) GetContentRating() *float64 {
+func (o *GetMoviesFilterRequest) GetContentRating() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -80,7 +239,7 @@ func (o *GetMoviesFilterRequest) GetCountry() string {
 	return o.Country
 }
 
-func (o *GetMoviesFilterRequest) GetGenre() *float64 {
+func (o *GetMoviesFilterRequest) GetGenre() *GetMoviesFilterGenre {
 	if o == nil {
 		return nil
 	}
@@ -101,14 +260,14 @@ func (o *GetMoviesFilterRequest) GetSort() *GetMoviesFilterSort {
 	return o.Sort
 }
 
-func (o *GetMoviesFilterRequest) GetStatus() *float64 {
+func (o *GetMoviesFilterRequest) GetStatus() *GetMoviesFilterStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *GetMoviesFilterRequest) GetYear() *float64 {
+func (o *GetMoviesFilterRequest) GetYear() *int64 {
 	if o == nil {
 		return nil
 	}

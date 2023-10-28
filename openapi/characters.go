@@ -6,11 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
+	"net/http"
+
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
 	"github.com/dashotv/tvdb/openapi/utils"
-	"io"
-	"net/http"
 )
 
 type characters struct {
@@ -24,7 +25,7 @@ func newCharacters(sdkConfig sdkConfiguration) *characters {
 }
 
 // GetCharacterBase - Returns character base record
-func (s *characters) GetCharacterBase(ctx context.Context, id float64) (*operations.GetCharacterBaseResponse, error) {
+func (s *characters) GetCharacterBase(ctx context.Context, id int64) (*operations.GetCharacterBaseResponse, error) {
 	request := operations.GetCharacterBaseRequest{
 		ID: id,
 	}

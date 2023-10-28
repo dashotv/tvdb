@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type people struct {
@@ -25,7 +26,7 @@ func newPeople(sdkConfig sdkConfiguration) *people {
 }
 
 // GetAllPeople - Returns a list of people base records with the basic attributes.
-func (s *people) GetAllPeople(ctx context.Context, page *float64) (*operations.GetAllPeopleResponse, error) {
+func (s *people) GetAllPeople(ctx context.Context, page *int64) (*operations.GetAllPeopleResponse, error) {
 	request := operations.GetAllPeopleRequest{
 		Page: page,
 	}
@@ -88,7 +89,7 @@ func (s *people) GetAllPeople(ctx context.Context, page *float64) (*operations.G
 }
 
 // GetPeopleBase - Returns people base record
-func (s *people) GetPeopleBase(ctx context.Context, id float64) (*operations.GetPeopleBaseResponse, error) {
+func (s *people) GetPeopleBase(ctx context.Context, id int64) (*operations.GetPeopleBaseResponse, error) {
 	request := operations.GetPeopleBaseRequest{
 		ID: id,
 	}
@@ -154,7 +155,7 @@ func (s *people) GetPeopleBase(ctx context.Context, id float64) (*operations.Get
 }
 
 // GetPeopleExtended - Returns people extended record
-func (s *people) GetPeopleExtended(ctx context.Context, id float64, meta *operations.GetPeopleExtendedMeta) (*operations.GetPeopleExtendedResponse, error) {
+func (s *people) GetPeopleExtended(ctx context.Context, id int64, meta *operations.GetPeopleExtendedMeta) (*operations.GetPeopleExtendedResponse, error) {
 	request := operations.GetPeopleExtendedRequest{
 		ID:   id,
 		Meta: meta,
@@ -225,7 +226,7 @@ func (s *people) GetPeopleExtended(ctx context.Context, id float64, meta *operat
 }
 
 // GetPeopleTranslation - Returns people translation record
-func (s *people) GetPeopleTranslation(ctx context.Context, id float64, language string) (*operations.GetPeopleTranslationResponse, error) {
+func (s *people) GetPeopleTranslation(ctx context.Context, id int64, language string) (*operations.GetPeopleTranslationResponse, error) {
 	request := operations.GetPeopleTranslationRequest{
 		ID:       id,
 		Language: language,

@@ -10,7 +10,7 @@ features:
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
 go:
-  version: v0.2.0
+  version: v0.2.1
   flattenGlobalSecurity: true
   maxMethodParams: 4
   packageName: github.com/dashotv/tvdb/openapi

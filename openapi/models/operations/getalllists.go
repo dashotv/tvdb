@@ -3,16 +3,17 @@
 package operations
 
 import (
-	"github.com/dashotv/tvdb/openapi/models/shared"
 	"net/http"
+
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 type GetAllListsRequest struct {
 	// page number
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 }
 
-func (o *GetAllListsRequest) GetPage() *float64 {
+func (o *GetAllListsRequest) GetPage() *int64 {
 	if o == nil {
 		return nil
 	}

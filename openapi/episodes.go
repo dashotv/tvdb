@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type episodes struct {
@@ -25,7 +26,7 @@ func newEpisodes(sdkConfig sdkConfiguration) *episodes {
 }
 
 // GetAllEpisodes - Returns a list of episodes base records with the basic attributes.<br> Note that all episodes are returned, even those that may not be included in a series' default season order.
-func (s *episodes) GetAllEpisodes(ctx context.Context, page *float64) (*operations.GetAllEpisodesResponse, error) {
+func (s *episodes) GetAllEpisodes(ctx context.Context, page *int64) (*operations.GetAllEpisodesResponse, error) {
 	request := operations.GetAllEpisodesRequest{
 		Page: page,
 	}
@@ -88,7 +89,7 @@ func (s *episodes) GetAllEpisodes(ctx context.Context, page *float64) (*operatio
 }
 
 // GetEpisodeBase - Returns episode base record
-func (s *episodes) GetEpisodeBase(ctx context.Context, id float64) (*operations.GetEpisodeBaseResponse, error) {
+func (s *episodes) GetEpisodeBase(ctx context.Context, id int64) (*operations.GetEpisodeBaseResponse, error) {
 	request := operations.GetEpisodeBaseRequest{
 		ID: id,
 	}
@@ -154,7 +155,7 @@ func (s *episodes) GetEpisodeBase(ctx context.Context, id float64) (*operations.
 }
 
 // GetEpisodeExtended - Returns episode extended record
-func (s *episodes) GetEpisodeExtended(ctx context.Context, id float64, meta *operations.GetEpisodeExtendedMeta) (*operations.GetEpisodeExtendedResponse, error) {
+func (s *episodes) GetEpisodeExtended(ctx context.Context, id int64, meta *operations.GetEpisodeExtendedMeta) (*operations.GetEpisodeExtendedResponse, error) {
 	request := operations.GetEpisodeExtendedRequest{
 		ID:   id,
 		Meta: meta,
@@ -225,7 +226,7 @@ func (s *episodes) GetEpisodeExtended(ctx context.Context, id float64, meta *ope
 }
 
 // GetEpisodeTranslation - Returns episode translation record
-func (s *episodes) GetEpisodeTranslation(ctx context.Context, id float64, language string) (*operations.GetEpisodeTranslationResponse, error) {
+func (s *episodes) GetEpisodeTranslation(ctx context.Context, id int64, language string) (*operations.GetEpisodeTranslationResponse, error) {
 	request := operations.GetEpisodeTranslationRequest{
 		ID:       id,
 		Language: language,

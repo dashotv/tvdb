@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type companies struct {
@@ -25,7 +26,7 @@ func newCompanies(sdkConfig sdkConfiguration) *companies {
 }
 
 // GetAllCompanies - returns a paginated list of company records
-func (s *companies) GetAllCompanies(ctx context.Context, page *float64) (*operations.GetAllCompaniesResponse, error) {
+func (s *companies) GetAllCompanies(ctx context.Context, page *int64) (*operations.GetAllCompaniesResponse, error) {
 	request := operations.GetAllCompaniesRequest{
 		Page: page,
 	}
@@ -88,7 +89,7 @@ func (s *companies) GetAllCompanies(ctx context.Context, page *float64) (*operat
 }
 
 // GetCompany - returns a company record
-func (s *companies) GetCompany(ctx context.Context, id float64) (*operations.GetCompanyResponse, error) {
+func (s *companies) GetCompany(ctx context.Context, id int64) (*operations.GetCompanyResponse, error) {
 	request := operations.GetCompanyRequest{
 		ID: id,
 	}

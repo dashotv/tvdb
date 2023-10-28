@@ -3,16 +3,17 @@
 package operations
 
 import (
+	"net/http"
+
 	"github.com/dashotv/tvdb/openapi/models/shared"
 	"github.com/dashotv/tvdb/openapi/utils"
-	"net/http"
 )
 
 type GetSeriesSeasonEpisodesTranslatedRequest struct {
 	// id
-	ID   float64 `pathParam:"style=simple,explode=false,name=id"`
-	Lang string  `pathParam:"style=simple,explode=false,name=lang"`
-	Page int64   `default:"0" queryParam:"style=form,explode=true,name=page"`
+	ID   int64  `pathParam:"style=simple,explode=false,name=id"`
+	Lang string `pathParam:"style=simple,explode=false,name=lang"`
+	Page int64  `default:"0" queryParam:"style=form,explode=true,name=page"`
 	// season-type
 	SeasonType string `pathParam:"style=simple,explode=false,name=season-type"`
 }
@@ -28,9 +29,9 @@ func (g *GetSeriesSeasonEpisodesTranslatedRequest) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-func (o *GetSeriesSeasonEpisodesTranslatedRequest) GetID() float64 {
+func (o *GetSeriesSeasonEpisodesTranslatedRequest) GetID() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.ID
 }

@@ -2,16 +2,12 @@ package tvdb
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 
 	"github.com/dashotv/tvdb/openapi/models/operations"
 )
-
-var tvdbApiKey = os.Getenv("TVDB_API_KEY")
-var tvdbToken = os.Getenv("TVDB_API_TOKEN")
 
 func TestLogin(t *testing.T) {
 	assert.NotEmpty(t, tvdbApiKey, "TVDB_API_KEY is empty")

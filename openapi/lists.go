@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/dashotv/tvdb/openapi/models/operations"
-	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
+	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type lists struct {
@@ -25,7 +26,7 @@ func newLists(sdkConfig sdkConfiguration) *lists {
 }
 
 // GetAllLists - returns list of list base records
-func (s *lists) GetAllLists(ctx context.Context, page *float64) (*operations.GetAllListsResponse, error) {
+func (s *lists) GetAllLists(ctx context.Context, page *int64) (*operations.GetAllListsResponse, error) {
 	request := operations.GetAllListsRequest{
 		Page: page,
 	}
@@ -88,7 +89,7 @@ func (s *lists) GetAllLists(ctx context.Context, page *float64) (*operations.Get
 }
 
 // GetList - returns an list base record
-func (s *lists) GetList(ctx context.Context, id float64) (*operations.GetListResponse, error) {
+func (s *lists) GetList(ctx context.Context, id int64) (*operations.GetListResponse, error) {
 	request := operations.GetListRequest{
 		ID: id,
 	}
@@ -220,7 +221,7 @@ func (s *lists) GetListBySlug(ctx context.Context, slug string) (*operations.Get
 }
 
 // GetListExtended - returns a list extended record
-func (s *lists) GetListExtended(ctx context.Context, id float64) (*operations.GetListExtendedResponse, error) {
+func (s *lists) GetListExtended(ctx context.Context, id int64) (*operations.GetListExtendedResponse, error) {
 	request := operations.GetListExtendedRequest{
 		ID: id,
 	}
@@ -286,7 +287,7 @@ func (s *lists) GetListExtended(ctx context.Context, id float64) (*operations.Ge
 }
 
 // GetListTranslation - Returns list translation record
-func (s *lists) GetListTranslation(ctx context.Context, id float64, language string) (*operations.GetListTranslationResponse, error) {
+func (s *lists) GetListTranslation(ctx context.Context, id int64, language string) (*operations.GetListTranslationResponse, error) {
 	request := operations.GetListTranslationRequest{
 		ID:       id,
 		Language: language,
