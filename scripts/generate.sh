@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
+if [[ "$#" -ne 2 ]]; then
+  echo "Usage: $0 <name> <spec>"
+  exit 1
+fi
+
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 VERSION=$(cat "${PWD}/.version" 2>/dev/null || echo v0)
+NAME="$1"
+SPEC="$2"
 
 rm -rf openapi
 mkdir -p openapi
 # set golang defaults for generator
-printf "go:\n  packageName: github.com/dashotv/tvdb/openapi\n  version: %s" "$VERSION" >openapi/gen.yaml
+printf "go:\n  packageName: github.com/dashotv/$NAME/openapi\n  version: %s" "$VERSION" >openapi/gen.yaml
 # generate go sdk
-speakeasy generate sdk -l go -o openapi -s ./openapi.yml
+speakeasy generate sdk -l go -o openapi -s "./$SPEC"
 # cleanup generated mod files
 rm -rf openapi/go.*
 # remove pkg folder
@@ -19,9 +26,9 @@ find ./openapi -type f -name '*.backup' -delete
 
 # copy types to root
 {
-  echo "package tvdb"
+  echo "package $NAME"
   echo
-  echo 'import "github.com/dashotv/tvdb/openapi/models/operations"'
+  echo 'import "github.com/dashotv/'"$NAME"'/openapi/models/operations"'
   echo
   echo "// pointers"
   grep '^func ' openapi/types/pointers.go
@@ -40,12 +47,12 @@ find ./openapi -type f -name '*.backup' -delete
 
 # copy functions to root
 {
-  echo "package tvdb"
+  echo "package $NAME"
   echo
   echo 'import ('
   echo '	"github.com/pkg/errors"'
   echo
-  echo '	"github.com/dashotv/tvdb/openapi/models/operations"'
+  echo '	"github.com/dashotv/'"$NAME"'/openapi/models/operations"'
   echo ')'
   echo
   grep -E '^func \(' openapi/*.go | awk -F':' '{print $2}' | "$SCRIPT_DIR/rewrite_funcs.rb"

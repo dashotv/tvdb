@@ -9,6 +9,7 @@ VERSION	?= $(shell git describe --tags --always --dirty --match=v* 2> /dev/null 
 SERVICE_PORT ?= 3000
 DOCKER_REGISTRY ?= #if set it should finished by /
 EXPORT_RESULT ?= false # for CI please set EXPORT_RESULT to true
+OPENAPI_SPEC ?= openapi.yml
 
 GREEN  := $(shell tput -Txterm setaf 2)
 YELLOW := $(shell tput -Txterm setaf 3)
@@ -26,7 +27,7 @@ all: help
 # 	$(GOCMD) build -mod vendor -o out/bin/$(BINARY_NAME) .
 
 generate: ## Generate code from openapi.yml spec
-	scripts/generate.sh
+	scripts/generate.sh $(BINARY_NAME) $(OPENAPI_SPEC)
 
 clean: ## Remove build related file
 	rm -fr ./bin
