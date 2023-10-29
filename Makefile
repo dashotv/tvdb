@@ -25,9 +25,10 @@ all: help
 # build: ## Build your project and put the output binary in out/bin/
 # 	mkdir -p out/bin
 # 	$(GOCMD) build -mod vendor -o out/bin/$(BINARY_NAME) .
-
+## General:
 generate: ## Generate code from openapi.yml spec
 	scripts/generate.sh $(BINARY_NAME) $(OPENAPI_SPEC)
+	goimports -w -local github.com/dashotv .
 
 clean: ## Remove build related file
 	rm -fr ./bin
