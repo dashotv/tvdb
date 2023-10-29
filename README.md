@@ -72,7 +72,7 @@ client := tvdb.New(apikey, token)
 
 ## Development
 
-Crate a local `.env` file with the following content:
+Create a local `.env` file with the following content:
 
 ```
 # .env
