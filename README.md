@@ -49,7 +49,7 @@ Create a new client with:
 client := tvdb.New(apikey, token)
 ```
 
-If you don't already have a token, you can obtain one with:
+If you don't already have a token, you can authenticate with your `apikey` using the `Login` method:
 
 ```go
 // Authenticate with your API key. This will return a client with the
@@ -58,6 +58,7 @@ client, err := tvdb.Login(apikey)
 if err != nil {
     // handle error
 }
+client.Token // the token
 ```
 
 > [!IMPORTANT]
