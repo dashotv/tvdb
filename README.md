@@ -16,6 +16,9 @@ it with a more convenient interface.
 
 See the `Generation` section below for more information.
 
+> [!NOTE]
+> I have needed to make a few tweaks to the openapi spec to get things to work correctly in go.
+
 ## Additional Documentation
 
 The Speakeasy generator also generates documentation for the API. This is available
