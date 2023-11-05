@@ -20,6 +20,7 @@ type SeriesBaseRecord struct {
 	NextAired            *string             `json:"nextAired,omitempty"`
 	OriginalCountry      *string             `json:"originalCountry,omitempty"`
 	OriginalLanguage     *string             `json:"originalLanguage,omitempty"`
+	Overview             *string             `json:"overview,omitempty"`
 	OverviewTranslations []string            `json:"overviewTranslations,omitempty"`
 	Score                *float64            `json:"score,omitempty"`
 	Slug                 *string             `json:"slug,omitempty"`
@@ -138,6 +139,13 @@ func (o *SeriesBaseRecord) GetOriginalLanguage() *string {
 		return nil
 	}
 	return o.OriginalLanguage
+}
+
+func (o *SeriesBaseRecord) GetOverview() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Overview
 }
 
 func (o *SeriesBaseRecord) GetOverviewTranslations() []string {

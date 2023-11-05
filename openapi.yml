@@ -3951,6 +3951,8 @@ components:
           type: string
         originalLanguage:
           type: string
+        overview:
+          type: string
         overviewTranslations:
           items:
             type: string
