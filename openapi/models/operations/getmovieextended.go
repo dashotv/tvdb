@@ -10,28 +10,28 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetMovieExtendedMeta - meta
-type GetMovieExtendedMeta string
+// QueryParamMeta - meta
+type QueryParamMeta string
 
 const (
-	GetMovieExtendedMetaTranslations GetMovieExtendedMeta = "translations"
+	QueryParamMetaTranslations QueryParamMeta = "translations"
 )
 
-func (e GetMovieExtendedMeta) ToPointer() *GetMovieExtendedMeta {
+func (e QueryParamMeta) ToPointer() *QueryParamMeta {
 	return &e
 }
 
-func (e *GetMovieExtendedMeta) UnmarshalJSON(data []byte) error {
+func (e *QueryParamMeta) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "translations":
-		*e = GetMovieExtendedMeta(v)
+		*e = QueryParamMeta(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetMovieExtendedMeta: %v", v)
+		return fmt.Errorf("invalid value for QueryParamMeta: %v", v)
 	}
 }
 
@@ -39,7 +39,7 @@ type GetMovieExtendedRequest struct {
 	// id
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 	// meta
-	Meta *GetMovieExtendedMeta `queryParam:"style=form,explode=true,name=meta"`
+	Meta *QueryParamMeta `queryParam:"style=form,explode=true,name=meta"`
 	// reduce the payload and returns the short version of this record without characters, artworks and trailers.
 	Short *bool `queryParam:"style=form,explode=true,name=short"`
 }
@@ -51,7 +51,7 @@ func (o *GetMovieExtendedRequest) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetMovieExtendedRequest) GetMeta() *GetMovieExtendedMeta {
+func (o *GetMovieExtendedRequest) GetMeta() *QueryParamMeta {
 	if o == nil {
 		return nil
 	}
@@ -65,21 +65,21 @@ func (o *GetMovieExtendedRequest) GetShort() *bool {
 	return o.Short
 }
 
-// GetMovieExtended200ApplicationJSON - response
-type GetMovieExtended200ApplicationJSON struct {
+// GetMovieExtendedResponseBody - response
+type GetMovieExtendedResponseBody struct {
 	// extended movie record
 	Data   *shared.MovieExtendedRecord `json:"data,omitempty"`
 	Status *string                     `json:"status,omitempty"`
 }
 
-func (o *GetMovieExtended200ApplicationJSON) GetData() *shared.MovieExtendedRecord {
+func (o *GetMovieExtendedResponseBody) GetData() *shared.MovieExtendedRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetMovieExtended200ApplicationJSON) GetStatus() *string {
+func (o *GetMovieExtendedResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -94,7 +94,7 @@ type GetMovieExtendedResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetMovieExtended200ApplicationJSONObject *GetMovieExtended200ApplicationJSON
+	Object *GetMovieExtendedResponseBody
 }
 
 func (o *GetMovieExtendedResponse) GetContentType() string {
@@ -118,9 +118,9 @@ func (o *GetMovieExtendedResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetMovieExtendedResponse) GetGetMovieExtended200ApplicationJSONObject() *GetMovieExtended200ApplicationJSON {
+func (o *GetMovieExtendedResponse) GetObject() *GetMovieExtendedResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetMovieExtended200ApplicationJSONObject
+	return o.Object
 }

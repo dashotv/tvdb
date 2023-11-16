@@ -20,29 +20,29 @@ func (o *GetAllPeopleRequest) GetPage() *int64 {
 	return o.Page
 }
 
-// GetAllPeople200ApplicationJSON - response
-type GetAllPeople200ApplicationJSON struct {
+// GetAllPeopleResponseBody - response
+type GetAllPeopleResponseBody struct {
 	Data []shared.PeopleBaseRecord `json:"data,omitempty"`
 	// Links for next, previous and current record
 	Links  *shared.Links `json:"links,omitempty"`
 	Status *string       `json:"status,omitempty"`
 }
 
-func (o *GetAllPeople200ApplicationJSON) GetData() []shared.PeopleBaseRecord {
+func (o *GetAllPeopleResponseBody) GetData() []shared.PeopleBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllPeople200ApplicationJSON) GetLinks() *shared.Links {
+func (o *GetAllPeopleResponseBody) GetLinks() *shared.Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
 }
 
-func (o *GetAllPeople200ApplicationJSON) GetStatus() *string {
+func (o *GetAllPeopleResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -57,7 +57,7 @@ type GetAllPeopleResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllPeople200ApplicationJSONObject *GetAllPeople200ApplicationJSON
+	Object *GetAllPeopleResponseBody
 }
 
 func (o *GetAllPeopleResponse) GetContentType() string {
@@ -81,9 +81,9 @@ func (o *GetAllPeopleResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllPeopleResponse) GetGetAllPeople200ApplicationJSONObject() *GetAllPeople200ApplicationJSON {
+func (o *GetAllPeopleResponse) GetObject() *GetAllPeopleResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllPeople200ApplicationJSONObject
+	return o.Object
 }

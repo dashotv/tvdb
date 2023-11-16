@@ -10,28 +10,28 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetEpisodeExtendedMeta - meta
-type GetEpisodeExtendedMeta string
+// Meta - meta
+type Meta string
 
 const (
-	GetEpisodeExtendedMetaTranslations GetEpisodeExtendedMeta = "translations"
+	MetaTranslations Meta = "translations"
 )
 
-func (e GetEpisodeExtendedMeta) ToPointer() *GetEpisodeExtendedMeta {
+func (e Meta) ToPointer() *Meta {
 	return &e
 }
 
-func (e *GetEpisodeExtendedMeta) UnmarshalJSON(data []byte) error {
+func (e *Meta) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "translations":
-		*e = GetEpisodeExtendedMeta(v)
+		*e = Meta(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetEpisodeExtendedMeta: %v", v)
+		return fmt.Errorf("invalid value for Meta: %v", v)
 	}
 }
 
@@ -39,7 +39,7 @@ type GetEpisodeExtendedRequest struct {
 	// id
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 	// meta
-	Meta *GetEpisodeExtendedMeta `queryParam:"style=form,explode=true,name=meta"`
+	Meta *Meta `queryParam:"style=form,explode=true,name=meta"`
 }
 
 func (o *GetEpisodeExtendedRequest) GetID() int64 {
@@ -49,28 +49,28 @@ func (o *GetEpisodeExtendedRequest) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetEpisodeExtendedRequest) GetMeta() *GetEpisodeExtendedMeta {
+func (o *GetEpisodeExtendedRequest) GetMeta() *Meta {
 	if o == nil {
 		return nil
 	}
 	return o.Meta
 }
 
-// GetEpisodeExtended200ApplicationJSON - response
-type GetEpisodeExtended200ApplicationJSON struct {
+// GetEpisodeExtendedResponseBody - response
+type GetEpisodeExtendedResponseBody struct {
 	// extended episode record
 	Data   *shared.EpisodeExtendedRecord `json:"data,omitempty"`
 	Status *string                       `json:"status,omitempty"`
 }
 
-func (o *GetEpisodeExtended200ApplicationJSON) GetData() *shared.EpisodeExtendedRecord {
+func (o *GetEpisodeExtendedResponseBody) GetData() *shared.EpisodeExtendedRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetEpisodeExtended200ApplicationJSON) GetStatus() *string {
+func (o *GetEpisodeExtendedResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -85,7 +85,7 @@ type GetEpisodeExtendedResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetEpisodeExtended200ApplicationJSONObject *GetEpisodeExtended200ApplicationJSON
+	Object *GetEpisodeExtendedResponseBody
 }
 
 func (o *GetEpisodeExtendedResponse) GetContentType() string {
@@ -109,9 +109,9 @@ func (o *GetEpisodeExtendedResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetEpisodeExtendedResponse) GetGetEpisodeExtended200ApplicationJSONObject() *GetEpisodeExtended200ApplicationJSON {
+func (o *GetEpisodeExtendedResponse) GetObject() *GetEpisodeExtendedResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetEpisodeExtended200ApplicationJSONObject
+	return o.Object
 }

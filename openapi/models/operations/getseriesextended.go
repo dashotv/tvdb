@@ -10,19 +10,19 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetSeriesExtendedMeta - meta
-type GetSeriesExtendedMeta string
+// GetSeriesExtendedQueryParamMeta - meta
+type GetSeriesExtendedQueryParamMeta string
 
 const (
-	GetSeriesExtendedMetaTranslations GetSeriesExtendedMeta = "translations"
-	GetSeriesExtendedMetaEpisodes     GetSeriesExtendedMeta = "episodes"
+	GetSeriesExtendedQueryParamMetaTranslations GetSeriesExtendedQueryParamMeta = "translations"
+	GetSeriesExtendedQueryParamMetaEpisodes     GetSeriesExtendedQueryParamMeta = "episodes"
 )
 
-func (e GetSeriesExtendedMeta) ToPointer() *GetSeriesExtendedMeta {
+func (e GetSeriesExtendedQueryParamMeta) ToPointer() *GetSeriesExtendedQueryParamMeta {
 	return &e
 }
 
-func (e *GetSeriesExtendedMeta) UnmarshalJSON(data []byte) error {
+func (e *GetSeriesExtendedQueryParamMeta) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,10 +31,10 @@ func (e *GetSeriesExtendedMeta) UnmarshalJSON(data []byte) error {
 	case "translations":
 		fallthrough
 	case "episodes":
-		*e = GetSeriesExtendedMeta(v)
+		*e = GetSeriesExtendedQueryParamMeta(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetSeriesExtendedMeta: %v", v)
+		return fmt.Errorf("invalid value for GetSeriesExtendedQueryParamMeta: %v", v)
 	}
 }
 
@@ -42,7 +42,7 @@ type GetSeriesExtendedRequest struct {
 	// id
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 	// meta
-	Meta *GetSeriesExtendedMeta `queryParam:"style=form,explode=true,name=meta"`
+	Meta *GetSeriesExtendedQueryParamMeta `queryParam:"style=form,explode=true,name=meta"`
 	// reduce the payload and returns the short version of this record without characters and artworks
 	Short *bool `queryParam:"style=form,explode=true,name=short"`
 }
@@ -54,7 +54,7 @@ func (o *GetSeriesExtendedRequest) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetSeriesExtendedRequest) GetMeta() *GetSeriesExtendedMeta {
+func (o *GetSeriesExtendedRequest) GetMeta() *GetSeriesExtendedQueryParamMeta {
 	if o == nil {
 		return nil
 	}
@@ -68,21 +68,21 @@ func (o *GetSeriesExtendedRequest) GetShort() *bool {
 	return o.Short
 }
 
-// GetSeriesExtended200ApplicationJSON - response
-type GetSeriesExtended200ApplicationJSON struct {
+// GetSeriesExtendedResponseBody - response
+type GetSeriesExtendedResponseBody struct {
 	// The extended record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 	Data   *shared.SeriesExtendedRecord `json:"data,omitempty"`
 	Status *string                      `json:"status,omitempty"`
 }
 
-func (o *GetSeriesExtended200ApplicationJSON) GetData() *shared.SeriesExtendedRecord {
+func (o *GetSeriesExtendedResponseBody) GetData() *shared.SeriesExtendedRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSeriesExtended200ApplicationJSON) GetStatus() *string {
+func (o *GetSeriesExtendedResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -97,7 +97,7 @@ type GetSeriesExtendedResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSeriesExtended200ApplicationJSONObject *GetSeriesExtended200ApplicationJSON
+	Object *GetSeriesExtendedResponseBody
 }
 
 func (o *GetSeriesExtendedResponse) GetContentType() string {
@@ -121,9 +121,9 @@ func (o *GetSeriesExtendedResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSeriesExtendedResponse) GetGetSeriesExtended200ApplicationJSONObject() *GetSeriesExtended200ApplicationJSON {
+func (o *GetSeriesExtendedResponse) GetObject() *GetSeriesExtendedResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSeriesExtended200ApplicationJSONObject
+	return o.Object
 }

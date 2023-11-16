@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetAllArtworkTypes200ApplicationJSON - response
-type GetAllArtworkTypes200ApplicationJSON struct {
+// GetAllArtworkTypesResponseBody - response
+type GetAllArtworkTypesResponseBody struct {
 	Data   []shared.ArtworkType `json:"data,omitempty"`
 	Status *string              `json:"status,omitempty"`
 }
 
-func (o *GetAllArtworkTypes200ApplicationJSON) GetData() []shared.ArtworkType {
+func (o *GetAllArtworkTypesResponseBody) GetData() []shared.ArtworkType {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllArtworkTypes200ApplicationJSON) GetStatus() *string {
+func (o *GetAllArtworkTypesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetAllArtworkTypesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllArtworkTypes200ApplicationJSONObject *GetAllArtworkTypes200ApplicationJSON
+	Object *GetAllArtworkTypesResponseBody
 }
 
 func (o *GetAllArtworkTypesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetAllArtworkTypesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllArtworkTypesResponse) GetGetAllArtworkTypes200ApplicationJSONObject() *GetAllArtworkTypes200ApplicationJSON {
+func (o *GetAllArtworkTypesResponse) GetObject() *GetAllArtworkTypesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllArtworkTypes200ApplicationJSONObject
+	return o.Object
 }

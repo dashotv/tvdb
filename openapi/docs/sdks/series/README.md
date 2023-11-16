@@ -24,15 +24,17 @@ returns list of series base records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -44,7 +46,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAllSeries200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -61,7 +63,9 @@ func main() {
 ### Response
 
 **[*operations.GetAllSeriesResponse](../../models/operations/getallseriesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesArtworks
 
@@ -73,15 +77,17 @@ Returns series artworks base on language and type. <br> Note&#58; Artwork type i
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -97,7 +103,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesArtworks200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -116,7 +122,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesArtworksResponse](../../models/operations/getseriesartworksresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesBase
 
@@ -128,15 +136,17 @@ Returns series base record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -148,7 +158,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesBase200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -165,7 +175,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesBaseResponse](../../models/operations/getseriesbaseresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesBaseBySlug
 
@@ -177,15 +189,17 @@ Returns series base record searched by slug
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -197,7 +211,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesBaseBySlug200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -214,7 +228,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesBaseBySlugResponse](../../models/operations/getseriesbasebyslugresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesEpisodes
 
@@ -226,16 +242,18 @@ Returns series episodes from the specified season type, default returns the epis
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/dashotv/tvdb/openapi"
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"log"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -248,7 +266,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesEpisodes200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -265,7 +283,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesEpisodesResponse](../../models/operations/getseriesepisodesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesExtended
 
@@ -277,22 +297,24 @@ Returns series extended record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"github.com/dashotv/tvdb/openapi/models/operations"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
-	"github.com/dashotv/tvdb/openapi/models/operations"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
     var id int64 = 478090
 
-    var meta *operations.GetSeriesExtendedMeta = operations.GetSeriesExtendedMetaTranslations
+    var meta *operations.GetSeriesExtendedQueryParamMeta = operations.GetSeriesExtendedQueryParamMetaTranslations
 
     var short *bool = false
 
@@ -302,7 +324,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesExtended200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -310,18 +332,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                           | :heavy_check_mark:                                                                              | The context to use for the request.                                                             |                                                                                                 |
-| `id`                                                                                            | *int64*                                                                                         | :heavy_check_mark:                                                                              | id                                                                                              |                                                                                                 |
-| `meta`                                                                                          | [*operations.GetSeriesExtendedMeta](../../models/operations/getseriesextendedmeta.md)           | :heavy_minus_sign:                                                                              | meta                                                                                            | translations                                                                                    |
-| `short`                                                                                         | **bool*                                                                                         | :heavy_minus_sign:                                                                              | reduce the payload and returns the short version of this record without characters and artworks |                                                                                                 |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                     | :heavy_check_mark:                                                                                        | The context to use for the request.                                                                       |                                                                                                           |
+| `id`                                                                                                      | *int64*                                                                                                   | :heavy_check_mark:                                                                                        | id                                                                                                        |                                                                                                           |
+| `meta`                                                                                                    | [*operations.GetSeriesExtendedQueryParamMeta](../../models/operations/getseriesextendedqueryparammeta.md) | :heavy_minus_sign:                                                                                        | meta                                                                                                      | translations                                                                                              |
+| `short`                                                                                                   | **bool*                                                                                                   | :heavy_minus_sign:                                                                                        | reduce the payload and returns the short version of this record without characters and artworks           |                                                                                                           |
 
 
 ### Response
 
 **[*operations.GetSeriesExtendedResponse](../../models/operations/getseriesextendedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesFilter
 
@@ -333,16 +357,18 @@ Search series based on filter parameters
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/dashotv/tvdb/openapi"
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"log"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -350,7 +376,7 @@ func main() {
         Company: openapi.Int64(1),
         ContentRating: openapi.Int64(245),
         Country: "usa",
-        Genre: operations.GetSeriesFilterGenreThree.ToPointer(),
+        Genre: operations.QueryParamGenreThree.ToPointer(),
         Lang: "eng",
         Year: openapi.Int64(2020),
     })
@@ -358,7 +384,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesFilter200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -375,7 +401,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesFilterResponse](../../models/operations/getseriesfilterresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesNextAired
 
@@ -387,15 +415,17 @@ Returns series base record including the nextAired field. <br> Note&#58; nextAir
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -407,7 +437,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesNextAired200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -424,7 +454,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesNextAiredResponse](../../models/operations/getseriesnextairedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesSeasonEpisodesTranslated
 
@@ -436,15 +468,17 @@ Returns series base record with episodes from the specified season type and lang
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -462,7 +496,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesSeasonEpisodesTranslated200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -482,7 +516,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesSeasonEpisodesTranslatedResponse](../../models/operations/getseriesseasonepisodestranslatedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeriesTranslation
 
@@ -494,15 +530,17 @@ Returns series translation record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -516,7 +554,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeriesTranslation200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -534,4 +572,6 @@ func main() {
 ### Response
 
 **[*operations.GetSeriesTranslationResponse](../../models/operations/getseriestranslationresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

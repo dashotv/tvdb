@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type updates struct {
+type Updates struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newUpdates(sdkConfig sdkConfiguration) *updates {
-	return &updates{
+func newUpdates(sdkConfig sdkConfiguration) *Updates {
+	return &Updates{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // Updates - Returns updated entities.  methodInt indicates a created record (1), an updated record (2), or a deleted record (3).  If a record is deleted because it was a duplicate of another record, the target record's information is provided in mergeToType and mergeToId.
-func (s *updates) Updates(ctx context.Context, since int64, action *operations.UpdatesAction, page *int64, type_ *operations.UpdatesType) (*operations.UpdatesResponse, error) {
+func (s *Updates) Updates(ctx context.Context, since int64, action *operations.Action, page *int64, type_ *operations.Type) (*operations.UpdatesResponse, error) {
 	request := operations.UpdatesRequest{
 		Since:  since,
 		Action: action,
@@ -76,18 +76,23 @@ func (s *updates) Updates(ctx context.Context, since int64, action *operations.U
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.Updates200ApplicationJSON
+			var out operations.UpdatesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Updates200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

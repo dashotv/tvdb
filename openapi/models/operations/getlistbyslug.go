@@ -20,21 +20,21 @@ func (o *GetListBySlugRequest) GetSlug() string {
 	return o.Slug
 }
 
-// GetListBySlug200ApplicationJSON - response
-type GetListBySlug200ApplicationJSON struct {
+// GetListBySlugResponseBody - response
+type GetListBySlugResponseBody struct {
 	// base list record
 	Data   *shared.ListBaseRecord `json:"data,omitempty"`
 	Status *string                `json:"status,omitempty"`
 }
 
-func (o *GetListBySlug200ApplicationJSON) GetData() *shared.ListBaseRecord {
+func (o *GetListBySlugResponseBody) GetData() *shared.ListBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetListBySlug200ApplicationJSON) GetStatus() *string {
+func (o *GetListBySlugResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetListBySlugResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetListBySlug200ApplicationJSONObject *GetListBySlug200ApplicationJSON
+	Object *GetListBySlugResponseBody
 }
 
 func (o *GetListBySlugResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetListBySlugResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetListBySlugResponse) GetGetListBySlug200ApplicationJSONObject() *GetListBySlug200ApplicationJSON {
+func (o *GetListBySlugResponse) GetObject() *GetListBySlugResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetListBySlug200ApplicationJSONObject
+	return o.Object
 }

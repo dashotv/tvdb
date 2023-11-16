@@ -29,20 +29,20 @@ func (o *GetListTranslationRequest) GetLanguage() string {
 	return o.Language
 }
 
-// GetListTranslation200ApplicationJSON - response
-type GetListTranslation200ApplicationJSON struct {
+// GetListTranslationResponseBody - response
+type GetListTranslationResponseBody struct {
 	Data   []shared.Translation `json:"data,omitempty"`
 	Status *string              `json:"status,omitempty"`
 }
 
-func (o *GetListTranslation200ApplicationJSON) GetData() []shared.Translation {
+func (o *GetListTranslationResponseBody) GetData() []shared.Translation {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetListTranslation200ApplicationJSON) GetStatus() *string {
+func (o *GetListTranslationResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -57,7 +57,7 @@ type GetListTranslationResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetListTranslation200ApplicationJSONObject *GetListTranslation200ApplicationJSON
+	Object *GetListTranslationResponseBody
 }
 
 func (o *GetListTranslationResponse) GetContentType() string {
@@ -81,9 +81,9 @@ func (o *GetListTranslationResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetListTranslationResponse) GetGetListTranslation200ApplicationJSONObject() *GetListTranslation200ApplicationJSON {
+func (o *GetListTranslationResponse) GetObject() *GetListTranslationResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetListTranslation200ApplicationJSONObject
+	return o.Object
 }

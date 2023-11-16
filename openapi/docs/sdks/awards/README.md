@@ -17,15 +17,17 @@ Returns a list of award base records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -34,7 +36,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAllAwards200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -50,7 +52,9 @@ func main() {
 ### Response
 
 **[*operations.GetAllAwardsResponse](../../models/operations/getallawardsresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetAward
 
@@ -62,15 +66,17 @@ Returns a single award base record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -82,7 +88,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAward200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -99,7 +105,9 @@ func main() {
 ### Response
 
 **[*operations.GetAwardResponse](../../models/operations/getawardresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetAwardExtended
 
@@ -111,15 +119,17 @@ Returns a single award extended record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -131,7 +141,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAwardExtended200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -148,4 +158,6 @@ func main() {
 ### Response
 
 **[*operations.GetAwardExtendedResponse](../../models/operations/getawardextendedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

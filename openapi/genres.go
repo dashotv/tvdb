@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type genres struct {
+type Genres struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newGenres(sdkConfig sdkConfiguration) *genres {
-	return &genres{
+func newGenres(sdkConfig sdkConfiguration) *Genres {
+	return &Genres{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllGenres - returns list of genre records
-func (s *genres) GetAllGenres(ctx context.Context) (*operations.GetAllGenresResponse, error) {
+func (s *Genres) GetAllGenres(ctx context.Context) (*operations.GetAllGenresResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/genres"
 
@@ -65,23 +65,28 @@ func (s *genres) GetAllGenres(ctx context.Context) (*operations.GetAllGenresResp
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllGenres200ApplicationJSON
+			var out operations.GetAllGenresResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllGenres200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetGenreBase - Returns genre record
-func (s *genres) GetGenreBase(ctx context.Context, id int64) (*operations.GetGenreBaseResponse, error) {
+func (s *Genres) GetGenreBase(ctx context.Context, id int64) (*operations.GetGenreBaseResponse, error) {
 	request := operations.GetGenreBaseRequest{
 		ID: id,
 	}
@@ -127,12 +132,12 @@ func (s *genres) GetGenreBase(ctx context.Context, id int64) (*operations.GetGen
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetGenreBase200ApplicationJSON
+			var out operations.GetGenreBaseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetGenreBase200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -141,6 +146,11 @@ func (s *genres) GetGenreBase(ctx context.Context, id int64) (*operations.GetGen
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

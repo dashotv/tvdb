@@ -20,29 +20,29 @@ func (o *GetAllCompaniesRequest) GetPage() *int64 {
 	return o.Page
 }
 
-// GetAllCompanies200ApplicationJSON - response
-type GetAllCompanies200ApplicationJSON struct {
+// GetAllCompaniesResponseBody - response
+type GetAllCompaniesResponseBody struct {
 	Data []shared.Company `json:"data,omitempty"`
 	// Links for next, previous and current record
 	Links  *shared.Links `json:"links,omitempty"`
 	Status *string       `json:"status,omitempty"`
 }
 
-func (o *GetAllCompanies200ApplicationJSON) GetData() []shared.Company {
+func (o *GetAllCompaniesResponseBody) GetData() []shared.Company {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllCompanies200ApplicationJSON) GetLinks() *shared.Links {
+func (o *GetAllCompaniesResponseBody) GetLinks() *shared.Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
 }
 
-func (o *GetAllCompanies200ApplicationJSON) GetStatus() *string {
+func (o *GetAllCompaniesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -57,7 +57,7 @@ type GetAllCompaniesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllCompanies200ApplicationJSONObject *GetAllCompanies200ApplicationJSON
+	Object *GetAllCompaniesResponseBody
 }
 
 func (o *GetAllCompaniesResponse) GetContentType() string {
@@ -81,9 +81,9 @@ func (o *GetAllCompaniesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllCompaniesResponse) GetGetAllCompanies200ApplicationJSONObject() *GetAllCompanies200ApplicationJSON {
+func (o *GetAllCompaniesResponse) GetObject() *GetAllCompaniesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllCompanies200ApplicationJSONObject
+	return o.Object
 }

@@ -20,20 +20,20 @@ func (o *GetAllSeasonsRequest) GetPage() *int64 {
 	return o.Page
 }
 
-// GetAllSeasons200ApplicationJSON - response
-type GetAllSeasons200ApplicationJSON struct {
+// GetAllSeasonsResponseBody - response
+type GetAllSeasonsResponseBody struct {
 	Data   []shared.SeasonBaseRecord `json:"data,omitempty"`
 	Status *string                   `json:"status,omitempty"`
 }
 
-func (o *GetAllSeasons200ApplicationJSON) GetData() []shared.SeasonBaseRecord {
+func (o *GetAllSeasonsResponseBody) GetData() []shared.SeasonBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllSeasons200ApplicationJSON) GetStatus() *string {
+func (o *GetAllSeasonsResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -48,7 +48,7 @@ type GetAllSeasonsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllSeasons200ApplicationJSONObject *GetAllSeasons200ApplicationJSON
+	Object *GetAllSeasonsResponseBody
 }
 
 func (o *GetAllSeasonsResponse) GetContentType() string {
@@ -72,9 +72,9 @@ func (o *GetAllSeasonsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllSeasonsResponse) GetGetAllSeasons200ApplicationJSONObject() *GetAllSeasons200ApplicationJSON {
+func (o *GetAllSeasonsResponse) GetObject() *GetAllSeasonsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllSeasons200ApplicationJSONObject
+	return o.Object
 }

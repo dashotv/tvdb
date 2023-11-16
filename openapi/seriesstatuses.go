@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type seriesStatuses struct {
+type SeriesStatuses struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSeriesStatuses(sdkConfig sdkConfiguration) *seriesStatuses {
-	return &seriesStatuses{
+func newSeriesStatuses(sdkConfig sdkConfiguration) *SeriesStatuses {
+	return &SeriesStatuses{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllSeriesStatuses - returns list of status records
-func (s *seriesStatuses) GetAllSeriesStatuses(ctx context.Context) (*operations.GetAllSeriesStatusesResponse, error) {
+func (s *SeriesStatuses) GetAllSeriesStatuses(ctx context.Context) (*operations.GetAllSeriesStatusesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/series/statuses"
 
@@ -65,16 +65,21 @@ func (s *seriesStatuses) GetAllSeriesStatuses(ctx context.Context) (*operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllSeriesStatuses200ApplicationJSON
+			var out operations.GetAllSeriesStatusesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllSeriesStatuses200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

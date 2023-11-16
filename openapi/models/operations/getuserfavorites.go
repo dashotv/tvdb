@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetUserFavorites200ApplicationJSON - response
-type GetUserFavorites200ApplicationJSON struct {
+// GetUserFavoritesResponseBody - response
+type GetUserFavoritesResponseBody struct {
 	Data   []shared.Favorites `json:"data,omitempty"`
 	Status *string            `json:"status,omitempty"`
 }
 
-func (o *GetUserFavorites200ApplicationJSON) GetData() []shared.Favorites {
+func (o *GetUserFavoritesResponseBody) GetData() []shared.Favorites {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetUserFavorites200ApplicationJSON) GetStatus() *string {
+func (o *GetUserFavoritesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetUserFavoritesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetUserFavorites200ApplicationJSONObject *GetUserFavorites200ApplicationJSON
+	Object *GetUserFavoritesResponseBody
 }
 
 func (o *GetUserFavoritesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetUserFavoritesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetUserFavoritesResponse) GetGetUserFavorites200ApplicationJSONObject() *GetUserFavorites200ApplicationJSON {
+func (o *GetUserFavoritesResponse) GetObject() *GetUserFavoritesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetUserFavorites200ApplicationJSONObject
+	return o.Object
 }

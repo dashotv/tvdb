@@ -20,21 +20,21 @@ func (o *GetCompanyRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetCompany200ApplicationJSON - response
-type GetCompany200ApplicationJSON struct {
+// GetCompanyResponseBody - response
+type GetCompanyResponseBody struct {
 	// A company record
 	Data   *shared.Company `json:"data,omitempty"`
 	Status *string         `json:"status,omitempty"`
 }
 
-func (o *GetCompany200ApplicationJSON) GetData() *shared.Company {
+func (o *GetCompanyResponseBody) GetData() *shared.Company {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetCompany200ApplicationJSON) GetStatus() *string {
+func (o *GetCompanyResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetCompanyResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetCompany200ApplicationJSONObject *GetCompany200ApplicationJSON
+	Object *GetCompanyResponseBody
 }
 
 func (o *GetCompanyResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetCompanyResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetCompanyResponse) GetGetCompany200ApplicationJSONObject() *GetCompany200ApplicationJSON {
+func (o *GetCompanyResponse) GetObject() *GetCompanyResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetCompany200ApplicationJSONObject
+	return o.Object
 }

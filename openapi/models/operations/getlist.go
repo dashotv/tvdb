@@ -20,21 +20,21 @@ func (o *GetListRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetList200ApplicationJSON - response
-type GetList200ApplicationJSON struct {
+// GetListResponseBody - response
+type GetListResponseBody struct {
 	// base list record
 	Data   *shared.ListBaseRecord `json:"data,omitempty"`
 	Status *string                `json:"status,omitempty"`
 }
 
-func (o *GetList200ApplicationJSON) GetData() *shared.ListBaseRecord {
+func (o *GetListResponseBody) GetData() *shared.ListBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetList200ApplicationJSON) GetStatus() *string {
+func (o *GetListResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetList200ApplicationJSONObject *GetList200ApplicationJSON
+	Object *GetListResponseBody
 }
 
 func (o *GetListResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetListResponse) GetGetList200ApplicationJSONObject() *GetList200ApplicationJSON {
+func (o *GetListResponse) GetObject() *GetListResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetList200ApplicationJSONObject
+	return o.Object
 }

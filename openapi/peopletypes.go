@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type peopleTypes struct {
+type PeopleTypes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPeopleTypes(sdkConfig sdkConfiguration) *peopleTypes {
-	return &peopleTypes{
+func newPeopleTypes(sdkConfig sdkConfiguration) *PeopleTypes {
+	return &PeopleTypes{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllPeopleTypes - returns list of peopleType records
-func (s *peopleTypes) GetAllPeopleTypes(ctx context.Context) (*operations.GetAllPeopleTypesResponse, error) {
+func (s *PeopleTypes) GetAllPeopleTypes(ctx context.Context) (*operations.GetAllPeopleTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/people/types"
 
@@ -65,15 +65,19 @@ func (s *peopleTypes) GetAllPeopleTypes(ctx context.Context) (*operations.GetAll
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllPeopleTypes200ApplicationJSON
+			var out operations.GetAllPeopleTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllPeopleTypes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -1973,8 +1973,10 @@ paths:
                   data:
                     type: object
                     properties:
-                      series:
-                        $ref: "#/components/schemas/SeriesBaseRecord"
+                      episodes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/EpisodeBaseRecord"
                   status:
                     type: string
                 type: object

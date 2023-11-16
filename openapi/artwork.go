@@ -9,23 +9,23 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type artwork struct {
+type Artwork struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newArtwork(sdkConfig sdkConfiguration) *artwork {
-	return &artwork{
+func newArtwork(sdkConfig sdkConfiguration) *Artwork {
+	return &Artwork{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetArtworkBase - Returns a single artwork base record.
-func (s *artwork) GetArtworkBase(ctx context.Context, id int64) (*operations.GetArtworkBaseResponse, error) {
+func (s *Artwork) GetArtworkBase(ctx context.Context, id int64) (*operations.GetArtworkBaseResponse, error) {
 	request := operations.GetArtworkBaseRequest{
 		ID: id,
 	}
@@ -71,12 +71,12 @@ func (s *artwork) GetArtworkBase(ctx context.Context, id int64) (*operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetArtworkBase200ApplicationJSON
+			var out operations.GetArtworkBaseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetArtworkBase200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -85,13 +85,18 @@ func (s *artwork) GetArtworkBase(ctx context.Context, id int64) (*operations.Get
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetArtworkExtended - Returns a single artwork extended record.
-func (s *artwork) GetArtworkExtended(ctx context.Context, id int64) (*operations.GetArtworkExtendedResponse, error) {
+func (s *Artwork) GetArtworkExtended(ctx context.Context, id int64) (*operations.GetArtworkExtendedResponse, error) {
 	request := operations.GetArtworkExtendedRequest{
 		ID: id,
 	}
@@ -137,12 +142,12 @@ func (s *artwork) GetArtworkExtended(ctx context.Context, id int64) (*operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetArtworkExtended200ApplicationJSON
+			var out operations.GetArtworkExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetArtworkExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -151,6 +156,11 @@ func (s *artwork) GetArtworkExtended(ctx context.Context, id int64) (*operations
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

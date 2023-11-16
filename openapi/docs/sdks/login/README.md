@@ -15,16 +15,18 @@ create an auth token. The token has one month validation length.
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/dashotv/tvdb/openapi"
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"log"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -35,7 +37,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.PostLogin200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -52,4 +54,6 @@ func main() {
 ### Response
 
 **[*operations.PostLoginResponse](../../models/operations/postloginresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

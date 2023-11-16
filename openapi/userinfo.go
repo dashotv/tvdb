@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type userInfo struct {
+type UserInfo struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newUserInfo(sdkConfig sdkConfiguration) *userInfo {
-	return &userInfo{
+func newUserInfo(sdkConfig sdkConfiguration) *UserInfo {
+	return &UserInfo{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetUserInfo - returns user info
-func (s *userInfo) GetUserInfo(ctx context.Context) (*operations.GetUserInfoResponse, error) {
+func (s *UserInfo) GetUserInfo(ctx context.Context) (*operations.GetUserInfoResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/user"
 
@@ -65,23 +65,28 @@ func (s *userInfo) GetUserInfo(ctx context.Context) (*operations.GetUserInfoResp
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetUserInfo200ApplicationJSON
+			var out operations.GetUserInfoResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetUserInfo200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetUserInfoByID - returns user info by user id
-func (s *userInfo) GetUserInfoByID(ctx context.Context, id int64) (*operations.GetUserInfoByIDResponse, error) {
+func (s *UserInfo) GetUserInfoByID(ctx context.Context, id int64) (*operations.GetUserInfoByIDResponse, error) {
 	request := operations.GetUserInfoByIDRequest{
 		ID: id,
 	}
@@ -127,16 +132,21 @@ func (s *userInfo) GetUserInfoByID(ctx context.Context, id int64) (*operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetUserInfoByID200ApplicationJSON
+			var out operations.GetUserInfoByIDResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetUserInfoByID200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

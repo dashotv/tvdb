@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type movieStatuses struct {
+type MovieStatuses struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMovieStatuses(sdkConfig sdkConfiguration) *movieStatuses {
-	return &movieStatuses{
+func newMovieStatuses(sdkConfig sdkConfiguration) *MovieStatuses {
+	return &MovieStatuses{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllMovieStatuses - returns list of status records
-func (s *movieStatuses) GetAllMovieStatuses(ctx context.Context) (*operations.GetAllMovieStatusesResponse, error) {
+func (s *MovieStatuses) GetAllMovieStatuses(ctx context.Context) (*operations.GetAllMovieStatusesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/movies/statuses"
 
@@ -65,16 +65,21 @@ func (s *movieStatuses) GetAllMovieStatuses(ctx context.Context) (*operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllMovieStatuses200ApplicationJSON
+			var out operations.GetAllMovieStatusesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllMovieStatuses200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

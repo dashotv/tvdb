@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type movies struct {
+type Movies struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMovies(sdkConfig sdkConfiguration) *movies {
-	return &movies{
+func newMovies(sdkConfig sdkConfiguration) *Movies {
+	return &Movies{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllMovie - returns list of movie base records
-func (s *movies) GetAllMovie(ctx context.Context, page *int64) (*operations.GetAllMovieResponse, error) {
+func (s *Movies) GetAllMovie(ctx context.Context, page *int64) (*operations.GetAllMovieResponse, error) {
 	request := operations.GetAllMovieRequest{
 		Page: page,
 	}
@@ -73,23 +73,28 @@ func (s *movies) GetAllMovie(ctx context.Context, page *int64) (*operations.GetA
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllMovie200ApplicationJSON
+			var out operations.GetAllMovieResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllMovie200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetMovieBase - Returns movie base record
-func (s *movies) GetMovieBase(ctx context.Context, id int64) (*operations.GetMovieBaseResponse, error) {
+func (s *Movies) GetMovieBase(ctx context.Context, id int64) (*operations.GetMovieBaseResponse, error) {
 	request := operations.GetMovieBaseRequest{
 		ID: id,
 	}
@@ -135,12 +140,12 @@ func (s *movies) GetMovieBase(ctx context.Context, id int64) (*operations.GetMov
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMovieBase200ApplicationJSON
+			var out operations.GetMovieBaseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMovieBase200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -149,13 +154,18 @@ func (s *movies) GetMovieBase(ctx context.Context, id int64) (*operations.GetMov
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetMovieBaseBySlug - Returns movie base record search by slug
-func (s *movies) GetMovieBaseBySlug(ctx context.Context, slug string) (*operations.GetMovieBaseBySlugResponse, error) {
+func (s *Movies) GetMovieBaseBySlug(ctx context.Context, slug string) (*operations.GetMovieBaseBySlugResponse, error) {
 	request := operations.GetMovieBaseBySlugRequest{
 		Slug: slug,
 	}
@@ -201,12 +211,12 @@ func (s *movies) GetMovieBaseBySlug(ctx context.Context, slug string) (*operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMovieBaseBySlug200ApplicationJSON
+			var out operations.GetMovieBaseBySlugResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMovieBaseBySlug200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -215,13 +225,18 @@ func (s *movies) GetMovieBaseBySlug(ctx context.Context, slug string) (*operatio
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetMovieExtended - Returns movie extended record
-func (s *movies) GetMovieExtended(ctx context.Context, id int64, meta *operations.GetMovieExtendedMeta, short *bool) (*operations.GetMovieExtendedResponse, error) {
+func (s *Movies) GetMovieExtended(ctx context.Context, id int64, meta *operations.QueryParamMeta, short *bool) (*operations.GetMovieExtendedResponse, error) {
 	request := operations.GetMovieExtendedRequest{
 		ID:    id,
 		Meta:  meta,
@@ -273,12 +288,12 @@ func (s *movies) GetMovieExtended(ctx context.Context, id int64, meta *operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMovieExtended200ApplicationJSON
+			var out operations.GetMovieExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMovieExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -287,13 +302,18 @@ func (s *movies) GetMovieExtended(ctx context.Context, id int64, meta *operation
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetMovieTranslation - Returns movie translation record
-func (s *movies) GetMovieTranslation(ctx context.Context, id int64, language string) (*operations.GetMovieTranslationResponse, error) {
+func (s *Movies) GetMovieTranslation(ctx context.Context, id int64, language string) (*operations.GetMovieTranslationResponse, error) {
 	request := operations.GetMovieTranslationRequest{
 		ID:       id,
 		Language: language,
@@ -340,12 +360,12 @@ func (s *movies) GetMovieTranslation(ctx context.Context, id int64, language str
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMovieTranslation200ApplicationJSON
+			var out operations.GetMovieTranslationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMovieTranslation200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -354,13 +374,18 @@ func (s *movies) GetMovieTranslation(ctx context.Context, id int64, language str
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetMoviesFilter - Search movies based on filter parameters
-func (s *movies) GetMoviesFilter(ctx context.Context, request operations.GetMoviesFilterRequest) (*operations.GetMoviesFilterResponse, error) {
+func (s *Movies) GetMoviesFilter(ctx context.Context, request operations.GetMoviesFilterRequest) (*operations.GetMoviesFilterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/movies/filter"
 
@@ -403,18 +428,23 @@ func (s *movies) GetMoviesFilter(ctx context.Context, request operations.GetMovi
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetMoviesFilter200ApplicationJSON
+			var out operations.GetMoviesFilterResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetMoviesFilter200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -9,23 +9,23 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type awardCategories struct {
+type AwardCategories struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAwardCategories(sdkConfig sdkConfiguration) *awardCategories {
-	return &awardCategories{
+func newAwardCategories(sdkConfig sdkConfiguration) *AwardCategories {
+	return &AwardCategories{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAwardCategory - Returns a single award category base record
-func (s *awardCategories) GetAwardCategory(ctx context.Context, id int64) (*operations.GetAwardCategoryResponse, error) {
+func (s *AwardCategories) GetAwardCategory(ctx context.Context, id int64) (*operations.GetAwardCategoryResponse, error) {
 	request := operations.GetAwardCategoryRequest{
 		ID: id,
 	}
@@ -71,12 +71,12 @@ func (s *awardCategories) GetAwardCategory(ctx context.Context, id int64) (*oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAwardCategory200ApplicationJSON
+			var out operations.GetAwardCategoryResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAwardCategory200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -85,13 +85,18 @@ func (s *awardCategories) GetAwardCategory(ctx context.Context, id int64) (*oper
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetAwardCategoryExtended - Returns a single award category extended record
-func (s *awardCategories) GetAwardCategoryExtended(ctx context.Context, id int64) (*operations.GetAwardCategoryExtendedResponse, error) {
+func (s *AwardCategories) GetAwardCategoryExtended(ctx context.Context, id int64) (*operations.GetAwardCategoryExtendedResponse, error) {
 	request := operations.GetAwardCategoryExtendedRequest{
 		ID: id,
 	}
@@ -137,12 +142,12 @@ func (s *awardCategories) GetAwardCategoryExtended(ctx context.Context, id int64
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAwardCategoryExtended200ApplicationJSON
+			var out operations.GetAwardCategoryExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAwardCategoryExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -151,6 +156,11 @@ func (s *awardCategories) GetAwardCategoryExtended(ctx context.Context, id int64
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

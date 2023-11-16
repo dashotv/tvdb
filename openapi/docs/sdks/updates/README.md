@@ -15,26 +15,28 @@ Returns updated entities.  methodInt indicates a created record (1), an updated 
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"github.com/dashotv/tvdb/openapi/models/operations"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
-	"github.com/dashotv/tvdb/openapi/models/operations"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
     var since int64 = 75660
 
-    var action *operations.UpdatesAction = operations.UpdatesActionDelete
+    var action *operations.Action = operations.ActionDelete
 
     var page *int64 = 745624
 
-    var type_ *operations.UpdatesType = operations.UpdatesTypeMovies
+    var type_ *operations.Type = operations.TypeMovies
 
     ctx := context.Background()
     res, err := s.Updates.Updates(ctx, since, action, page, type_)
@@ -42,7 +44,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Updates200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -50,16 +52,18 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `ctx`                                                                 | [context.Context](https://pkg.go.dev/context#Context)                 | :heavy_check_mark:                                                    | The context to use for the request.                                   |                                                                       |
-| `since`                                                               | *int64*                                                               | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
-| `action`                                                              | [*operations.UpdatesAction](../../models/operations/updatesaction.md) | :heavy_minus_sign:                                                    | N/A                                                                   | movies                                                                |
-| `page`                                                                | **int64*                                                              | :heavy_minus_sign:                                                    | name                                                                  |                                                                       |
-| `type_`                                                               | [*operations.UpdatesType](../../models/operations/updatestype.md)     | :heavy_minus_sign:                                                    | N/A                                                                   | movies                                                                |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `ctx`                                                   | [context.Context](https://pkg.go.dev/context#Context)   | :heavy_check_mark:                                      | The context to use for the request.                     |                                                         |
+| `since`                                                 | *int64*                                                 | :heavy_check_mark:                                      | N/A                                                     |                                                         |
+| `action`                                                | [*operations.Action](../../models/operations/action.md) | :heavy_minus_sign:                                      | N/A                                                     | movies                                                  |
+| `page`                                                  | **int64*                                                | :heavy_minus_sign:                                      | name                                                    |                                                         |
+| `type_`                                                 | [*operations.Type](../../models/operations/type.md)     | :heavy_minus_sign:                                      | N/A                                                     | movies                                                  |
 
 
 ### Response
 
 **[*operations.UpdatesResponse](../../models/operations/updatesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

@@ -29,21 +29,21 @@ func (o *GetSeasonTranslationRequest) GetLanguage() string {
 	return o.Language
 }
 
-// GetSeasonTranslation200ApplicationJSON - response
-type GetSeasonTranslation200ApplicationJSON struct {
+// GetSeasonTranslationResponseBody - response
+type GetSeasonTranslationResponseBody struct {
 	// translation record
 	Data   *shared.Translation `json:"data,omitempty"`
 	Status *string             `json:"status,omitempty"`
 }
 
-func (o *GetSeasonTranslation200ApplicationJSON) GetData() *shared.Translation {
+func (o *GetSeasonTranslationResponseBody) GetData() *shared.Translation {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSeasonTranslation200ApplicationJSON) GetStatus() *string {
+func (o *GetSeasonTranslationResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -58,7 +58,7 @@ type GetSeasonTranslationResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSeasonTranslation200ApplicationJSONObject *GetSeasonTranslation200ApplicationJSON
+	Object *GetSeasonTranslationResponseBody
 }
 
 func (o *GetSeasonTranslationResponse) GetContentType() string {
@@ -82,9 +82,9 @@ func (o *GetSeasonTranslationResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSeasonTranslationResponse) GetGetSeasonTranslation200ApplicationJSONObject() *GetSeasonTranslation200ApplicationJSON {
+func (o *GetSeasonTranslationResponse) GetObject() *GetSeasonTranslationResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSeasonTranslation200ApplicationJSONObject
+	return o.Object
 }

@@ -19,15 +19,17 @@ returns list of list base records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -39,7 +41,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAllLists200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -56,7 +58,9 @@ func main() {
 ### Response
 
 **[*operations.GetAllListsResponse](../../models/operations/getalllistsresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetList
 
@@ -68,15 +72,17 @@ returns an list base record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -88,7 +94,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetList200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -105,7 +111,9 @@ func main() {
 ### Response
 
 **[*operations.GetListResponse](../../models/operations/getlistresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetListBySlug
 
@@ -117,15 +125,17 @@ returns an list base record search by slug
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -137,7 +147,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetListBySlug200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -154,7 +164,9 @@ func main() {
 ### Response
 
 **[*operations.GetListBySlugResponse](../../models/operations/getlistbyslugresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetListExtended
 
@@ -166,15 +178,17 @@ returns a list extended record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -186,7 +200,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetListExtended200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -203,7 +217,9 @@ func main() {
 ### Response
 
 **[*operations.GetListExtendedResponse](../../models/operations/getlistextendedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetListTranslation
 
@@ -215,15 +231,17 @@ Returns list translation record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -237,7 +255,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetListTranslation200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -255,4 +273,6 @@ func main() {
 ### Response
 
 **[*operations.GetListTranslationResponse](../../models/operations/getlisttranslationresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

@@ -42,7 +42,7 @@ func TestClient_GetAllArtworkTypes(t *testing.T) {
 
 func TestClient_GetAwardCategory(t *testing.T) {
 	c := testClient(t)
-	var id int64 = awardCategories_id_int64
+	var id int64 = awardcategories_id_int64
 	r, err := c.GetAwardCategory(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -50,7 +50,7 @@ func TestClient_GetAwardCategory(t *testing.T) {
 
 func TestClient_GetAwardCategoryExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = awardCategories_id_int64
+	var id int64 = awardcategories_id_int64
 	r, err := c.GetAwardCategoryExtended(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -155,7 +155,7 @@ func TestClient_GetEpisodeBase(t *testing.T) {
 func TestClient_GetEpisodeExtended(t *testing.T) {
 	c := testClient(t)
 	var id int64 = episodes_id_int64
-	var meta *operations.GetEpisodeExtendedMeta = nil
+	var meta *operations.Meta = nil
 	r, err := c.GetEpisodeExtended(id, meta)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -286,7 +286,7 @@ func TestClient_GetMovieBaseBySlug(t *testing.T) {
 func TestClient_GetMovieExtended(t *testing.T) {
 	c := testClient(t)
 	var id int64 = movies_id_int64
-	var meta *operations.GetMovieExtendedMeta = nil
+	var meta *operations.QueryParamMeta = nil
 	var short *bool = nil
 	r, err := c.GetMovieExtended(id, meta, short)
 	assert.NoError(t, err)
@@ -337,7 +337,7 @@ func TestClient_GetPeopleBase(t *testing.T) {
 func TestClient_GetPeopleExtended(t *testing.T) {
 	c := testClient(t)
 	var id int64 = people_id_int64
-	var meta *operations.GetPeopleExtendedMeta = nil
+	var meta *operations.GetPeopleExtendedQueryParamMeta = nil
 	r, err := c.GetPeopleExtended(id, meta)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -453,7 +453,7 @@ func TestClient_GetSeriesEpisodes(t *testing.T) {
 func TestClient_GetSeriesExtended(t *testing.T) {
 	c := testClient(t)
 	var id int64 = series_id_int64
-	var meta *operations.GetSeriesExtendedMeta = nil
+	var meta *operations.GetSeriesExtendedQueryParamMeta = nil
 	var short *bool = nil
 	r, err := c.GetSeriesExtended(id, meta, short)
 	assert.NoError(t, err)
@@ -515,9 +515,9 @@ func TestClient_GetAllSourceTypes(t *testing.T) {
 func TestClient_Updates(t *testing.T) {
 	c := testClient(t)
 	var since int64 = updates_since_int64
-	var action *operations.UpdatesAction = nil
+	var action *operations.Action = nil
 	var page *int64 = nil
-	var type_ *operations.UpdatesType = nil
+	var type_ *operations.Type = nil
 	r, err := c.Updates(since, action, page, type_)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)

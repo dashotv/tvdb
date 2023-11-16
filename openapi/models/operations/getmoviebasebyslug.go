@@ -20,21 +20,21 @@ func (o *GetMovieBaseBySlugRequest) GetSlug() string {
 	return o.Slug
 }
 
-// GetMovieBaseBySlug200ApplicationJSON - response
-type GetMovieBaseBySlug200ApplicationJSON struct {
+// GetMovieBaseBySlugResponseBody - response
+type GetMovieBaseBySlugResponseBody struct {
 	// base movie record
 	Data   *shared.MovieBaseRecord `json:"data,omitempty"`
 	Status *string                 `json:"status,omitempty"`
 }
 
-func (o *GetMovieBaseBySlug200ApplicationJSON) GetData() *shared.MovieBaseRecord {
+func (o *GetMovieBaseBySlugResponseBody) GetData() *shared.MovieBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetMovieBaseBySlug200ApplicationJSON) GetStatus() *string {
+func (o *GetMovieBaseBySlugResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetMovieBaseBySlugResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetMovieBaseBySlug200ApplicationJSONObject *GetMovieBaseBySlug200ApplicationJSON
+	Object *GetMovieBaseBySlugResponseBody
 }
 
 func (o *GetMovieBaseBySlugResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetMovieBaseBySlugResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetMovieBaseBySlugResponse) GetGetMovieBaseBySlug200ApplicationJSONObject() *GetMovieBaseBySlug200ApplicationJSON {
+func (o *GetMovieBaseBySlugResponse) GetObject() *GetMovieBaseBySlugResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetMovieBaseBySlug200ApplicationJSONObject
+	return o.Object
 }

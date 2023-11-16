@@ -1,6 +1,4 @@
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
@@ -13,18 +11,18 @@ import (
 
 func main() {
 	s := openapi.New(
-		openapi.WithSecurity(""),
+		openapi.WithSecurity(shared.Security{
+			BearerAuth: "",
+		}),
 	)
 
-	var id int64 = 605048
-
 	ctx := context.Background()
-	res, err := s.Artwork.GetArtworkBase(ctx, id)
+	res, err := s.ArtworkStatuses.GetAllArtworkStatuses(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.GetArtworkBase200ApplicationJSONObject != nil {
+	if res.Object != nil {
 		// handle response
 	}
 }

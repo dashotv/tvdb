@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type countries struct {
+type Countries struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCountries(sdkConfig sdkConfiguration) *countries {
-	return &countries{
+func newCountries(sdkConfig sdkConfiguration) *Countries {
+	return &Countries{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllCountries - returns list of country records
-func (s *countries) GetAllCountries(ctx context.Context) (*operations.GetAllCountriesResponse, error) {
+func (s *Countries) GetAllCountries(ctx context.Context) (*operations.GetAllCountriesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/countries"
 
@@ -65,15 +65,19 @@ func (s *countries) GetAllCountries(ctx context.Context) (*operations.GetAllCoun
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllCountries200ApplicationJSON
+			var out operations.GetAllCountriesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllCountries200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

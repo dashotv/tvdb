@@ -20,21 +20,21 @@ func (o *GetPeopleBaseRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetPeopleBase200ApplicationJSON - response
-type GetPeopleBase200ApplicationJSON struct {
+// GetPeopleBaseResponseBody - response
+type GetPeopleBaseResponseBody struct {
 	// base people record
 	Data   *shared.PeopleBaseRecord `json:"data,omitempty"`
 	Status *string                  `json:"status,omitempty"`
 }
 
-func (o *GetPeopleBase200ApplicationJSON) GetData() *shared.PeopleBaseRecord {
+func (o *GetPeopleBaseResponseBody) GetData() *shared.PeopleBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetPeopleBase200ApplicationJSON) GetStatus() *string {
+func (o *GetPeopleBaseResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetPeopleBaseResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetPeopleBase200ApplicationJSONObject *GetPeopleBase200ApplicationJSON
+	Object *GetPeopleBaseResponseBody
 }
 
 func (o *GetPeopleBaseResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetPeopleBaseResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetPeopleBaseResponse) GetGetPeopleBase200ApplicationJSONObject() *GetPeopleBase200ApplicationJSON {
+func (o *GetPeopleBaseResponse) GetObject() *GetPeopleBaseResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetPeopleBase200ApplicationJSONObject
+	return o.Object
 }

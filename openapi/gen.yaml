@@ -1,16 +1,29 @@
 configVersion: 1.0.0
 generation:
+  comments: {}
   sdkClassName: SDK
-  singleTagPerOp: false
+  usageSnippets:
+    optionalPropertyRendering: withExample
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 2.94.0
+    core: 3.1.5
     flattening: 2.81.1
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
 go:
-  version: v0.2.2
-  flattenGlobalSecurity: true
+  version: v0.3.0
+  clientServerStatusCodesAsErrors: true
+  flattenGlobalSecurity: false
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/sdkerrors
+      operations: models/operations
+      shared: models/shared
+      webhooks: models/webhooks
+  inputModelSuffix: input
   maxMethodParams: 4
+  outputModelSuffix: output
   packageName: github.com/dashotv/tvdb/openapi

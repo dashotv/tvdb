@@ -29,21 +29,21 @@ func (o *GetEpisodeTranslationRequest) GetLanguage() string {
 	return o.Language
 }
 
-// GetEpisodeTranslation200ApplicationJSON - response
-type GetEpisodeTranslation200ApplicationJSON struct {
+// GetEpisodeTranslationResponseBody - response
+type GetEpisodeTranslationResponseBody struct {
 	// translation record
 	Data   *shared.Translation `json:"data,omitempty"`
 	Status *string             `json:"status,omitempty"`
 }
 
-func (o *GetEpisodeTranslation200ApplicationJSON) GetData() *shared.Translation {
+func (o *GetEpisodeTranslationResponseBody) GetData() *shared.Translation {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetEpisodeTranslation200ApplicationJSON) GetStatus() *string {
+func (o *GetEpisodeTranslationResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -58,7 +58,7 @@ type GetEpisodeTranslationResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetEpisodeTranslation200ApplicationJSONObject *GetEpisodeTranslation200ApplicationJSON
+	Object *GetEpisodeTranslationResponseBody
 }
 
 func (o *GetEpisodeTranslationResponse) GetContentType() string {
@@ -82,9 +82,9 @@ func (o *GetEpisodeTranslationResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetEpisodeTranslationResponse) GetGetEpisodeTranslation200ApplicationJSONObject() *GetEpisodeTranslation200ApplicationJSON {
+func (o *GetEpisodeTranslationResponse) GetObject() *GetEpisodeTranslationResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetEpisodeTranslation200ApplicationJSONObject
+	return o.Object
 }

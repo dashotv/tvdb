@@ -27,6 +27,7 @@ all: help
 # 	$(GOCMD) build -mod vendor -o out/bin/$(BINARY_NAME) .
 ## General:
 generate: ## Generate code from openapi.yml spec
+	speakeasy update
 	scripts/generate.sh $(BINARY_NAME) $(OPENAPI_SPEC)
 	goimports -w -local github.com/dashotv .
 

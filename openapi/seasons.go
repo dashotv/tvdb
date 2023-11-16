@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type seasons struct {
+type Seasons struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSeasons(sdkConfig sdkConfiguration) *seasons {
-	return &seasons{
+func newSeasons(sdkConfig sdkConfiguration) *Seasons {
+	return &Seasons{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllSeasons - returns list of seasons base records
-func (s *seasons) GetAllSeasons(ctx context.Context, page *int64) (*operations.GetAllSeasonsResponse, error) {
+func (s *Seasons) GetAllSeasons(ctx context.Context, page *int64) (*operations.GetAllSeasonsResponse, error) {
 	request := operations.GetAllSeasonsRequest{
 		Page: page,
 	}
@@ -73,23 +73,28 @@ func (s *seasons) GetAllSeasons(ctx context.Context, page *int64) (*operations.G
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllSeasons200ApplicationJSON
+			var out operations.GetAllSeasonsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllSeasons200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeasonBase - Returns season base record
-func (s *seasons) GetSeasonBase(ctx context.Context, id int64) (*operations.GetSeasonBaseResponse, error) {
+func (s *Seasons) GetSeasonBase(ctx context.Context, id int64) (*operations.GetSeasonBaseResponse, error) {
 	request := operations.GetSeasonBaseRequest{
 		ID: id,
 	}
@@ -135,12 +140,12 @@ func (s *seasons) GetSeasonBase(ctx context.Context, id int64) (*operations.GetS
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeasonBase200ApplicationJSON
+			var out operations.GetSeasonBaseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeasonBase200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -149,13 +154,18 @@ func (s *seasons) GetSeasonBase(ctx context.Context, id int64) (*operations.GetS
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeasonExtended - Returns season extended record
-func (s *seasons) GetSeasonExtended(ctx context.Context, id int64) (*operations.GetSeasonExtendedResponse, error) {
+func (s *Seasons) GetSeasonExtended(ctx context.Context, id int64) (*operations.GetSeasonExtendedResponse, error) {
 	request := operations.GetSeasonExtendedRequest{
 		ID: id,
 	}
@@ -201,12 +211,12 @@ func (s *seasons) GetSeasonExtended(ctx context.Context, id int64) (*operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeasonExtended200ApplicationJSON
+			var out operations.GetSeasonExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeasonExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -215,13 +225,18 @@ func (s *seasons) GetSeasonExtended(ctx context.Context, id int64) (*operations.
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeasonTranslation - Returns season translation record
-func (s *seasons) GetSeasonTranslation(ctx context.Context, id int64, language string) (*operations.GetSeasonTranslationResponse, error) {
+func (s *Seasons) GetSeasonTranslation(ctx context.Context, id int64, language string) (*operations.GetSeasonTranslationResponse, error) {
 	request := operations.GetSeasonTranslationRequest{
 		ID:       id,
 		Language: language,
@@ -268,12 +283,12 @@ func (s *seasons) GetSeasonTranslation(ctx context.Context, id int64, language s
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeasonTranslation200ApplicationJSON
+			var out operations.GetSeasonTranslationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeasonTranslation200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -282,13 +297,18 @@ func (s *seasons) GetSeasonTranslation(ctx context.Context, id int64, language s
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeasonTypes - Returns season type records
-func (s *seasons) GetSeasonTypes(ctx context.Context) (*operations.GetSeasonTypesResponse, error) {
+func (s *Seasons) GetSeasonTypes(ctx context.Context) (*operations.GetSeasonTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/seasons/types"
 
@@ -327,16 +347,21 @@ func (s *seasons) GetSeasonTypes(ctx context.Context) (*operations.GetSeasonType
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeasonTypes200ApplicationJSON
+			var out operations.GetSeasonTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeasonTypes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetAllMovieStatuses200ApplicationJSON - response
-type GetAllMovieStatuses200ApplicationJSON struct {
+// GetAllMovieStatusesResponseBody - response
+type GetAllMovieStatusesResponseBody struct {
 	Data   []shared.Status `json:"data,omitempty"`
 	Status *string         `json:"status,omitempty"`
 }
 
-func (o *GetAllMovieStatuses200ApplicationJSON) GetData() []shared.Status {
+func (o *GetAllMovieStatusesResponseBody) GetData() []shared.Status {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllMovieStatuses200ApplicationJSON) GetStatus() *string {
+func (o *GetAllMovieStatusesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetAllMovieStatusesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllMovieStatuses200ApplicationJSONObject *GetAllMovieStatuses200ApplicationJSON
+	Object *GetAllMovieStatusesResponseBody
 }
 
 func (o *GetAllMovieStatusesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetAllMovieStatusesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllMovieStatusesResponse) GetGetAllMovieStatuses200ApplicationJSONObject() *GetAllMovieStatuses200ApplicationJSON {
+func (o *GetAllMovieStatusesResponse) GetObject() *GetAllMovieStatusesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllMovieStatuses200ApplicationJSONObject
+	return o.Object
 }

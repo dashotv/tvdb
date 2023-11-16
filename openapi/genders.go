@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type genders struct {
+type Genders struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newGenders(sdkConfig sdkConfiguration) *genders {
-	return &genders{
+func newGenders(sdkConfig sdkConfiguration) *Genders {
+	return &Genders{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllGenders - returns list of gender records
-func (s *genders) GetAllGenders(ctx context.Context) (*operations.GetAllGendersResponse, error) {
+func (s *Genders) GetAllGenders(ctx context.Context) (*operations.GetAllGendersResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/genders"
 
@@ -65,15 +65,19 @@ func (s *genders) GetAllGenders(ctx context.Context) (*operations.GetAllGendersR
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllGenders200ApplicationJSON
+			var out operations.GetAllGendersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllGenders200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

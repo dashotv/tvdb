@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type companies struct {
+type Companies struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCompanies(sdkConfig sdkConfiguration) *companies {
-	return &companies{
+func newCompanies(sdkConfig sdkConfiguration) *Companies {
+	return &Companies{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllCompanies - returns a paginated list of company records
-func (s *companies) GetAllCompanies(ctx context.Context, page *int64) (*operations.GetAllCompaniesResponse, error) {
+func (s *Companies) GetAllCompanies(ctx context.Context, page *int64) (*operations.GetAllCompaniesResponse, error) {
 	request := operations.GetAllCompaniesRequest{
 		Page: page,
 	}
@@ -73,23 +73,28 @@ func (s *companies) GetAllCompanies(ctx context.Context, page *int64) (*operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllCompanies200ApplicationJSON
+			var out operations.GetAllCompaniesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllCompanies200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetCompany - returns a company record
-func (s *companies) GetCompany(ctx context.Context, id int64) (*operations.GetCompanyResponse, error) {
+func (s *Companies) GetCompany(ctx context.Context, id int64) (*operations.GetCompanyResponse, error) {
 	request := operations.GetCompanyRequest{
 		ID: id,
 	}
@@ -135,12 +140,12 @@ func (s *companies) GetCompany(ctx context.Context, id int64) (*operations.GetCo
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetCompany200ApplicationJSON
+			var out operations.GetCompanyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetCompany200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -149,13 +154,18 @@ func (s *companies) GetCompany(ctx context.Context, id int64) (*operations.GetCo
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetCompanyTypes - returns all company type records
-func (s *companies) GetCompanyTypes(ctx context.Context) (*operations.GetCompanyTypesResponse, error) {
+func (s *Companies) GetCompanyTypes(ctx context.Context) (*operations.GetCompanyTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/companies/types"
 
@@ -194,16 +204,21 @@ func (s *companies) GetCompanyTypes(ctx context.Context) (*operations.GetCompany
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetCompanyTypes200ApplicationJSON
+			var out operations.GetCompanyTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetCompanyTypes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -16,15 +16,18 @@ creates a new user favorite
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
+	"net/http"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -50,7 +53,9 @@ func main() {
 ### Response
 
 **[*operations.CreateUserFavoritesResponse](../../models/operations/createuserfavoritesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetUserFavorites
 
@@ -62,15 +67,17 @@ returns user favorites
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -79,7 +86,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetUserFavorites200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -95,4 +102,6 @@ func main() {
 ### Response
 
 **[*operations.GetUserFavoritesResponse](../../models/operations/getuserfavoritesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

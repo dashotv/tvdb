@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type episodes struct {
+type Episodes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEpisodes(sdkConfig sdkConfiguration) *episodes {
-	return &episodes{
+func newEpisodes(sdkConfig sdkConfiguration) *Episodes {
+	return &Episodes{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllEpisodes - Returns a list of episodes base records with the basic attributes.<br> Note that all episodes are returned, even those that may not be included in a series' default season order.
-func (s *episodes) GetAllEpisodes(ctx context.Context, page *int64) (*operations.GetAllEpisodesResponse, error) {
+func (s *Episodes) GetAllEpisodes(ctx context.Context, page *int64) (*operations.GetAllEpisodesResponse, error) {
 	request := operations.GetAllEpisodesRequest{
 		Page: page,
 	}
@@ -73,23 +73,28 @@ func (s *episodes) GetAllEpisodes(ctx context.Context, page *int64) (*operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllEpisodes200ApplicationJSON
+			var out operations.GetAllEpisodesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllEpisodes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetEpisodeBase - Returns episode base record
-func (s *episodes) GetEpisodeBase(ctx context.Context, id int64) (*operations.GetEpisodeBaseResponse, error) {
+func (s *Episodes) GetEpisodeBase(ctx context.Context, id int64) (*operations.GetEpisodeBaseResponse, error) {
 	request := operations.GetEpisodeBaseRequest{
 		ID: id,
 	}
@@ -135,12 +140,12 @@ func (s *episodes) GetEpisodeBase(ctx context.Context, id int64) (*operations.Ge
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEpisodeBase200ApplicationJSON
+			var out operations.GetEpisodeBaseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEpisodeBase200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -149,13 +154,18 @@ func (s *episodes) GetEpisodeBase(ctx context.Context, id int64) (*operations.Ge
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetEpisodeExtended - Returns episode extended record
-func (s *episodes) GetEpisodeExtended(ctx context.Context, id int64, meta *operations.GetEpisodeExtendedMeta) (*operations.GetEpisodeExtendedResponse, error) {
+func (s *Episodes) GetEpisodeExtended(ctx context.Context, id int64, meta *operations.Meta) (*operations.GetEpisodeExtendedResponse, error) {
 	request := operations.GetEpisodeExtendedRequest{
 		ID:   id,
 		Meta: meta,
@@ -206,12 +216,12 @@ func (s *episodes) GetEpisodeExtended(ctx context.Context, id int64, meta *opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEpisodeExtended200ApplicationJSON
+			var out operations.GetEpisodeExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEpisodeExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -220,13 +230,18 @@ func (s *episodes) GetEpisodeExtended(ctx context.Context, id int64, meta *opera
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetEpisodeTranslation - Returns episode translation record
-func (s *episodes) GetEpisodeTranslation(ctx context.Context, id int64, language string) (*operations.GetEpisodeTranslationResponse, error) {
+func (s *Episodes) GetEpisodeTranslation(ctx context.Context, id int64, language string) (*operations.GetEpisodeTranslationResponse, error) {
 	request := operations.GetEpisodeTranslationRequest{
 		ID:       id,
 		Language: language,
@@ -273,12 +288,12 @@ func (s *episodes) GetEpisodeTranslation(ctx context.Context, id int64, language
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEpisodeTranslation200ApplicationJSON
+			var out operations.GetEpisodeTranslationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEpisodeTranslation200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -287,6 +302,11 @@ func (s *episodes) GetEpisodeTranslation(ctx context.Context, id int64, language
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

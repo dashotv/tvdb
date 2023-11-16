@@ -20,20 +20,20 @@ func (o *GetUserInfoByIDRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetUserInfoByID200ApplicationJSON - response
-type GetUserInfoByID200ApplicationJSON struct {
+// GetUserInfoByIDResponseBody - response
+type GetUserInfoByIDResponseBody struct {
 	Data   []shared.UserInfo `json:"data,omitempty"`
 	Status *string           `json:"status,omitempty"`
 }
 
-func (o *GetUserInfoByID200ApplicationJSON) GetData() []shared.UserInfo {
+func (o *GetUserInfoByIDResponseBody) GetData() []shared.UserInfo {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetUserInfoByID200ApplicationJSON) GetStatus() *string {
+func (o *GetUserInfoByIDResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -48,7 +48,7 @@ type GetUserInfoByIDResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetUserInfoByID200ApplicationJSONObject *GetUserInfoByID200ApplicationJSON
+	Object *GetUserInfoByIDResponseBody
 }
 
 func (o *GetUserInfoByIDResponse) GetContentType() string {
@@ -72,9 +72,9 @@ func (o *GetUserInfoByIDResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetUserInfoByIDResponse) GetGetUserInfoByID200ApplicationJSONObject() *GetUserInfoByID200ApplicationJSON {
+func (o *GetUserInfoByIDResponse) GetObject() *GetUserInfoByIDResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetUserInfoByID200ApplicationJSONObject
+	return o.Object
 }

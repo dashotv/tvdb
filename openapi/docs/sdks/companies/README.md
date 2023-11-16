@@ -17,15 +17,17 @@ returns a paginated list of company records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -37,7 +39,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAllCompanies200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -54,7 +56,9 @@ func main() {
 ### Response
 
 **[*operations.GetAllCompaniesResponse](../../models/operations/getallcompaniesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetCompany
 
@@ -66,15 +70,17 @@ returns a company record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -86,7 +92,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetCompany200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -103,7 +109,9 @@ func main() {
 ### Response
 
 **[*operations.GetCompanyResponse](../../models/operations/getcompanyresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetCompanyTypes
 
@@ -115,15 +123,17 @@ returns all company type records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -132,7 +142,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetCompanyTypes200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -148,4 +158,6 @@ func main() {
 ### Response
 
 **[*operations.GetCompanyTypesResponse](../../models/operations/getcompanytypesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

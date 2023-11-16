@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type languages struct {
+type Languages struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLanguages(sdkConfig sdkConfiguration) *languages {
-	return &languages{
+func newLanguages(sdkConfig sdkConfiguration) *Languages {
+	return &Languages{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllLanguages - returns list of language records
-func (s *languages) GetAllLanguages(ctx context.Context) (*operations.GetAllLanguagesResponse, error) {
+func (s *Languages) GetAllLanguages(ctx context.Context) (*operations.GetAllLanguagesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/languages"
 
@@ -65,16 +65,21 @@ func (s *languages) GetAllLanguages(ctx context.Context) (*operations.GetAllLang
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllLanguages200ApplicationJSON
+			var out operations.GetAllLanguagesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllLanguages200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

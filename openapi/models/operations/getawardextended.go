@@ -20,21 +20,21 @@ func (o *GetAwardExtendedRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetAwardExtended200ApplicationJSON - response
-type GetAwardExtended200ApplicationJSON struct {
+// GetAwardExtendedResponseBody - response
+type GetAwardExtendedResponseBody struct {
 	// extended award record
 	Data   *shared.AwardExtendedRecord `json:"data,omitempty"`
 	Status *string                     `json:"status,omitempty"`
 }
 
-func (o *GetAwardExtended200ApplicationJSON) GetData() *shared.AwardExtendedRecord {
+func (o *GetAwardExtendedResponseBody) GetData() *shared.AwardExtendedRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAwardExtended200ApplicationJSON) GetStatus() *string {
+func (o *GetAwardExtendedResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetAwardExtendedResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAwardExtended200ApplicationJSONObject *GetAwardExtended200ApplicationJSON
+	Object *GetAwardExtendedResponseBody
 }
 
 func (o *GetAwardExtendedResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetAwardExtendedResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAwardExtendedResponse) GetGetAwardExtended200ApplicationJSONObject() *GetAwardExtended200ApplicationJSON {
+func (o *GetAwardExtendedResponse) GetObject() *GetAwardExtendedResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAwardExtended200ApplicationJSONObject
+	return o.Object
 }

@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type sourceTypes struct {
+type SourceTypes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSourceTypes(sdkConfig sdkConfiguration) *sourceTypes {
-	return &sourceTypes{
+func newSourceTypes(sdkConfig sdkConfiguration) *SourceTypes {
+	return &SourceTypes{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllSourceTypes - returns list of sourceType records
-func (s *sourceTypes) GetAllSourceTypes(ctx context.Context) (*operations.GetAllSourceTypesResponse, error) {
+func (s *SourceTypes) GetAllSourceTypes(ctx context.Context) (*operations.GetAllSourceTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/sources/types"
 
@@ -65,16 +65,21 @@ func (s *sourceTypes) GetAllSourceTypes(ctx context.Context) (*operations.GetAll
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllSourceTypes200ApplicationJSON
+			var out operations.GetAllSourceTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllSourceTypes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

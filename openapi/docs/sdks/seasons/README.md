@@ -19,15 +19,17 @@ returns list of seasons base records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -39,7 +41,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAllSeasons200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -56,7 +58,9 @@ func main() {
 ### Response
 
 **[*operations.GetAllSeasonsResponse](../../models/operations/getallseasonsresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeasonBase
 
@@ -68,15 +72,17 @@ Returns season base record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -88,7 +94,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeasonBase200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -105,7 +111,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeasonBaseResponse](../../models/operations/getseasonbaseresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeasonExtended
 
@@ -117,15 +125,17 @@ Returns season extended record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -137,7 +147,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeasonExtended200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -154,7 +164,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeasonExtendedResponse](../../models/operations/getseasonextendedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeasonTranslation
 
@@ -166,15 +178,17 @@ Returns season translation record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -188,7 +202,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeasonTranslation200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -206,7 +220,9 @@ func main() {
 ### Response
 
 **[*operations.GetSeasonTranslationResponse](../../models/operations/getseasontranslationresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSeasonTypes
 
@@ -218,15 +234,17 @@ Returns season type records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -235,7 +253,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSeasonTypes200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -251,4 +269,6 @@ func main() {
 ### Response
 
 **[*operations.GetSeasonTypesResponse](../../models/operations/getseasontypesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

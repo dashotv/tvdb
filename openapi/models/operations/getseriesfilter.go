@@ -10,52 +10,52 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetSeriesFilterGenre - Genre id. This id can be found using **/genres** endpoint.
-type GetSeriesFilterGenre int64
+// QueryParamGenre - Genre id. This id can be found using **/genres** endpoint.
+type QueryParamGenre int64
 
 const (
-	GetSeriesFilterGenreOne         GetSeriesFilterGenre = 1
-	GetSeriesFilterGenreTwo         GetSeriesFilterGenre = 2
-	GetSeriesFilterGenreThree       GetSeriesFilterGenre = 3
-	GetSeriesFilterGenreFour        GetSeriesFilterGenre = 4
-	GetSeriesFilterGenreFive        GetSeriesFilterGenre = 5
-	GetSeriesFilterGenreSix         GetSeriesFilterGenre = 6
-	GetSeriesFilterGenreSeven       GetSeriesFilterGenre = 7
-	GetSeriesFilterGenreEight       GetSeriesFilterGenre = 8
-	GetSeriesFilterGenreNine        GetSeriesFilterGenre = 9
-	GetSeriesFilterGenreTen         GetSeriesFilterGenre = 10
-	GetSeriesFilterGenreEleven      GetSeriesFilterGenre = 11
-	GetSeriesFilterGenreTwelve      GetSeriesFilterGenre = 12
-	GetSeriesFilterGenreThirteen    GetSeriesFilterGenre = 13
-	GetSeriesFilterGenreFourteen    GetSeriesFilterGenre = 14
-	GetSeriesFilterGenreFifteen     GetSeriesFilterGenre = 15
-	GetSeriesFilterGenreSixteen     GetSeriesFilterGenre = 16
-	GetSeriesFilterGenreSeventeen   GetSeriesFilterGenre = 17
-	GetSeriesFilterGenreEighteen    GetSeriesFilterGenre = 18
-	GetSeriesFilterGenreNineteen    GetSeriesFilterGenre = 19
-	GetSeriesFilterGenreTwentyOne   GetSeriesFilterGenre = 21
-	GetSeriesFilterGenreTwentyTwo   GetSeriesFilterGenre = 22
-	GetSeriesFilterGenreTwentyThree GetSeriesFilterGenre = 23
-	GetSeriesFilterGenreTwentyFour  GetSeriesFilterGenre = 24
-	GetSeriesFilterGenreTwentyFive  GetSeriesFilterGenre = 25
-	GetSeriesFilterGenreTwentySix   GetSeriesFilterGenre = 26
-	GetSeriesFilterGenreTwentySeven GetSeriesFilterGenre = 27
-	GetSeriesFilterGenreTwentyEight GetSeriesFilterGenre = 28
-	GetSeriesFilterGenreTwentyNine  GetSeriesFilterGenre = 29
-	GetSeriesFilterGenreThirty      GetSeriesFilterGenre = 30
-	GetSeriesFilterGenreThirtyOne   GetSeriesFilterGenre = 31
-	GetSeriesFilterGenreThirtyTwo   GetSeriesFilterGenre = 32
-	GetSeriesFilterGenreThirtyThree GetSeriesFilterGenre = 33
-	GetSeriesFilterGenreThirtyFour  GetSeriesFilterGenre = 34
-	GetSeriesFilterGenreThirtyFive  GetSeriesFilterGenre = 35
-	GetSeriesFilterGenreThirtySix   GetSeriesFilterGenre = 36
+	QueryParamGenreOne         QueryParamGenre = 1
+	QueryParamGenreTwo         QueryParamGenre = 2
+	QueryParamGenreThree       QueryParamGenre = 3
+	QueryParamGenreFour        QueryParamGenre = 4
+	QueryParamGenreFive        QueryParamGenre = 5
+	QueryParamGenreSix         QueryParamGenre = 6
+	QueryParamGenreSeven       QueryParamGenre = 7
+	QueryParamGenreEight       QueryParamGenre = 8
+	QueryParamGenreNine        QueryParamGenre = 9
+	QueryParamGenreTen         QueryParamGenre = 10
+	QueryParamGenreEleven      QueryParamGenre = 11
+	QueryParamGenreTwelve      QueryParamGenre = 12
+	QueryParamGenreThirteen    QueryParamGenre = 13
+	QueryParamGenreFourteen    QueryParamGenre = 14
+	QueryParamGenreFifteen     QueryParamGenre = 15
+	QueryParamGenreSixteen     QueryParamGenre = 16
+	QueryParamGenreSeventeen   QueryParamGenre = 17
+	QueryParamGenreEighteen    QueryParamGenre = 18
+	QueryParamGenreNineteen    QueryParamGenre = 19
+	QueryParamGenreTwentyOne   QueryParamGenre = 21
+	QueryParamGenreTwentyTwo   QueryParamGenre = 22
+	QueryParamGenreTwentyThree QueryParamGenre = 23
+	QueryParamGenreTwentyFour  QueryParamGenre = 24
+	QueryParamGenreTwentyFive  QueryParamGenre = 25
+	QueryParamGenreTwentySix   QueryParamGenre = 26
+	QueryParamGenreTwentySeven QueryParamGenre = 27
+	QueryParamGenreTwentyEight QueryParamGenre = 28
+	QueryParamGenreTwentyNine  QueryParamGenre = 29
+	QueryParamGenreThirty      QueryParamGenre = 30
+	QueryParamGenreThirtyOne   QueryParamGenre = 31
+	QueryParamGenreThirtyTwo   QueryParamGenre = 32
+	QueryParamGenreThirtyThree QueryParamGenre = 33
+	QueryParamGenreThirtyFour  QueryParamGenre = 34
+	QueryParamGenreThirtyFive  QueryParamGenre = 35
+	QueryParamGenreThirtySix   QueryParamGenre = 36
 )
 
-func (e GetSeriesFilterGenre) ToPointer() *GetSeriesFilterGenre {
+func (e QueryParamGenre) ToPointer() *QueryParamGenre {
 	return &e
 }
 
-func (e *GetSeriesFilterGenre) UnmarshalJSON(data []byte) error {
+func (e *QueryParamGenre) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -130,28 +130,28 @@ func (e *GetSeriesFilterGenre) UnmarshalJSON(data []byte) error {
 	case 35:
 		fallthrough
 	case 36:
-		*e = GetSeriesFilterGenre(v)
+		*e = QueryParamGenre(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetSeriesFilterGenre: %v", v)
+		return fmt.Errorf("invalid value for QueryParamGenre: %v", v)
 	}
 }
 
-// GetSeriesFilterSort - sort by results
-type GetSeriesFilterSort string
+// QueryParamSort - sort by results
+type QueryParamSort string
 
 const (
-	GetSeriesFilterSortScore      GetSeriesFilterSort = "score"
-	GetSeriesFilterSortFirstAired GetSeriesFilterSort = "firstAired"
-	GetSeriesFilterSortLastAired  GetSeriesFilterSort = "lastAired"
-	GetSeriesFilterSortName       GetSeriesFilterSort = "name"
+	QueryParamSortScore      QueryParamSort = "score"
+	QueryParamSortFirstAired QueryParamSort = "firstAired"
+	QueryParamSortLastAired  QueryParamSort = "lastAired"
+	QueryParamSortName       QueryParamSort = "name"
 )
 
-func (e GetSeriesFilterSort) ToPointer() *GetSeriesFilterSort {
+func (e QueryParamSort) ToPointer() *QueryParamSort {
 	return &e
 }
 
-func (e *GetSeriesFilterSort) UnmarshalJSON(data []byte) error {
+func (e *QueryParamSort) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -164,26 +164,26 @@ func (e *GetSeriesFilterSort) UnmarshalJSON(data []byte) error {
 	case "lastAired":
 		fallthrough
 	case "name":
-		*e = GetSeriesFilterSort(v)
+		*e = QueryParamSort(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetSeriesFilterSort: %v", v)
+		return fmt.Errorf("invalid value for QueryParamSort: %v", v)
 	}
 }
 
-// GetSeriesFilterSortType - sort type ascending or descending
-type GetSeriesFilterSortType string
+// SortType - sort type ascending or descending
+type SortType string
 
 const (
-	GetSeriesFilterSortTypeAsc  GetSeriesFilterSortType = "asc"
-	GetSeriesFilterSortTypeDesc GetSeriesFilterSortType = "desc"
+	SortTypeAsc  SortType = "asc"
+	SortTypeDesc SortType = "desc"
 )
 
-func (e GetSeriesFilterSortType) ToPointer() *GetSeriesFilterSortType {
+func (e SortType) ToPointer() *SortType {
 	return &e
 }
 
-func (e *GetSeriesFilterSortType) UnmarshalJSON(data []byte) error {
+func (e *SortType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -192,27 +192,27 @@ func (e *GetSeriesFilterSortType) UnmarshalJSON(data []byte) error {
 	case "asc":
 		fallthrough
 	case "desc":
-		*e = GetSeriesFilterSortType(v)
+		*e = SortType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetSeriesFilterSortType: %v", v)
+		return fmt.Errorf("invalid value for SortType: %v", v)
 	}
 }
 
-// GetSeriesFilterStatus - status
-type GetSeriesFilterStatus int64
+// QueryParamStatus - status
+type QueryParamStatus int64
 
 const (
-	GetSeriesFilterStatusOne   GetSeriesFilterStatus = 1
-	GetSeriesFilterStatusTwo   GetSeriesFilterStatus = 2
-	GetSeriesFilterStatusThree GetSeriesFilterStatus = 3
+	QueryParamStatusOne   QueryParamStatus = 1
+	QueryParamStatusTwo   QueryParamStatus = 2
+	QueryParamStatusThree QueryParamStatus = 3
 )
 
-func (e GetSeriesFilterStatus) ToPointer() *GetSeriesFilterStatus {
+func (e QueryParamStatus) ToPointer() *QueryParamStatus {
 	return &e
 }
 
-func (e *GetSeriesFilterStatus) UnmarshalJSON(data []byte) error {
+func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -223,10 +223,10 @@ func (e *GetSeriesFilterStatus) UnmarshalJSON(data []byte) error {
 	case 2:
 		fallthrough
 	case 3:
-		*e = GetSeriesFilterStatus(v)
+		*e = QueryParamStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetSeriesFilterStatus: %v", v)
+		return fmt.Errorf("invalid value for QueryParamStatus: %v", v)
 	}
 }
 
@@ -238,15 +238,15 @@ type GetSeriesFilterRequest struct {
 	// country of origin
 	Country string `queryParam:"style=form,explode=true,name=country"`
 	// Genre id. This id can be found using **/genres** endpoint.
-	Genre *GetSeriesFilterGenre `queryParam:"style=form,explode=true,name=genre"`
+	Genre *QueryParamGenre `queryParam:"style=form,explode=true,name=genre"`
 	// original language
 	Lang string `queryParam:"style=form,explode=true,name=lang"`
 	// sort by results
-	Sort *GetSeriesFilterSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *QueryParamSort `queryParam:"style=form,explode=true,name=sort"`
 	// sort type ascending or descending
-	SortType *GetSeriesFilterSortType `queryParam:"style=form,explode=true,name=sortType"`
+	SortType *SortType `queryParam:"style=form,explode=true,name=sortType"`
 	// status
-	Status *GetSeriesFilterStatus `queryParam:"style=form,explode=true,name=status"`
+	Status *QueryParamStatus `queryParam:"style=form,explode=true,name=status"`
 	// release year
 	Year *int64 `queryParam:"style=form,explode=true,name=year"`
 }
@@ -272,7 +272,7 @@ func (o *GetSeriesFilterRequest) GetCountry() string {
 	return o.Country
 }
 
-func (o *GetSeriesFilterRequest) GetGenre() *GetSeriesFilterGenre {
+func (o *GetSeriesFilterRequest) GetGenre() *QueryParamGenre {
 	if o == nil {
 		return nil
 	}
@@ -286,21 +286,21 @@ func (o *GetSeriesFilterRequest) GetLang() string {
 	return o.Lang
 }
 
-func (o *GetSeriesFilterRequest) GetSort() *GetSeriesFilterSort {
+func (o *GetSeriesFilterRequest) GetSort() *QueryParamSort {
 	if o == nil {
 		return nil
 	}
 	return o.Sort
 }
 
-func (o *GetSeriesFilterRequest) GetSortType() *GetSeriesFilterSortType {
+func (o *GetSeriesFilterRequest) GetSortType() *SortType {
 	if o == nil {
 		return nil
 	}
 	return o.SortType
 }
 
-func (o *GetSeriesFilterRequest) GetStatus() *GetSeriesFilterStatus {
+func (o *GetSeriesFilterRequest) GetStatus() *QueryParamStatus {
 	if o == nil {
 		return nil
 	}
@@ -314,12 +314,12 @@ func (o *GetSeriesFilterRequest) GetYear() *int64 {
 	return o.Year
 }
 
-// GetSeriesFilter200ApplicationJSON - response
-type GetSeriesFilter200ApplicationJSON struct {
+// GetSeriesFilterResponseBody - response
+type GetSeriesFilterResponseBody struct {
 	Data []shared.SeriesBaseRecord `json:"data,omitempty"`
 }
 
-func (o *GetSeriesFilter200ApplicationJSON) GetData() []shared.SeriesBaseRecord {
+func (o *GetSeriesFilterResponseBody) GetData() []shared.SeriesBaseRecord {
 	if o == nil {
 		return nil
 	}
@@ -334,7 +334,7 @@ type GetSeriesFilterResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSeriesFilter200ApplicationJSONObject *GetSeriesFilter200ApplicationJSON
+	Object *GetSeriesFilterResponseBody
 }
 
 func (o *GetSeriesFilterResponse) GetContentType() string {
@@ -358,9 +358,9 @@ func (o *GetSeriesFilterResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSeriesFilterResponse) GetGetSeriesFilter200ApplicationJSONObject() *GetSeriesFilter200ApplicationJSON {
+func (o *GetSeriesFilterResponse) GetObject() *GetSeriesFilterResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSeriesFilter200ApplicationJSONObject
+	return o.Object
 }

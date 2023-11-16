@@ -15,7 +15,7 @@ func (c *Client) GetArtworkBase(id int64) (*GetArtworkBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetArtworkBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetArtworkExtended wraps the generated openapi.SDK.Artwork.GetArtworkExtended call
@@ -27,7 +27,7 @@ func (c *Client) GetArtworkExtended(id int64) (*GetArtworkExtendedResponse, erro
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetArtworkExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllArtworkStatuses wraps the generated openapi.SDK.ArtworkStatuses.GetAllArtworkStatuses call
@@ -39,7 +39,7 @@ func (c *Client) GetAllArtworkStatuses() (*GetAllArtworkStatusesResponse, error)
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllArtworkStatuses200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllArtworkTypes wraps the generated openapi.SDK.ArtworkTypes.GetAllArtworkTypes call
@@ -51,7 +51,7 @@ func (c *Client) GetAllArtworkTypes() (*GetAllArtworkTypesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllArtworkTypes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAwardCategory wraps the generated openapi.SDK.AwardCategories.GetAwardCategory call
@@ -63,7 +63,7 @@ func (c *Client) GetAwardCategory(id int64) (*GetAwardCategoryResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAwardCategory200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAwardCategoryExtended wraps the generated openapi.SDK.AwardCategories.GetAwardCategoryExtended call
@@ -75,7 +75,7 @@ func (c *Client) GetAwardCategoryExtended(id int64) (*GetAwardCategoryExtendedRe
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAwardCategoryExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllAwards wraps the generated openapi.SDK.Awards.GetAllAwards call
@@ -87,7 +87,7 @@ func (c *Client) GetAllAwards() (*GetAllAwardsResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllAwards200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAward wraps the generated openapi.SDK.Awards.GetAward call
@@ -99,7 +99,7 @@ func (c *Client) GetAward(id int64) (*GetAwardResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAward200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAwardExtended wraps the generated openapi.SDK.Awards.GetAwardExtended call
@@ -111,7 +111,7 @@ func (c *Client) GetAwardExtended(id int64) (*GetAwardExtendedResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAwardExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetCharacterBase wraps the generated openapi.SDK.Characters.GetCharacterBase call
@@ -123,7 +123,7 @@ func (c *Client) GetCharacterBase(id int64) (*GetCharacterBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetCharacterBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllCompanies wraps the generated openapi.SDK.Companies.GetAllCompanies call
@@ -135,7 +135,7 @@ func (c *Client) GetAllCompanies(page *int64) (*GetAllCompaniesResponse, error) 
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllCompanies200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetCompany wraps the generated openapi.SDK.Companies.GetCompany call
@@ -147,7 +147,7 @@ func (c *Client) GetCompany(id int64) (*GetCompanyResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetCompany200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetCompanyTypes wraps the generated openapi.SDK.Companies.GetCompanyTypes call
@@ -159,7 +159,7 @@ func (c *Client) GetCompanyTypes() (*GetCompanyTypesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetCompanyTypes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllContentRatings wraps the generated openapi.SDK.ContentRatings.GetAllContentRatings call
@@ -171,7 +171,7 @@ func (c *Client) GetAllContentRatings() (*GetAllContentRatingsResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllContentRatings200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllCountries wraps the generated openapi.SDK.Countries.GetAllCountries call
@@ -183,7 +183,7 @@ func (c *Client) GetAllCountries() (*GetAllCountriesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllCountries200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetEntityTypes wraps the generated openapi.SDK.EntityTypes.GetEntityTypes call
@@ -195,7 +195,7 @@ func (c *Client) GetEntityTypes() (*GetEntityTypesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetEntityTypes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllEpisodes wraps the generated openapi.SDK.Episodes.GetAllEpisodes call
@@ -207,7 +207,7 @@ func (c *Client) GetAllEpisodes(page *int64) (*GetAllEpisodesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllEpisodes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetEpisodeBase wraps the generated openapi.SDK.Episodes.GetEpisodeBase call
@@ -219,11 +219,11 @@ func (c *Client) GetEpisodeBase(id int64) (*GetEpisodeBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetEpisodeBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetEpisodeExtended wraps the generated openapi.SDK.Episodes.GetEpisodeExtended call
-func (c *Client) GetEpisodeExtended(id int64, meta *operations.GetEpisodeExtendedMeta) (*GetEpisodeExtendedResponse, error) {
+func (c *Client) GetEpisodeExtended(id int64, meta *operations.Meta) (*GetEpisodeExtendedResponse, error) {
 	r, err := c.sdk.Episodes.GetEpisodeExtended(c.ctx, id, meta)
 	if err != nil {
 		return nil, err
@@ -231,7 +231,7 @@ func (c *Client) GetEpisodeExtended(id int64, meta *operations.GetEpisodeExtende
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetEpisodeExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetEpisodeTranslation wraps the generated openapi.SDK.Episodes.GetEpisodeTranslation call
@@ -243,7 +243,7 @@ func (c *Client) GetEpisodeTranslation(id int64, language string) (*GetEpisodeTr
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetEpisodeTranslation200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllGenders wraps the generated openapi.SDK.Genders.GetAllGenders call
@@ -255,7 +255,7 @@ func (c *Client) GetAllGenders() (*GetAllGendersResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllGenders200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllGenres wraps the generated openapi.SDK.Genres.GetAllGenres call
@@ -267,7 +267,7 @@ func (c *Client) GetAllGenres() (*GetAllGenresResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllGenres200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetGenreBase wraps the generated openapi.SDK.Genres.GetGenreBase call
@@ -279,7 +279,7 @@ func (c *Client) GetGenreBase(id int64) (*GetGenreBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetGenreBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllInspirationTypes wraps the generated openapi.SDK.InspirationTypes.GetAllInspirationTypes call
@@ -291,7 +291,7 @@ func (c *Client) GetAllInspirationTypes() (*GetAllInspirationTypesResponse, erro
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllInspirationTypes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllLanguages wraps the generated openapi.SDK.Languages.GetAllLanguages call
@@ -303,7 +303,7 @@ func (c *Client) GetAllLanguages() (*GetAllLanguagesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllLanguages200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllLists wraps the generated openapi.SDK.Lists.GetAllLists call
@@ -315,7 +315,7 @@ func (c *Client) GetAllLists(page *int64) (*GetAllListsResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllLists200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetList wraps the generated openapi.SDK.Lists.GetList call
@@ -327,7 +327,7 @@ func (c *Client) GetList(id int64) (*GetListResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetList200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetListBySlug wraps the generated openapi.SDK.Lists.GetListBySlug call
@@ -339,7 +339,7 @@ func (c *Client) GetListBySlug(slug string) (*GetListBySlugResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetListBySlug200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetListExtended wraps the generated openapi.SDK.Lists.GetListExtended call
@@ -351,7 +351,7 @@ func (c *Client) GetListExtended(id int64) (*GetListExtendedResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetListExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetListTranslation wraps the generated openapi.SDK.Lists.GetListTranslation call
@@ -363,7 +363,7 @@ func (c *Client) GetListTranslation(id int64, language string) (*GetListTranslat
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetListTranslation200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // PostLogin wraps the generated openapi.SDK.Login.PostLogin call
@@ -375,7 +375,7 @@ func (c *Client) PostLogin(request operations.PostLoginRequestBody) (*PostLoginR
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.PostLogin200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllMovie wraps the generated openapi.SDK.Movies.GetAllMovie call
@@ -387,7 +387,7 @@ func (c *Client) GetAllMovie(page *int64) (*GetAllMovieResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllMovie200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetMovieBase wraps the generated openapi.SDK.Movies.GetMovieBase call
@@ -399,7 +399,7 @@ func (c *Client) GetMovieBase(id int64) (*GetMovieBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetMovieBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetMovieBaseBySlug wraps the generated openapi.SDK.Movies.GetMovieBaseBySlug call
@@ -411,11 +411,11 @@ func (c *Client) GetMovieBaseBySlug(slug string) (*GetMovieBaseBySlugResponse, e
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetMovieBaseBySlug200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetMovieExtended wraps the generated openapi.SDK.Movies.GetMovieExtended call
-func (c *Client) GetMovieExtended(id int64, meta *operations.GetMovieExtendedMeta, short *bool) (*GetMovieExtendedResponse, error) {
+func (c *Client) GetMovieExtended(id int64, meta *operations.QueryParamMeta, short *bool) (*GetMovieExtendedResponse, error) {
 	r, err := c.sdk.Movies.GetMovieExtended(c.ctx, id, meta, short)
 	if err != nil {
 		return nil, err
@@ -423,7 +423,7 @@ func (c *Client) GetMovieExtended(id int64, meta *operations.GetMovieExtendedMet
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetMovieExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetMovieTranslation wraps the generated openapi.SDK.Movies.GetMovieTranslation call
@@ -435,7 +435,7 @@ func (c *Client) GetMovieTranslation(id int64, language string) (*GetMovieTransl
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetMovieTranslation200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetMoviesFilter wraps the generated openapi.SDK.Movies.GetMoviesFilter call
@@ -447,7 +447,7 @@ func (c *Client) GetMoviesFilter(request operations.GetMoviesFilterRequest) (*Ge
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetMoviesFilter200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllMovieStatuses wraps the generated openapi.SDK.MovieStatuses.GetAllMovieStatuses call
@@ -459,7 +459,7 @@ func (c *Client) GetAllMovieStatuses() (*GetAllMovieStatusesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllMovieStatuses200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllPeople wraps the generated openapi.SDK.People.GetAllPeople call
@@ -471,7 +471,7 @@ func (c *Client) GetAllPeople(page *int64) (*GetAllPeopleResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllPeople200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetPeopleBase wraps the generated openapi.SDK.People.GetPeopleBase call
@@ -483,11 +483,11 @@ func (c *Client) GetPeopleBase(id int64) (*GetPeopleBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetPeopleBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetPeopleExtended wraps the generated openapi.SDK.People.GetPeopleExtended call
-func (c *Client) GetPeopleExtended(id int64, meta *operations.GetPeopleExtendedMeta) (*GetPeopleExtendedResponse, error) {
+func (c *Client) GetPeopleExtended(id int64, meta *operations.GetPeopleExtendedQueryParamMeta) (*GetPeopleExtendedResponse, error) {
 	r, err := c.sdk.People.GetPeopleExtended(c.ctx, id, meta)
 	if err != nil {
 		return nil, err
@@ -495,7 +495,7 @@ func (c *Client) GetPeopleExtended(id int64, meta *operations.GetPeopleExtendedM
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetPeopleExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetPeopleTranslation wraps the generated openapi.SDK.People.GetPeopleTranslation call
@@ -507,7 +507,7 @@ func (c *Client) GetPeopleTranslation(id int64, language string) (*GetPeopleTran
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetPeopleTranslation200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllPeopleTypes wraps the generated openapi.SDK.PeopleTypes.GetAllPeopleTypes call
@@ -519,7 +519,7 @@ func (c *Client) GetAllPeopleTypes() (*GetAllPeopleTypesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllPeopleTypes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSearchResults wraps the generated openapi.SDK.Search.GetSearchResults call
@@ -531,7 +531,7 @@ func (c *Client) GetSearchResults(request operations.GetSearchResultsRequest) (*
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSearchResults200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSearchResultsByRemoteID wraps the generated openapi.SDK.Search.GetSearchResultsByRemoteID call
@@ -543,7 +543,7 @@ func (c *Client) GetSearchResultsByRemoteID(remoteID string) (*GetSearchResultsB
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSearchResultsByRemoteID200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllSeasons wraps the generated openapi.SDK.Seasons.GetAllSeasons call
@@ -555,7 +555,7 @@ func (c *Client) GetAllSeasons(page *int64) (*GetAllSeasonsResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllSeasons200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeasonBase wraps the generated openapi.SDK.Seasons.GetSeasonBase call
@@ -567,7 +567,7 @@ func (c *Client) GetSeasonBase(id int64) (*GetSeasonBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeasonBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeasonExtended wraps the generated openapi.SDK.Seasons.GetSeasonExtended call
@@ -579,7 +579,7 @@ func (c *Client) GetSeasonExtended(id int64) (*GetSeasonExtendedResponse, error)
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeasonExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeasonTypes wraps the generated openapi.SDK.Seasons.GetSeasonTypes call
@@ -591,7 +591,7 @@ func (c *Client) GetSeasonTypes() (*GetSeasonTypesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeasonTypes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllSeries wraps the generated openapi.SDK.Series.GetAllSeries call
@@ -603,7 +603,7 @@ func (c *Client) GetAllSeries(page *int64) (*GetAllSeriesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllSeries200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesArtworks wraps the generated openapi.SDK.Series.GetSeriesArtworks call
@@ -615,7 +615,7 @@ func (c *Client) GetSeriesArtworks(id int64, lang *string, type_ *int64) (*GetSe
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesArtworks200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesBase wraps the generated openapi.SDK.Series.GetSeriesBase call
@@ -627,7 +627,7 @@ func (c *Client) GetSeriesBase(id int64) (*GetSeriesBaseResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesBase200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesBaseBySlug wraps the generated openapi.SDK.Series.GetSeriesBaseBySlug call
@@ -639,7 +639,7 @@ func (c *Client) GetSeriesBaseBySlug(slug string) (*GetSeriesBaseBySlugResponse,
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesBaseBySlug200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesEpisodes wraps the generated openapi.SDK.Series.GetSeriesEpisodes call
@@ -651,11 +651,11 @@ func (c *Client) GetSeriesEpisodes(request operations.GetSeriesEpisodesRequest) 
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesEpisodes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesExtended wraps the generated openapi.SDK.Series.GetSeriesExtended call
-func (c *Client) GetSeriesExtended(id int64, meta *operations.GetSeriesExtendedMeta, short *bool) (*GetSeriesExtendedResponse, error) {
+func (c *Client) GetSeriesExtended(id int64, meta *operations.GetSeriesExtendedQueryParamMeta, short *bool) (*GetSeriesExtendedResponse, error) {
 	r, err := c.sdk.Series.GetSeriesExtended(c.ctx, id, meta, short)
 	if err != nil {
 		return nil, err
@@ -663,7 +663,7 @@ func (c *Client) GetSeriesExtended(id int64, meta *operations.GetSeriesExtendedM
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesExtended200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesFilter wraps the generated openapi.SDK.Series.GetSeriesFilter call
@@ -675,7 +675,7 @@ func (c *Client) GetSeriesFilter(request operations.GetSeriesFilterRequest) (*Ge
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesFilter200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesNextAired wraps the generated openapi.SDK.Series.GetSeriesNextAired call
@@ -687,7 +687,7 @@ func (c *Client) GetSeriesNextAired(id int64) (*GetSeriesNextAiredResponse, erro
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesNextAired200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesSeasonEpisodesTranslated wraps the generated openapi.SDK.Series.GetSeriesSeasonEpisodesTranslated call
@@ -699,7 +699,7 @@ func (c *Client) GetSeriesSeasonEpisodesTranslated(id int64, lang string, page i
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesSeasonEpisodesTranslated200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetSeriesTranslation wraps the generated openapi.SDK.Series.GetSeriesTranslation call
@@ -711,7 +711,7 @@ func (c *Client) GetSeriesTranslation(id int64, language string) (*GetSeriesTran
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetSeriesTranslation200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllSeriesStatuses wraps the generated openapi.SDK.SeriesStatuses.GetAllSeriesStatuses call
@@ -723,7 +723,7 @@ func (c *Client) GetAllSeriesStatuses() (*GetAllSeriesStatusesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllSeriesStatuses200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // GetAllSourceTypes wraps the generated openapi.SDK.SourceTypes.GetAllSourceTypes call
@@ -735,11 +735,11 @@ func (c *Client) GetAllSourceTypes() (*GetAllSourceTypesResponse, error) {
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.GetAllSourceTypes200ApplicationJSONObject, nil
+	return r.Object, nil
 }
 
 // Updates wraps the generated openapi.SDK.Updates.Updates call
-func (c *Client) Updates(since int64, action *operations.UpdatesAction, page *int64, type_ *operations.UpdatesType) (*UpdatesResponse, error) {
+func (c *Client) Updates(since int64, action *operations.Action, page *int64, type_ *operations.Type) (*UpdatesResponse, error) {
 	r, err := c.sdk.Updates.Updates(c.ctx, since, action, page, type_)
 	if err != nil {
 		return nil, err
@@ -747,5 +747,5 @@ func (c *Client) Updates(since int64, action *operations.UpdatesAction, page *in
 	if r.StatusCode != 200 {
 		return nil, errors.Errorf("non-200 response: %d", r.StatusCode)
 	}
-	return r.Updates200ApplicationJSONObject, nil
+	return r.Object, nil
 }

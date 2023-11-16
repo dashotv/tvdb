@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type login struct {
+type Login struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLogin(sdkConfig sdkConfiguration) *login {
-	return &login{
+func newLogin(sdkConfig sdkConfiguration) *Login {
+	return &Login{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // PostLogin - create an auth token. The token has one month validation length.
-func (s *login) PostLogin(ctx context.Context, request operations.PostLoginRequestBody) (*operations.PostLoginResponse, error) {
+func (s *Login) PostLogin(ctx context.Context, request operations.PostLoginRequestBody) (*operations.PostLoginResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/login"
 
@@ -75,16 +75,21 @@ func (s *login) PostLogin(ctx context.Context, request operations.PostLoginReque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.PostLogin200ApplicationJSON
+			var out operations.PostLoginResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PostLogin200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

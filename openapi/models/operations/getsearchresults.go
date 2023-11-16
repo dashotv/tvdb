@@ -128,29 +128,29 @@ func (o *GetSearchResultsRequest) GetYear() *int64 {
 	return o.Year
 }
 
-// GetSearchResults200ApplicationJSON - response
-type GetSearchResults200ApplicationJSON struct {
+// GetSearchResultsResponseBody - response
+type GetSearchResultsResponseBody struct {
 	Data []shared.SearchResult `json:"data,omitempty"`
 	// Links for next, previous and current record
 	Links  *shared.Links `json:"links,omitempty"`
 	Status *string       `json:"status,omitempty"`
 }
 
-func (o *GetSearchResults200ApplicationJSON) GetData() []shared.SearchResult {
+func (o *GetSearchResultsResponseBody) GetData() []shared.SearchResult {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSearchResults200ApplicationJSON) GetLinks() *shared.Links {
+func (o *GetSearchResultsResponseBody) GetLinks() *shared.Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
 }
 
-func (o *GetSearchResults200ApplicationJSON) GetStatus() *string {
+func (o *GetSearchResultsResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -165,7 +165,7 @@ type GetSearchResultsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSearchResults200ApplicationJSONObject *GetSearchResults200ApplicationJSON
+	Object *GetSearchResultsResponseBody
 }
 
 func (o *GetSearchResultsResponse) GetContentType() string {
@@ -189,9 +189,9 @@ func (o *GetSearchResultsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSearchResultsResponse) GetGetSearchResults200ApplicationJSONObject() *GetSearchResults200ApplicationJSON {
+func (o *GetSearchResultsResponse) GetObject() *GetSearchResultsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSearchResults200ApplicationJSONObject
+	return o.Object
 }

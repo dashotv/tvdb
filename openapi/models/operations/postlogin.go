@@ -25,31 +25,31 @@ func (o *PostLoginRequestBody) GetPin() *string {
 	return o.Pin
 }
 
-type PostLogin200ApplicationJSONData struct {
+type Data struct {
 	Token *string `json:"token,omitempty"`
 }
 
-func (o *PostLogin200ApplicationJSONData) GetToken() *string {
+func (o *Data) GetToken() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Token
 }
 
-// PostLogin200ApplicationJSON - response
-type PostLogin200ApplicationJSON struct {
-	Data   *PostLogin200ApplicationJSONData `json:"data,omitempty"`
-	Status *string                          `json:"status,omitempty"`
+// PostLoginResponseBody - response
+type PostLoginResponseBody struct {
+	Data   *Data   `json:"data,omitempty"`
+	Status *string `json:"status,omitempty"`
 }
 
-func (o *PostLogin200ApplicationJSON) GetData() *PostLogin200ApplicationJSONData {
+func (o *PostLoginResponseBody) GetData() *Data {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *PostLogin200ApplicationJSON) GetStatus() *string {
+func (o *PostLoginResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -64,7 +64,7 @@ type PostLoginResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	PostLogin200ApplicationJSONObject *PostLogin200ApplicationJSON
+	Object *PostLoginResponseBody
 }
 
 func (o *PostLoginResponse) GetContentType() string {
@@ -88,9 +88,9 @@ func (o *PostLoginResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PostLoginResponse) GetPostLogin200ApplicationJSONObject() *PostLogin200ApplicationJSON {
+func (o *PostLoginResponse) GetObject() *PostLoginResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.PostLogin200ApplicationJSONObject
+	return o.Object
 }

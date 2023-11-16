@@ -20,21 +20,21 @@ func (o *GetCharacterBaseRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetCharacterBase200ApplicationJSON - response
-type GetCharacterBase200ApplicationJSON struct {
+// GetCharacterBaseResponseBody - response
+type GetCharacterBaseResponseBody struct {
 	// character record
 	Data   *shared.Character `json:"data,omitempty"`
 	Status *string           `json:"status,omitempty"`
 }
 
-func (o *GetCharacterBase200ApplicationJSON) GetData() *shared.Character {
+func (o *GetCharacterBaseResponseBody) GetData() *shared.Character {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetCharacterBase200ApplicationJSON) GetStatus() *string {
+func (o *GetCharacterBaseResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetCharacterBaseResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetCharacterBase200ApplicationJSONObject *GetCharacterBase200ApplicationJSON
+	Object *GetCharacterBaseResponseBody
 }
 
 func (o *GetCharacterBaseResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetCharacterBaseResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetCharacterBaseResponse) GetGetCharacterBase200ApplicationJSONObject() *GetCharacterBase200ApplicationJSON {
+func (o *GetCharacterBaseResponse) GetObject() *GetCharacterBaseResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetCharacterBase200ApplicationJSONObject
+	return o.Object
 }

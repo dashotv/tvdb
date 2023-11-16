@@ -20,21 +20,21 @@ func (o *GetAwardRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetAward200ApplicationJSON - response
-type GetAward200ApplicationJSON struct {
+// GetAwardResponseBody - response
+type GetAwardResponseBody struct {
 	// base award record
 	Data   *shared.AwardBaseRecord `json:"data,omitempty"`
 	Status *string                 `json:"status,omitempty"`
 }
 
-func (o *GetAward200ApplicationJSON) GetData() *shared.AwardBaseRecord {
+func (o *GetAwardResponseBody) GetData() *shared.AwardBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAward200ApplicationJSON) GetStatus() *string {
+func (o *GetAwardResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetAwardResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAward200ApplicationJSONObject *GetAward200ApplicationJSON
+	Object *GetAwardResponseBody
 }
 
 func (o *GetAwardResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetAwardResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAwardResponse) GetGetAward200ApplicationJSONObject() *GetAward200ApplicationJSON {
+func (o *GetAwardResponse) GetObject() *GetAwardResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAward200ApplicationJSONObject
+	return o.Object
 }

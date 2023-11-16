@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type entityTypes struct {
+type EntityTypes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEntityTypes(sdkConfig sdkConfiguration) *entityTypes {
-	return &entityTypes{
+func newEntityTypes(sdkConfig sdkConfiguration) *EntityTypes {
+	return &EntityTypes{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetEntityTypes - returns the active entity types
-func (s *entityTypes) GetEntityTypes(ctx context.Context) (*operations.GetEntityTypesResponse, error) {
+func (s *EntityTypes) GetEntityTypes(ctx context.Context) (*operations.GetEntityTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/entities"
 
@@ -65,16 +65,21 @@ func (s *entityTypes) GetEntityTypes(ctx context.Context) (*operations.GetEntity
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetEntityTypes200ApplicationJSON
+			var out operations.GetEntityTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetEntityTypes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

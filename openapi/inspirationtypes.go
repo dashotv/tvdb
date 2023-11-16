@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type inspirationTypes struct {
+type InspirationTypes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newInspirationTypes(sdkConfig sdkConfiguration) *inspirationTypes {
-	return &inspirationTypes{
+func newInspirationTypes(sdkConfig sdkConfiguration) *InspirationTypes {
+	return &InspirationTypes{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllInspirationTypes - returns list of inspiration types records
-func (s *inspirationTypes) GetAllInspirationTypes(ctx context.Context) (*operations.GetAllInspirationTypesResponse, error) {
+func (s *InspirationTypes) GetAllInspirationTypes(ctx context.Context) (*operations.GetAllInspirationTypesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/inspiration/types"
 
@@ -65,16 +65,21 @@ func (s *inspirationTypes) GetAllInspirationTypes(ctx context.Context) (*operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllInspirationTypes200ApplicationJSON
+			var out operations.GetAllInspirationTypesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllInspirationTypes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

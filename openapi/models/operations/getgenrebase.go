@@ -20,21 +20,21 @@ func (o *GetGenreBaseRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetGenreBase200ApplicationJSON - response
-type GetGenreBase200ApplicationJSON struct {
+// GetGenreBaseResponseBody - response
+type GetGenreBaseResponseBody struct {
 	// base genre record
 	Data   *shared.GenreBaseRecord `json:"data,omitempty"`
 	Status *string                 `json:"status,omitempty"`
 }
 
-func (o *GetGenreBase200ApplicationJSON) GetData() *shared.GenreBaseRecord {
+func (o *GetGenreBaseResponseBody) GetData() *shared.GenreBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetGenreBase200ApplicationJSON) GetStatus() *string {
+func (o *GetGenreBaseResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetGenreBaseResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetGenreBase200ApplicationJSONObject *GetGenreBase200ApplicationJSON
+	Object *GetGenreBaseResponseBody
 }
 
 func (o *GetGenreBaseResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetGenreBaseResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetGenreBaseResponse) GetGetGenreBase200ApplicationJSONObject() *GetGenreBase200ApplicationJSON {
+func (o *GetGenreBaseResponse) GetObject() *GetGenreBaseResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetGenreBase200ApplicationJSONObject
+	return o.Object
 }

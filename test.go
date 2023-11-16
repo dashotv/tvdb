@@ -12,7 +12,7 @@ var tvdbApiKey = os.Getenv("TVDB_API_KEY")
 var tvdbToken = os.Getenv("TVDB_API_TOKEN")
 
 var artwork_id_int64 = int64(23165)
-var awardCategories_id_int64 = int64(1)
+var awardcategories_id_int64 = int64(1)
 var awards_id_int64 = int64(1)
 var characters_id_int64 = int64(65407033)
 var companies_id_int64 = int64(1305)
@@ -33,7 +33,7 @@ var seasons_language_string = "eng"
 var series_id_int64 = int64(71663)
 var series_lang_string = "eng"
 var series_language_string = "eng"
-var series_page_int64 = int64(1)
+var series_page_int64 = int64(0)
 var series_seasonType_string = "default"
 var series_slug_string = "the-simpsons"
 var updates_since_int64 = time.Now().Add(-24 * time.Hour).Unix()

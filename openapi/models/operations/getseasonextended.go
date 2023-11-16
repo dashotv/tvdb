@@ -20,21 +20,21 @@ func (o *GetSeasonExtendedRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetSeasonExtended200ApplicationJSON - response
-type GetSeasonExtended200ApplicationJSON struct {
+// GetSeasonExtendedResponseBody - response
+type GetSeasonExtendedResponseBody struct {
 	// extended season record
 	Data   *shared.SeasonExtendedRecord `json:"data,omitempty"`
 	Status *string                      `json:"status,omitempty"`
 }
 
-func (o *GetSeasonExtended200ApplicationJSON) GetData() *shared.SeasonExtendedRecord {
+func (o *GetSeasonExtendedResponseBody) GetData() *shared.SeasonExtendedRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSeasonExtended200ApplicationJSON) GetStatus() *string {
+func (o *GetSeasonExtendedResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetSeasonExtendedResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSeasonExtended200ApplicationJSONObject *GetSeasonExtended200ApplicationJSON
+	Object *GetSeasonExtendedResponseBody
 }
 
 func (o *GetSeasonExtendedResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetSeasonExtendedResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSeasonExtendedResponse) GetGetSeasonExtended200ApplicationJSONObject() *GetSeasonExtended200ApplicationJSON {
+func (o *GetSeasonExtendedResponse) GetObject() *GetSeasonExtendedResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSeasonExtended200ApplicationJSONObject
+	return o.Object
 }

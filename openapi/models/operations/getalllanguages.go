@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetAllLanguages200ApplicationJSON - response
-type GetAllLanguages200ApplicationJSON struct {
+// GetAllLanguagesResponseBody - response
+type GetAllLanguagesResponseBody struct {
 	Data   []shared.Language `json:"data,omitempty"`
 	Status *string           `json:"status,omitempty"`
 }
 
-func (o *GetAllLanguages200ApplicationJSON) GetData() []shared.Language {
+func (o *GetAllLanguagesResponseBody) GetData() []shared.Language {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllLanguages200ApplicationJSON) GetStatus() *string {
+func (o *GetAllLanguagesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetAllLanguagesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllLanguages200ApplicationJSONObject *GetAllLanguages200ApplicationJSON
+	Object *GetAllLanguagesResponseBody
 }
 
 func (o *GetAllLanguagesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetAllLanguagesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllLanguagesResponse) GetGetAllLanguages200ApplicationJSONObject() *GetAllLanguages200ApplicationJSON {
+func (o *GetAllLanguagesResponse) GetObject() *GetAllLanguagesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllLanguages200ApplicationJSONObject
+	return o.Object
 }

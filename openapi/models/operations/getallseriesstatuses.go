@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetAllSeriesStatuses200ApplicationJSON - response
-type GetAllSeriesStatuses200ApplicationJSON struct {
+// GetAllSeriesStatusesResponseBody - response
+type GetAllSeriesStatusesResponseBody struct {
 	Data   []shared.Status `json:"data,omitempty"`
 	Status *string         `json:"status,omitempty"`
 }
 
-func (o *GetAllSeriesStatuses200ApplicationJSON) GetData() []shared.Status {
+func (o *GetAllSeriesStatusesResponseBody) GetData() []shared.Status {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllSeriesStatuses200ApplicationJSON) GetStatus() *string {
+func (o *GetAllSeriesStatusesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetAllSeriesStatusesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllSeriesStatuses200ApplicationJSONObject *GetAllSeriesStatuses200ApplicationJSON
+	Object *GetAllSeriesStatusesResponseBody
 }
 
 func (o *GetAllSeriesStatusesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetAllSeriesStatusesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllSeriesStatusesResponse) GetGetAllSeriesStatuses200ApplicationJSONObject() *GetAllSeriesStatuses200ApplicationJSON {
+func (o *GetAllSeriesStatusesResponse) GetObject() *GetAllSeriesStatusesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllSeriesStatuses200ApplicationJSONObject
+	return o.Object
 }

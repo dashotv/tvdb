@@ -12,17 +12,41 @@ SPEC="$2"
 rm -rf openapi
 mkdir -p openapi
 # set golang defaults for generator
-printf "go:\n  packageName: github.com/dashotv/$NAME/openapi\n  version: %s" "$VERSION" >openapi/gen.yaml
+cat <<HERE >openapi/gen.yaml
+configVersion: 1.0.0
+generation:
+  comments: {}
+  sdkClassName: SDK
+  usageSnippets:
+    optionalPropertyRendering: withExample
+features:
+  go:
+    constsAndDefaults: 0.1.1
+    core: 3.1.5
+    flattening: 2.81.1
+    globalSecurity: 2.82.2
+    globalServerURLs: 2.82.0
+go:
+  version: $VERSION
+  clientServerStatusCodesAsErrors: true
+  flattenGlobalSecurity: false
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/sdkerrors
+      operations: models/operations
+      shared: models/shared
+      webhooks: models/webhooks
+  inputModelSuffix: input
+  maxMethodParams: 4
+  outputModelSuffix: output
+  packageName: github.com/dashotv/$NAME/openapi
+HERE
 # generate go sdk
 speakeasy generate sdk -l go -o openapi -s "./$SPEC"
 # cleanup generated mod files
 rm -rf openapi/go.*
-# remove pkg folder
-mv openapi/pkg/* openapi/
-rm -rf openapi/pkg
-# remove pkg from imports
-find ./openapi -type f -exec sed -i '.backup' "s/pkg\///g" {} \;
-find ./openapi -type f -name '*.backup' -delete
 
 # copy types to root
 {
@@ -35,10 +59,10 @@ find ./openapi -type f -name '*.backup' -delete
   echo
   echo "// request, response"
   grep '^type ' openapi/models/operations/*.go | awk -F':' '{print $2}' | awk '{print $2}' | while read -r l; do
-    if [[ $l == *200ApplicationJSON* ]]; then
-      echo "type ${l/200ApplicationJSON/Response} = operations.${l}"
+    if [[ $l == *ResponseBody* ]]; then
+      echo "type ${l/ResponseBody/Response} = operations.${l}"
     elif [[ $l == *Response* ]]; then
-      echo "type ${l/Response/FullResponse} = operations.${l}"
+      echo "type ${l/Response/Raw} = operations.${l}"
     else
       echo "type $l = operations.${l}"
     fi

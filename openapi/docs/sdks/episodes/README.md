@@ -18,15 +18,17 @@ Returns a list of episodes base records with the basic attributes.<br> Note that
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -38,7 +40,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAllEpisodes200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -55,7 +57,9 @@ func main() {
 ### Response
 
 **[*operations.GetAllEpisodesResponse](../../models/operations/getallepisodesresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetEpisodeBase
 
@@ -67,15 +71,17 @@ Returns episode base record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -87,7 +93,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetEpisodeBase200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -104,7 +110,9 @@ func main() {
 ### Response
 
 **[*operations.GetEpisodeBaseResponse](../../models/operations/getepisodebaseresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetEpisodeExtended
 
@@ -116,22 +124,24 @@ Returns episode extended record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"github.com/dashotv/tvdb/openapi/models/operations"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
-	"github.com/dashotv/tvdb/openapi/models/operations"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
     var id int64 = 20932
 
-    var meta *operations.GetEpisodeExtendedMeta = operations.GetEpisodeExtendedMetaTranslations
+    var meta *operations.Meta = operations.MetaTranslations
 
     ctx := context.Background()
     res, err := s.Episodes.GetEpisodeExtended(ctx, id, meta)
@@ -139,7 +149,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetEpisodeExtended200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -147,17 +157,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |                                                                                         |
-| `id`                                                                                    | *int64*                                                                                 | :heavy_check_mark:                                                                      | id                                                                                      |                                                                                         |
-| `meta`                                                                                  | [*operations.GetEpisodeExtendedMeta](../../models/operations/getepisodeextendedmeta.md) | :heavy_minus_sign:                                                                      | meta                                                                                    | translations                                                                            |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
+| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |                                                       |
+| `meta`                                                | [*operations.Meta](../../models/operations/meta.md)   | :heavy_minus_sign:                                    | meta                                                  | translations                                          |
 
 
 ### Response
 
 **[*operations.GetEpisodeExtendedResponse](../../models/operations/getepisodeextendedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetEpisodeTranslation
 
@@ -169,15 +181,17 @@ Returns episode translation record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -191,7 +205,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetEpisodeTranslation200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -209,4 +223,6 @@ func main() {
 ### Response
 
 **[*operations.GetEpisodeTranslationResponse](../../models/operations/getepisodetranslationresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

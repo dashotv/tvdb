@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetAllAwards200ApplicationJSON - response
-type GetAllAwards200ApplicationJSON struct {
+// GetAllAwardsResponseBody - response
+type GetAllAwardsResponseBody struct {
 	Data   []shared.AwardBaseRecord `json:"data,omitempty"`
 	Status *string                  `json:"status,omitempty"`
 }
 
-func (o *GetAllAwards200ApplicationJSON) GetData() []shared.AwardBaseRecord {
+func (o *GetAllAwardsResponseBody) GetData() []shared.AwardBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllAwards200ApplicationJSON) GetStatus() *string {
+func (o *GetAllAwardsResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetAllAwardsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllAwards200ApplicationJSONObject *GetAllAwards200ApplicationJSON
+	Object *GetAllAwardsResponseBody
 }
 
 func (o *GetAllAwardsResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetAllAwardsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllAwardsResponse) GetGetAllAwards200ApplicationJSONObject() *GetAllAwards200ApplicationJSON {
+func (o *GetAllAwardsResponse) GetObject() *GetAllAwardsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllAwards200ApplicationJSONObject
+	return o.Object
 }

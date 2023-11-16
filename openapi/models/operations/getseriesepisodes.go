@@ -5,8 +5,8 @@ package operations
 import (
 	"net/http"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/shared"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 type GetSeriesEpisodesRequest struct {
@@ -74,40 +74,40 @@ func (o *GetSeriesEpisodesRequest) GetSeasonType() string {
 	return o.SeasonType
 }
 
-type GetSeriesEpisodes200ApplicationJSONData struct {
+type GetSeriesEpisodesData struct {
 	Episodes []shared.EpisodeBaseRecord `json:"episodes,omitempty"`
 	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 	Series *shared.SeriesBaseRecord `json:"series,omitempty"`
 }
 
-func (o *GetSeriesEpisodes200ApplicationJSONData) GetEpisodes() []shared.EpisodeBaseRecord {
+func (o *GetSeriesEpisodesData) GetEpisodes() []shared.EpisodeBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Episodes
 }
 
-func (o *GetSeriesEpisodes200ApplicationJSONData) GetSeries() *shared.SeriesBaseRecord {
+func (o *GetSeriesEpisodesData) GetSeries() *shared.SeriesBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Series
 }
 
-// GetSeriesEpisodes200ApplicationJSON - response
-type GetSeriesEpisodes200ApplicationJSON struct {
-	Data   *GetSeriesEpisodes200ApplicationJSONData `json:"data,omitempty"`
-	Status *string                                  `json:"status,omitempty"`
+// GetSeriesEpisodesResponseBody - response
+type GetSeriesEpisodesResponseBody struct {
+	Data   *GetSeriesEpisodesData `json:"data,omitempty"`
+	Status *string                `json:"status,omitempty"`
 }
 
-func (o *GetSeriesEpisodes200ApplicationJSON) GetData() *GetSeriesEpisodes200ApplicationJSONData {
+func (o *GetSeriesEpisodesResponseBody) GetData() *GetSeriesEpisodesData {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSeriesEpisodes200ApplicationJSON) GetStatus() *string {
+func (o *GetSeriesEpisodesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -122,7 +122,7 @@ type GetSeriesEpisodesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSeriesEpisodes200ApplicationJSONObject *GetSeriesEpisodes200ApplicationJSON
+	Object *GetSeriesEpisodesResponseBody
 }
 
 func (o *GetSeriesEpisodesResponse) GetContentType() string {
@@ -146,9 +146,9 @@ func (o *GetSeriesEpisodesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSeriesEpisodesResponse) GetGetSeriesEpisodes200ApplicationJSONObject() *GetSeriesEpisodes200ApplicationJSON {
+func (o *GetSeriesEpisodesResponse) GetObject() *GetSeriesEpisodesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSeriesEpisodes200ApplicationJSONObject
+	return o.Object
 }

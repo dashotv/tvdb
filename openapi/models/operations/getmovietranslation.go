@@ -29,21 +29,21 @@ func (o *GetMovieTranslationRequest) GetLanguage() string {
 	return o.Language
 }
 
-// GetMovieTranslation200ApplicationJSON - response
-type GetMovieTranslation200ApplicationJSON struct {
+// GetMovieTranslationResponseBody - response
+type GetMovieTranslationResponseBody struct {
 	// translation record
 	Data   *shared.Translation `json:"data,omitempty"`
 	Status *string             `json:"status,omitempty"`
 }
 
-func (o *GetMovieTranslation200ApplicationJSON) GetData() *shared.Translation {
+func (o *GetMovieTranslationResponseBody) GetData() *shared.Translation {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetMovieTranslation200ApplicationJSON) GetStatus() *string {
+func (o *GetMovieTranslationResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -58,7 +58,7 @@ type GetMovieTranslationResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetMovieTranslation200ApplicationJSONObject *GetMovieTranslation200ApplicationJSON
+	Object *GetMovieTranslationResponseBody
 }
 
 func (o *GetMovieTranslationResponse) GetContentType() string {
@@ -82,9 +82,9 @@ func (o *GetMovieTranslationResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetMovieTranslationResponse) GetGetMovieTranslation200ApplicationJSONObject() *GetMovieTranslation200ApplicationJSON {
+func (o *GetMovieTranslationResponse) GetObject() *GetMovieTranslationResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetMovieTranslation200ApplicationJSONObject
+	return o.Object
 }

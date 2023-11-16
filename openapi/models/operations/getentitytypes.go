@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetEntityTypes200ApplicationJSON - response
-type GetEntityTypes200ApplicationJSON struct {
+// GetEntityTypesResponseBody - response
+type GetEntityTypesResponseBody struct {
 	Data   []shared.EntityType `json:"data,omitempty"`
 	Status *string             `json:"status,omitempty"`
 }
 
-func (o *GetEntityTypes200ApplicationJSON) GetData() []shared.EntityType {
+func (o *GetEntityTypesResponseBody) GetData() []shared.EntityType {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetEntityTypes200ApplicationJSON) GetStatus() *string {
+func (o *GetEntityTypesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetEntityTypesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetEntityTypes200ApplicationJSONObject *GetEntityTypes200ApplicationJSON
+	Object *GetEntityTypesResponseBody
 }
 
 func (o *GetEntityTypesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetEntityTypesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetEntityTypesResponse) GetGetEntityTypes200ApplicationJSONObject() *GetEntityTypes200ApplicationJSON {
+func (o *GetEntityTypesResponse) GetObject() *GetEntityTypesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetEntityTypes200ApplicationJSONObject
+	return o.Object
 }

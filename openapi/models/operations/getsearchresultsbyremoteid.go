@@ -20,20 +20,20 @@ func (o *GetSearchResultsByRemoteIDRequest) GetRemoteID() string {
 	return o.RemoteID
 }
 
-// GetSearchResultsByRemoteID200ApplicationJSON - response
-type GetSearchResultsByRemoteID200ApplicationJSON struct {
+// GetSearchResultsByRemoteIDResponseBody - response
+type GetSearchResultsByRemoteIDResponseBody struct {
 	Data   []shared.SearchByRemoteIDResult `json:"data,omitempty"`
 	Status *string                         `json:"status,omitempty"`
 }
 
-func (o *GetSearchResultsByRemoteID200ApplicationJSON) GetData() []shared.SearchByRemoteIDResult {
+func (o *GetSearchResultsByRemoteIDResponseBody) GetData() []shared.SearchByRemoteIDResult {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSearchResultsByRemoteID200ApplicationJSON) GetStatus() *string {
+func (o *GetSearchResultsByRemoteIDResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -48,7 +48,7 @@ type GetSearchResultsByRemoteIDResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSearchResultsByRemoteID200ApplicationJSONObject *GetSearchResultsByRemoteID200ApplicationJSON
+	Object *GetSearchResultsByRemoteIDResponseBody
 }
 
 func (o *GetSearchResultsByRemoteIDResponse) GetContentType() string {
@@ -72,9 +72,9 @@ func (o *GetSearchResultsByRemoteIDResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSearchResultsByRemoteIDResponse) GetGetSearchResultsByRemoteID200ApplicationJSONObject() *GetSearchResultsByRemoteID200ApplicationJSON {
+func (o *GetSearchResultsByRemoteIDResponse) GetObject() *GetSearchResultsByRemoteIDResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSearchResultsByRemoteID200ApplicationJSONObject
+	return o.Object
 }

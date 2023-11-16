@@ -20,21 +20,21 @@ func (o *GetMovieBaseRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetMovieBase200ApplicationJSON - response
-type GetMovieBase200ApplicationJSON struct {
+// GetMovieBaseResponseBody - response
+type GetMovieBaseResponseBody struct {
 	// base movie record
 	Data   *shared.MovieBaseRecord `json:"data,omitempty"`
 	Status *string                 `json:"status,omitempty"`
 }
 
-func (o *GetMovieBase200ApplicationJSON) GetData() *shared.MovieBaseRecord {
+func (o *GetMovieBaseResponseBody) GetData() *shared.MovieBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetMovieBase200ApplicationJSON) GetStatus() *string {
+func (o *GetMovieBaseResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetMovieBaseResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetMovieBase200ApplicationJSONObject *GetMovieBase200ApplicationJSON
+	Object *GetMovieBaseResponseBody
 }
 
 func (o *GetMovieBaseResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetMovieBaseResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetMovieBaseResponse) GetGetMovieBase200ApplicationJSONObject() *GetMovieBase200ApplicationJSON {
+func (o *GetMovieBaseResponse) GetObject() *GetMovieBaseResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetMovieBase200ApplicationJSONObject
+	return o.Object
 }

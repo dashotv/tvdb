@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/shared"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
 // ServerList contains the list of servers available to the SDK
@@ -71,35 +71,35 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // ## Notes
 // 1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
 type SDK struct {
-	Artwork          *artwork
-	ArtworkStatuses  *artworkStatuses
-	ArtworkTypes     *artworkTypes
-	AwardCategories  *awardCategories
-	Awards           *awards
-	Characters       *characters
-	Companies        *companies
-	ContentRatings   *contentRatings
-	Countries        *countries
-	EntityTypes      *entityTypes
-	Episodes         *episodes
-	Favorites        *favorites
-	Genders          *genders
-	Genres           *genres
-	InspirationTypes *inspirationTypes
-	Languages        *languages
-	Lists            *lists
-	Login            *login
-	MovieStatuses    *movieStatuses
-	Movies           *movies
-	People           *people
-	PeopleTypes      *peopleTypes
-	Search           *search
-	Seasons          *seasons
-	Series           *series
-	SeriesStatuses   *seriesStatuses
-	SourceTypes      *sourceTypes
-	Updates          *updates
-	UserInfo         *userInfo
+	ArtworkStatuses  *ArtworkStatuses
+	ArtworkTypes     *ArtworkTypes
+	Artwork          *Artwork
+	Awards           *Awards
+	AwardCategories  *AwardCategories
+	Characters       *Characters
+	Companies        *Companies
+	ContentRatings   *ContentRatings
+	Countries        *Countries
+	EntityTypes      *EntityTypes
+	Episodes         *Episodes
+	Genders          *Genders
+	Genres           *Genres
+	InspirationTypes *InspirationTypes
+	Languages        *Languages
+	Lists            *Lists
+	Login            *Login
+	Movies           *Movies
+	MovieStatuses    *MovieStatuses
+	People           *People
+	PeopleTypes      *PeopleTypes
+	Search           *Search
+	Seasons          *Seasons
+	Series           *Series
+	SeriesStatuses   *SeriesStatuses
+	SourceTypes      *SourceTypes
+	Updates          *Updates
+	UserInfo         *UserInfo
+	Favorites        *Favorites
 
 	sdkConfiguration sdkConfiguration
 }
@@ -150,10 +150,18 @@ func withSecurity(security interface{}) func(context.Context) (interface{}, erro
 
 // WithSecurity configures the SDK to use the provided security details
 
-func WithSecurity(bearerAuth string) SDKOption {
+func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *SDK) {
-		security := shared.Security{BearerAuth: bearerAuth}
-		sdk.sdkConfiguration.Security = withSecurity(&security)
+		sdk.sdkConfiguration.Security = withSecurity(security)
+	}
+}
+
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (shared.Security, error)) SDKOption {
+	return func(sdk *SDK) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
 	}
 }
 
@@ -169,9 +177,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "4.7.8",
-			SDKVersion:        "v0.2.2",
-			GenVersion:        "2.173.0",
-			UserAgent:         "speakeasy-sdk/go v0.2.2 2.173.0 4.7.8 github.com/dashotv/tvdb/openapi",
+			SDKVersion:        "v0.3.0",
+			GenVersion:        "2.192.1",
+			UserAgent:         "speakeasy-sdk/go v0.3.0 2.192.1 4.7.8 github.com/dashotv/tvdb/openapi",
 		},
 	}
 	for _, opt := range opts {
@@ -190,15 +198,15 @@ func New(opts ...SDKOption) *SDK {
 		}
 	}
 
-	sdk.Artwork = newArtwork(sdk.sdkConfiguration)
-
 	sdk.ArtworkStatuses = newArtworkStatuses(sdk.sdkConfiguration)
 
 	sdk.ArtworkTypes = newArtworkTypes(sdk.sdkConfiguration)
 
-	sdk.AwardCategories = newAwardCategories(sdk.sdkConfiguration)
+	sdk.Artwork = newArtwork(sdk.sdkConfiguration)
 
 	sdk.Awards = newAwards(sdk.sdkConfiguration)
+
+	sdk.AwardCategories = newAwardCategories(sdk.sdkConfiguration)
 
 	sdk.Characters = newCharacters(sdk.sdkConfiguration)
 
@@ -212,8 +220,6 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.Episodes = newEpisodes(sdk.sdkConfiguration)
 
-	sdk.Favorites = newFavorites(sdk.sdkConfiguration)
-
 	sdk.Genders = newGenders(sdk.sdkConfiguration)
 
 	sdk.Genres = newGenres(sdk.sdkConfiguration)
@@ -226,9 +232,9 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.Login = newLogin(sdk.sdkConfiguration)
 
-	sdk.MovieStatuses = newMovieStatuses(sdk.sdkConfiguration)
-
 	sdk.Movies = newMovies(sdk.sdkConfiguration)
+
+	sdk.MovieStatuses = newMovieStatuses(sdk.sdkConfiguration)
 
 	sdk.People = newPeople(sdk.sdkConfiguration)
 
@@ -247,6 +253,8 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Updates = newUpdates(sdk.sdkConfiguration)
 
 	sdk.UserInfo = newUserInfo(sdk.sdkConfiguration)
+
+	sdk.Favorites = newFavorites(sdk.sdkConfiguration)
 
 	return sdk
 }

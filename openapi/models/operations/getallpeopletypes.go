@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetAllPeopleTypes200ApplicationJSON - response
-type GetAllPeopleTypes200ApplicationJSON struct {
+// GetAllPeopleTypesResponseBody - response
+type GetAllPeopleTypesResponseBody struct {
 	Data   []shared.PeopleType `json:"data,omitempty"`
 	Status *string             `json:"status,omitempty"`
 }
 
-func (o *GetAllPeopleTypes200ApplicationJSON) GetData() []shared.PeopleType {
+func (o *GetAllPeopleTypesResponseBody) GetData() []shared.PeopleType {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllPeopleTypes200ApplicationJSON) GetStatus() *string {
+func (o *GetAllPeopleTypesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetAllPeopleTypesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllPeopleTypes200ApplicationJSONObject *GetAllPeopleTypes200ApplicationJSON
+	Object *GetAllPeopleTypesResponseBody
 }
 
 func (o *GetAllPeopleTypesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetAllPeopleTypesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllPeopleTypesResponse) GetGetAllPeopleTypes200ApplicationJSONObject() *GetAllPeopleTypes200ApplicationJSON {
+func (o *GetAllPeopleTypesResponse) GetObject() *GetAllPeopleTypesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllPeopleTypes200ApplicationJSONObject
+	return o.Object
 }

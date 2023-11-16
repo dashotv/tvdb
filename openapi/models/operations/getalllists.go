@@ -20,29 +20,29 @@ func (o *GetAllListsRequest) GetPage() *int64 {
 	return o.Page
 }
 
-// GetAllLists200ApplicationJSON - response
-type GetAllLists200ApplicationJSON struct {
+// GetAllListsResponseBody - response
+type GetAllListsResponseBody struct {
 	Data []shared.ListBaseRecord `json:"data,omitempty"`
 	// Links for next, previous and current record
 	Links  *shared.Links `json:"links,omitempty"`
 	Status *string       `json:"status,omitempty"`
 }
 
-func (o *GetAllLists200ApplicationJSON) GetData() []shared.ListBaseRecord {
+func (o *GetAllListsResponseBody) GetData() []shared.ListBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllLists200ApplicationJSON) GetLinks() *shared.Links {
+func (o *GetAllListsResponseBody) GetLinks() *shared.Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
 }
 
-func (o *GetAllLists200ApplicationJSON) GetStatus() *string {
+func (o *GetAllListsResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -57,7 +57,7 @@ type GetAllListsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllLists200ApplicationJSONObject *GetAllLists200ApplicationJSON
+	Object *GetAllListsResponseBody
 }
 
 func (o *GetAllListsResponse) GetContentType() string {
@@ -81,9 +81,9 @@ func (o *GetAllListsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllListsResponse) GetGetAllLists200ApplicationJSONObject() *GetAllLists200ApplicationJSON {
+func (o *GetAllListsResponse) GetObject() *GetAllListsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllLists200ApplicationJSONObject
+	return o.Object
 }

@@ -20,21 +20,21 @@ func (o *GetSeriesBaseBySlugRequest) GetSlug() string {
 	return o.Slug
 }
 
-// GetSeriesBaseBySlug200ApplicationJSON - response
-type GetSeriesBaseBySlug200ApplicationJSON struct {
+// GetSeriesBaseBySlugResponseBody - response
+type GetSeriesBaseBySlugResponseBody struct {
 	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 	Data   *shared.SeriesBaseRecord `json:"data,omitempty"`
 	Status *string                  `json:"status,omitempty"`
 }
 
-func (o *GetSeriesBaseBySlug200ApplicationJSON) GetData() *shared.SeriesBaseRecord {
+func (o *GetSeriesBaseBySlugResponseBody) GetData() *shared.SeriesBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSeriesBaseBySlug200ApplicationJSON) GetStatus() *string {
+func (o *GetSeriesBaseBySlugResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetSeriesBaseBySlugResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSeriesBaseBySlug200ApplicationJSONObject *GetSeriesBaseBySlug200ApplicationJSON
+	Object *GetSeriesBaseBySlugResponseBody
 }
 
 func (o *GetSeriesBaseBySlugResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetSeriesBaseBySlugResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSeriesBaseBySlugResponse) GetGetSeriesBaseBySlug200ApplicationJSONObject() *GetSeriesBaseBySlug200ApplicationJSON {
+func (o *GetSeriesBaseBySlugResponse) GetObject() *GetSeriesBaseBySlugResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSeriesBaseBySlug200ApplicationJSONObject
+	return o.Object
 }

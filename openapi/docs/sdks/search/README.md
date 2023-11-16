@@ -16,16 +16,18 @@ Our search index includes series, movies, people, and companies. Search is limit
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/dashotv/tvdb/openapi"
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"log"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -34,7 +36,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSearchResults200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -51,7 +53,9 @@ func main() {
 ### Response
 
 **[*operations.GetSearchResultsResponse](../../models/operations/getsearchresultsresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetSearchResultsByRemoteID
 
@@ -63,15 +67,17 @@ Search a series, movie, people, episode, company or season by specific remote id
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -83,7 +89,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetSearchResultsByRemoteID200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -100,4 +106,6 @@ func main() {
 ### Response
 
 **[*operations.GetSearchResultsByRemoteIDResponse](../../models/operations/getsearchresultsbyremoteidresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

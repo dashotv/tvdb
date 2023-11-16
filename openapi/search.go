@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type search struct {
+type Search struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSearch(sdkConfig sdkConfiguration) *search {
-	return &search{
+func newSearch(sdkConfig sdkConfiguration) *Search {
+	return &Search{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetSearchResults - Our search index includes series, movies, people, and companies. Search is limited to 5k results max.
-func (s *search) GetSearchResults(ctx context.Context, request operations.GetSearchResultsRequest) (*operations.GetSearchResultsResponse, error) {
+func (s *Search) GetSearchResults(ctx context.Context, request operations.GetSearchResultsRequest) (*operations.GetSearchResultsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/search"
 
@@ -69,25 +69,30 @@ func (s *search) GetSearchResults(ctx context.Context, request operations.GetSea
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSearchResults200ApplicationJSON
+			var out operations.GetSearchResultsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSearchResults200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSearchResultsByRemoteID - Search a series, movie, people, episode, company or season by specific remote id and returns a base record for that entity.
-func (s *search) GetSearchResultsByRemoteID(ctx context.Context, remoteID string) (*operations.GetSearchResultsByRemoteIDResponse, error) {
+func (s *Search) GetSearchResultsByRemoteID(ctx context.Context, remoteID string) (*operations.GetSearchResultsByRemoteIDResponse, error) {
 	request := operations.GetSearchResultsByRemoteIDRequest{
 		RemoteID: remoteID,
 	}
@@ -133,16 +138,21 @@ func (s *search) GetSearchResultsByRemoteID(ctx context.Context, remoteID string
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSearchResultsByRemoteID200ApplicationJSON
+			var out operations.GetSearchResultsByRemoteIDResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSearchResultsByRemoteID200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type people struct {
+type People struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPeople(sdkConfig sdkConfiguration) *people {
-	return &people{
+func newPeople(sdkConfig sdkConfiguration) *People {
+	return &People{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllPeople - Returns a list of people base records with the basic attributes.
-func (s *people) GetAllPeople(ctx context.Context, page *int64) (*operations.GetAllPeopleResponse, error) {
+func (s *People) GetAllPeople(ctx context.Context, page *int64) (*operations.GetAllPeopleResponse, error) {
 	request := operations.GetAllPeopleRequest{
 		Page: page,
 	}
@@ -73,23 +73,28 @@ func (s *people) GetAllPeople(ctx context.Context, page *int64) (*operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllPeople200ApplicationJSON
+			var out operations.GetAllPeopleResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllPeople200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetPeopleBase - Returns people base record
-func (s *people) GetPeopleBase(ctx context.Context, id int64) (*operations.GetPeopleBaseResponse, error) {
+func (s *People) GetPeopleBase(ctx context.Context, id int64) (*operations.GetPeopleBaseResponse, error) {
 	request := operations.GetPeopleBaseRequest{
 		ID: id,
 	}
@@ -135,12 +140,12 @@ func (s *people) GetPeopleBase(ctx context.Context, id int64) (*operations.GetPe
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPeopleBase200ApplicationJSON
+			var out operations.GetPeopleBaseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPeopleBase200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -149,13 +154,18 @@ func (s *people) GetPeopleBase(ctx context.Context, id int64) (*operations.GetPe
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetPeopleExtended - Returns people extended record
-func (s *people) GetPeopleExtended(ctx context.Context, id int64, meta *operations.GetPeopleExtendedMeta) (*operations.GetPeopleExtendedResponse, error) {
+func (s *People) GetPeopleExtended(ctx context.Context, id int64, meta *operations.GetPeopleExtendedQueryParamMeta) (*operations.GetPeopleExtendedResponse, error) {
 	request := operations.GetPeopleExtendedRequest{
 		ID:   id,
 		Meta: meta,
@@ -206,12 +216,12 @@ func (s *people) GetPeopleExtended(ctx context.Context, id int64, meta *operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPeopleExtended200ApplicationJSON
+			var out operations.GetPeopleExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPeopleExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -220,13 +230,18 @@ func (s *people) GetPeopleExtended(ctx context.Context, id int64, meta *operatio
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetPeopleTranslation - Returns people translation record
-func (s *people) GetPeopleTranslation(ctx context.Context, id int64, language string) (*operations.GetPeopleTranslationResponse, error) {
+func (s *People) GetPeopleTranslation(ctx context.Context, id int64, language string) (*operations.GetPeopleTranslationResponse, error) {
 	request := operations.GetPeopleTranslationRequest{
 		ID:       id,
 		Language: language,
@@ -273,12 +288,12 @@ func (s *people) GetPeopleTranslation(ctx context.Context, id int64, language st
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetPeopleTranslation200ApplicationJSON
+			var out operations.GetPeopleTranslationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetPeopleTranslation200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -287,6 +302,11 @@ func (s *people) GetPeopleTranslation(ctx context.Context, id int64, language st
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

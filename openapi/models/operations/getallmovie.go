@@ -20,29 +20,29 @@ func (o *GetAllMovieRequest) GetPage() *int64 {
 	return o.Page
 }
 
-// GetAllMovie200ApplicationJSON - response
-type GetAllMovie200ApplicationJSON struct {
+// GetAllMovieResponseBody - response
+type GetAllMovieResponseBody struct {
 	Data []shared.MovieBaseRecord `json:"data,omitempty"`
 	// Links for next, previous and current record
 	Links  *shared.Links `json:"links,omitempty"`
 	Status *string       `json:"status,omitempty"`
 }
 
-func (o *GetAllMovie200ApplicationJSON) GetData() []shared.MovieBaseRecord {
+func (o *GetAllMovieResponseBody) GetData() []shared.MovieBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetAllMovie200ApplicationJSON) GetLinks() *shared.Links {
+func (o *GetAllMovieResponseBody) GetLinks() *shared.Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
 }
 
-func (o *GetAllMovie200ApplicationJSON) GetStatus() *string {
+func (o *GetAllMovieResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -57,7 +57,7 @@ type GetAllMovieResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetAllMovie200ApplicationJSONObject *GetAllMovie200ApplicationJSON
+	Object *GetAllMovieResponseBody
 }
 
 func (o *GetAllMovieResponse) GetContentType() string {
@@ -81,9 +81,9 @@ func (o *GetAllMovieResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAllMovieResponse) GetGetAllMovie200ApplicationJSONObject() *GetAllMovie200ApplicationJSON {
+func (o *GetAllMovieResponse) GetObject() *GetAllMovieResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetAllMovie200ApplicationJSONObject
+	return o.Object
 }

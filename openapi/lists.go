@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type lists struct {
+type Lists struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLists(sdkConfig sdkConfiguration) *lists {
-	return &lists{
+func newLists(sdkConfig sdkConfiguration) *Lists {
+	return &Lists{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllLists - returns list of list base records
-func (s *lists) GetAllLists(ctx context.Context, page *int64) (*operations.GetAllListsResponse, error) {
+func (s *Lists) GetAllLists(ctx context.Context, page *int64) (*operations.GetAllListsResponse, error) {
 	request := operations.GetAllListsRequest{
 		Page: page,
 	}
@@ -73,23 +73,28 @@ func (s *lists) GetAllLists(ctx context.Context, page *int64) (*operations.GetAl
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllLists200ApplicationJSON
+			var out operations.GetAllListsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllLists200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetList - returns an list base record
-func (s *lists) GetList(ctx context.Context, id int64) (*operations.GetListResponse, error) {
+func (s *Lists) GetList(ctx context.Context, id int64) (*operations.GetListResponse, error) {
 	request := operations.GetListRequest{
 		ID: id,
 	}
@@ -135,12 +140,12 @@ func (s *lists) GetList(ctx context.Context, id int64) (*operations.GetListRespo
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetList200ApplicationJSON
+			var out operations.GetListResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetList200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -149,13 +154,18 @@ func (s *lists) GetList(ctx context.Context, id int64) (*operations.GetListRespo
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetListBySlug - returns an list base record search by slug
-func (s *lists) GetListBySlug(ctx context.Context, slug string) (*operations.GetListBySlugResponse, error) {
+func (s *Lists) GetListBySlug(ctx context.Context, slug string) (*operations.GetListBySlugResponse, error) {
 	request := operations.GetListBySlugRequest{
 		Slug: slug,
 	}
@@ -201,12 +211,12 @@ func (s *lists) GetListBySlug(ctx context.Context, slug string) (*operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetListBySlug200ApplicationJSON
+			var out operations.GetListBySlugResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetListBySlug200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -215,13 +225,18 @@ func (s *lists) GetListBySlug(ctx context.Context, slug string) (*operations.Get
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetListExtended - returns a list extended record
-func (s *lists) GetListExtended(ctx context.Context, id int64) (*operations.GetListExtendedResponse, error) {
+func (s *Lists) GetListExtended(ctx context.Context, id int64) (*operations.GetListExtendedResponse, error) {
 	request := operations.GetListExtendedRequest{
 		ID: id,
 	}
@@ -267,12 +282,12 @@ func (s *lists) GetListExtended(ctx context.Context, id int64) (*operations.GetL
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetListExtended200ApplicationJSON
+			var out operations.GetListExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetListExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -281,13 +296,18 @@ func (s *lists) GetListExtended(ctx context.Context, id int64) (*operations.GetL
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetListTranslation - Returns list translation record
-func (s *lists) GetListTranslation(ctx context.Context, id int64, language string) (*operations.GetListTranslationResponse, error) {
+func (s *Lists) GetListTranslation(ctx context.Context, id int64, language string) (*operations.GetListTranslationResponse, error) {
 	request := operations.GetListTranslationRequest{
 		ID:       id,
 		Language: language,
@@ -334,12 +354,12 @@ func (s *lists) GetListTranslation(ctx context.Context, id int64, language strin
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetListTranslation200ApplicationJSON
+			var out operations.GetListTranslationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetListTranslation200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -348,6 +368,11 @@ func (s *lists) GetListTranslation(ctx context.Context, id int64, language strin
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

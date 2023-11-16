@@ -10,18 +10,18 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-type UpdatesAction string
+type Action string
 
 const (
-	UpdatesActionDelete UpdatesAction = "delete"
-	UpdatesActionUpdate UpdatesAction = "update"
+	ActionDelete Action = "delete"
+	ActionUpdate Action = "update"
 )
 
-func (e UpdatesAction) ToPointer() *UpdatesAction {
+func (e Action) ToPointer() *Action {
 	return &e
 }
 
-func (e *UpdatesAction) UnmarshalJSON(data []byte) error {
+func (e *Action) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,57 +30,57 @@ func (e *UpdatesAction) UnmarshalJSON(data []byte) error {
 	case "delete":
 		fallthrough
 	case "update":
-		*e = UpdatesAction(v)
+		*e = Action(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdatesAction: %v", v)
+		return fmt.Errorf("invalid value for Action: %v", v)
 	}
 }
 
-type UpdatesType string
+type Type string
 
 const (
-	UpdatesTypeArtwork              UpdatesType = "artwork"
-	UpdatesTypeAwardNominees        UpdatesType = "award_nominees"
-	UpdatesTypeCompanies            UpdatesType = "companies"
-	UpdatesTypeEpisodes             UpdatesType = "episodes"
-	UpdatesTypeLists                UpdatesType = "lists"
-	UpdatesTypePeople               UpdatesType = "people"
-	UpdatesTypeSeasons              UpdatesType = "seasons"
-	UpdatesTypeSeries               UpdatesType = "series"
-	UpdatesTypeSeriespeople         UpdatesType = "seriespeople"
-	UpdatesTypeArtworktypes         UpdatesType = "artworktypes"
-	UpdatesTypeAwardCategories      UpdatesType = "award_categories"
-	UpdatesTypeAwards               UpdatesType = "awards"
-	UpdatesTypeCompanyTypes         UpdatesType = "company_types"
-	UpdatesTypeContentRatings       UpdatesType = "content_ratings"
-	UpdatesTypeCountries            UpdatesType = "countries"
-	UpdatesTypeEntityTypes          UpdatesType = "entity_types"
-	UpdatesTypeGenres               UpdatesType = "genres"
-	UpdatesTypeLanguages            UpdatesType = "languages"
-	UpdatesTypeMovies               UpdatesType = "movies"
-	UpdatesTypeMovieGenres          UpdatesType = "movie_genres"
-	UpdatesTypeMovieStatus          UpdatesType = "movie_status"
-	UpdatesTypePeopletypes          UpdatesType = "peopletypes"
-	UpdatesTypeSeasontypes          UpdatesType = "seasontypes"
-	UpdatesTypeSourcetypes          UpdatesType = "sourcetypes"
-	UpdatesTypeTagOptions           UpdatesType = "tag_options"
-	UpdatesTypeTags                 UpdatesType = "tags"
-	UpdatesTypeTranslatedcharacters UpdatesType = "translatedcharacters"
-	UpdatesTypeTranslatedcompanies  UpdatesType = "translatedcompanies"
-	UpdatesTypeTranslatedepisodes   UpdatesType = "translatedepisodes"
-	UpdatesTypeTranslatedlists      UpdatesType = "translatedlists"
-	UpdatesTypeTranslatedmovies     UpdatesType = "translatedmovies"
-	UpdatesTypeTranslatedpeople     UpdatesType = "translatedpeople"
-	UpdatesTypeTranslatedseasons    UpdatesType = "translatedseasons"
-	UpdatesTypeTranslatedserierk    UpdatesType = "translatedserierk"
+	TypeArtwork              Type = "artwork"
+	TypeAwardNominees        Type = "award_nominees"
+	TypeCompanies            Type = "companies"
+	TypeEpisodes             Type = "episodes"
+	TypeLists                Type = "lists"
+	TypePeople               Type = "people"
+	TypeSeasons              Type = "seasons"
+	TypeSeries               Type = "series"
+	TypeSeriespeople         Type = "seriespeople"
+	TypeArtworktypes         Type = "artworktypes"
+	TypeAwardCategories      Type = "award_categories"
+	TypeAwards               Type = "awards"
+	TypeCompanyTypes         Type = "company_types"
+	TypeContentRatings       Type = "content_ratings"
+	TypeCountries            Type = "countries"
+	TypeEntityTypes          Type = "entity_types"
+	TypeGenres               Type = "genres"
+	TypeLanguages            Type = "languages"
+	TypeMovies               Type = "movies"
+	TypeMovieGenres          Type = "movie_genres"
+	TypeMovieStatus          Type = "movie_status"
+	TypePeopletypes          Type = "peopletypes"
+	TypeSeasontypes          Type = "seasontypes"
+	TypeSourcetypes          Type = "sourcetypes"
+	TypeTagOptions           Type = "tag_options"
+	TypeTags                 Type = "tags"
+	TypeTranslatedcharacters Type = "translatedcharacters"
+	TypeTranslatedcompanies  Type = "translatedcompanies"
+	TypeTranslatedepisodes   Type = "translatedepisodes"
+	TypeTranslatedlists      Type = "translatedlists"
+	TypeTranslatedmovies     Type = "translatedmovies"
+	TypeTranslatedpeople     Type = "translatedpeople"
+	TypeTranslatedseasons    Type = "translatedseasons"
+	TypeTranslatedserierk    Type = "translatedserierk"
 )
 
-func (e UpdatesType) ToPointer() *UpdatesType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *UpdatesType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -153,19 +153,19 @@ func (e *UpdatesType) UnmarshalJSON(data []byte) error {
 	case "translatedseasons":
 		fallthrough
 	case "translatedserierk":
-		*e = UpdatesType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdatesType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
 type UpdatesRequest struct {
-	Since  int64          `queryParam:"style=form,explode=true,name=since"`
-	Action *UpdatesAction `queryParam:"style=form,explode=true,name=action"`
+	Since  int64   `queryParam:"style=form,explode=true,name=since"`
+	Action *Action `queryParam:"style=form,explode=true,name=action"`
 	// name
-	Page *int64       `queryParam:"style=form,explode=true,name=page"`
-	Type *UpdatesType `queryParam:"style=form,explode=true,name=type"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
+	Type *Type  `queryParam:"style=form,explode=true,name=type"`
 }
 
 func (o *UpdatesRequest) GetSince() int64 {
@@ -175,7 +175,7 @@ func (o *UpdatesRequest) GetSince() int64 {
 	return o.Since
 }
 
-func (o *UpdatesRequest) GetAction() *UpdatesAction {
+func (o *UpdatesRequest) GetAction() *Action {
 	if o == nil {
 		return nil
 	}
@@ -189,36 +189,36 @@ func (o *UpdatesRequest) GetPage() *int64 {
 	return o.Page
 }
 
-func (o *UpdatesRequest) GetType() *UpdatesType {
+func (o *UpdatesRequest) GetType() *Type {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-// Updates200ApplicationJSON - response
-type Updates200ApplicationJSON struct {
+// UpdatesResponseBody - response
+type UpdatesResponseBody struct {
 	Data []shared.EntityUpdate `json:"data,omitempty"`
 	// Links for next, previous and current record
 	Links  *shared.Links `json:"links,omitempty"`
 	Status *string       `json:"status,omitempty"`
 }
 
-func (o *Updates200ApplicationJSON) GetData() []shared.EntityUpdate {
+func (o *UpdatesResponseBody) GetData() []shared.EntityUpdate {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *Updates200ApplicationJSON) GetLinks() *shared.Links {
+func (o *UpdatesResponseBody) GetLinks() *shared.Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
 }
 
-func (o *Updates200ApplicationJSON) GetStatus() *string {
+func (o *UpdatesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -233,7 +233,7 @@ type UpdatesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	Updates200ApplicationJSONObject *Updates200ApplicationJSON
+	Object *UpdatesResponseBody
 }
 
 func (o *UpdatesResponse) GetContentType() string {
@@ -257,9 +257,9 @@ func (o *UpdatesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdatesResponse) GetUpdates200ApplicationJSONObject() *Updates200ApplicationJSON {
+func (o *UpdatesResponse) GetObject() *UpdatesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Updates200ApplicationJSONObject
+	return o.Object
 }

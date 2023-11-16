@@ -10,52 +10,52 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetMoviesFilterGenre - genre
-type GetMoviesFilterGenre int64
+// Genre - genre
+type Genre int64
 
 const (
-	GetMoviesFilterGenreOne         GetMoviesFilterGenre = 1
-	GetMoviesFilterGenreTwo         GetMoviesFilterGenre = 2
-	GetMoviesFilterGenreThree       GetMoviesFilterGenre = 3
-	GetMoviesFilterGenreFour        GetMoviesFilterGenre = 4
-	GetMoviesFilterGenreFive        GetMoviesFilterGenre = 5
-	GetMoviesFilterGenreSix         GetMoviesFilterGenre = 6
-	GetMoviesFilterGenreSeven       GetMoviesFilterGenre = 7
-	GetMoviesFilterGenreEight       GetMoviesFilterGenre = 8
-	GetMoviesFilterGenreNine        GetMoviesFilterGenre = 9
-	GetMoviesFilterGenreTen         GetMoviesFilterGenre = 10
-	GetMoviesFilterGenreEleven      GetMoviesFilterGenre = 11
-	GetMoviesFilterGenreTwelve      GetMoviesFilterGenre = 12
-	GetMoviesFilterGenreThirteen    GetMoviesFilterGenre = 13
-	GetMoviesFilterGenreFourteen    GetMoviesFilterGenre = 14
-	GetMoviesFilterGenreFifteen     GetMoviesFilterGenre = 15
-	GetMoviesFilterGenreSixteen     GetMoviesFilterGenre = 16
-	GetMoviesFilterGenreSeventeen   GetMoviesFilterGenre = 17
-	GetMoviesFilterGenreEighteen    GetMoviesFilterGenre = 18
-	GetMoviesFilterGenreNineteen    GetMoviesFilterGenre = 19
-	GetMoviesFilterGenreTwentyOne   GetMoviesFilterGenre = 21
-	GetMoviesFilterGenreTwentyTwo   GetMoviesFilterGenre = 22
-	GetMoviesFilterGenreTwentyThree GetMoviesFilterGenre = 23
-	GetMoviesFilterGenreTwentyFour  GetMoviesFilterGenre = 24
-	GetMoviesFilterGenreTwentyFive  GetMoviesFilterGenre = 25
-	GetMoviesFilterGenreTwentySix   GetMoviesFilterGenre = 26
-	GetMoviesFilterGenreTwentySeven GetMoviesFilterGenre = 27
-	GetMoviesFilterGenreTwentyEight GetMoviesFilterGenre = 28
-	GetMoviesFilterGenreTwentyNine  GetMoviesFilterGenre = 29
-	GetMoviesFilterGenreThirty      GetMoviesFilterGenre = 30
-	GetMoviesFilterGenreThirtyOne   GetMoviesFilterGenre = 31
-	GetMoviesFilterGenreThirtyTwo   GetMoviesFilterGenre = 32
-	GetMoviesFilterGenreThirtyThree GetMoviesFilterGenre = 33
-	GetMoviesFilterGenreThirtyFour  GetMoviesFilterGenre = 34
-	GetMoviesFilterGenreThirtyFive  GetMoviesFilterGenre = 35
-	GetMoviesFilterGenreThirtySix   GetMoviesFilterGenre = 36
+	GenreOne         Genre = 1
+	GenreTwo         Genre = 2
+	GenreThree       Genre = 3
+	GenreFour        Genre = 4
+	GenreFive        Genre = 5
+	GenreSix         Genre = 6
+	GenreSeven       Genre = 7
+	GenreEight       Genre = 8
+	GenreNine        Genre = 9
+	GenreTen         Genre = 10
+	GenreEleven      Genre = 11
+	GenreTwelve      Genre = 12
+	GenreThirteen    Genre = 13
+	GenreFourteen    Genre = 14
+	GenreFifteen     Genre = 15
+	GenreSixteen     Genre = 16
+	GenreSeventeen   Genre = 17
+	GenreEighteen    Genre = 18
+	GenreNineteen    Genre = 19
+	GenreTwentyOne   Genre = 21
+	GenreTwentyTwo   Genre = 22
+	GenreTwentyThree Genre = 23
+	GenreTwentyFour  Genre = 24
+	GenreTwentyFive  Genre = 25
+	GenreTwentySix   Genre = 26
+	GenreTwentySeven Genre = 27
+	GenreTwentyEight Genre = 28
+	GenreTwentyNine  Genre = 29
+	GenreThirty      Genre = 30
+	GenreThirtyOne   Genre = 31
+	GenreThirtyTwo   Genre = 32
+	GenreThirtyThree Genre = 33
+	GenreThirtyFour  Genre = 34
+	GenreThirtyFive  Genre = 35
+	GenreThirtySix   Genre = 36
 )
 
-func (e GetMoviesFilterGenre) ToPointer() *GetMoviesFilterGenre {
+func (e Genre) ToPointer() *Genre {
 	return &e
 }
 
-func (e *GetMoviesFilterGenre) UnmarshalJSON(data []byte) error {
+func (e *Genre) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -130,27 +130,27 @@ func (e *GetMoviesFilterGenre) UnmarshalJSON(data []byte) error {
 	case 35:
 		fallthrough
 	case 36:
-		*e = GetMoviesFilterGenre(v)
+		*e = Genre(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetMoviesFilterGenre: %v", v)
+		return fmt.Errorf("invalid value for Genre: %v", v)
 	}
 }
 
-// GetMoviesFilterSort - sort by results
-type GetMoviesFilterSort string
+// Sort - sort by results
+type Sort string
 
 const (
-	GetMoviesFilterSortScore      GetMoviesFilterSort = "score"
-	GetMoviesFilterSortFirstAired GetMoviesFilterSort = "firstAired"
-	GetMoviesFilterSortName       GetMoviesFilterSort = "name"
+	SortScore      Sort = "score"
+	SortFirstAired Sort = "firstAired"
+	SortName       Sort = "name"
 )
 
-func (e GetMoviesFilterSort) ToPointer() *GetMoviesFilterSort {
+func (e Sort) ToPointer() *Sort {
 	return &e
 }
 
-func (e *GetMoviesFilterSort) UnmarshalJSON(data []byte) error {
+func (e *Sort) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -161,27 +161,27 @@ func (e *GetMoviesFilterSort) UnmarshalJSON(data []byte) error {
 	case "firstAired":
 		fallthrough
 	case "name":
-		*e = GetMoviesFilterSort(v)
+		*e = Sort(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetMoviesFilterSort: %v", v)
+		return fmt.Errorf("invalid value for Sort: %v", v)
 	}
 }
 
-// GetMoviesFilterStatus - status
-type GetMoviesFilterStatus int64
+// Status - status
+type Status int64
 
 const (
-	GetMoviesFilterStatusOne   GetMoviesFilterStatus = 1
-	GetMoviesFilterStatusTwo   GetMoviesFilterStatus = 2
-	GetMoviesFilterStatusThree GetMoviesFilterStatus = 3
+	StatusOne   Status = 1
+	StatusTwo   Status = 2
+	StatusThree Status = 3
 )
 
-func (e GetMoviesFilterStatus) ToPointer() *GetMoviesFilterStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *GetMoviesFilterStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -192,10 +192,10 @@ func (e *GetMoviesFilterStatus) UnmarshalJSON(data []byte) error {
 	case 2:
 		fallthrough
 	case 3:
-		*e = GetMoviesFilterStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetMoviesFilterStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
@@ -207,13 +207,13 @@ type GetMoviesFilterRequest struct {
 	// country of origin
 	Country string `queryParam:"style=form,explode=true,name=country"`
 	// genre
-	Genre *GetMoviesFilterGenre `queryParam:"style=form,explode=true,name=genre"`
+	Genre *Genre `queryParam:"style=form,explode=true,name=genre"`
 	// original language
 	Lang string `queryParam:"style=form,explode=true,name=lang"`
 	// sort by results
-	Sort *GetMoviesFilterSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *Sort `queryParam:"style=form,explode=true,name=sort"`
 	// status
-	Status *GetMoviesFilterStatus `queryParam:"style=form,explode=true,name=status"`
+	Status *Status `queryParam:"style=form,explode=true,name=status"`
 	// release year
 	Year *int64 `queryParam:"style=form,explode=true,name=year"`
 }
@@ -239,7 +239,7 @@ func (o *GetMoviesFilterRequest) GetCountry() string {
 	return o.Country
 }
 
-func (o *GetMoviesFilterRequest) GetGenre() *GetMoviesFilterGenre {
+func (o *GetMoviesFilterRequest) GetGenre() *Genre {
 	if o == nil {
 		return nil
 	}
@@ -253,14 +253,14 @@ func (o *GetMoviesFilterRequest) GetLang() string {
 	return o.Lang
 }
 
-func (o *GetMoviesFilterRequest) GetSort() *GetMoviesFilterSort {
+func (o *GetMoviesFilterRequest) GetSort() *Sort {
 	if o == nil {
 		return nil
 	}
 	return o.Sort
 }
 
-func (o *GetMoviesFilterRequest) GetStatus() *GetMoviesFilterStatus {
+func (o *GetMoviesFilterRequest) GetStatus() *Status {
 	if o == nil {
 		return nil
 	}
@@ -274,20 +274,20 @@ func (o *GetMoviesFilterRequest) GetYear() *int64 {
 	return o.Year
 }
 
-// GetMoviesFilter200ApplicationJSON - response
-type GetMoviesFilter200ApplicationJSON struct {
+// GetMoviesFilterResponseBody - response
+type GetMoviesFilterResponseBody struct {
 	Data   []shared.MovieBaseRecord `json:"data,omitempty"`
 	Status *string                  `json:"status,omitempty"`
 }
 
-func (o *GetMoviesFilter200ApplicationJSON) GetData() []shared.MovieBaseRecord {
+func (o *GetMoviesFilterResponseBody) GetData() []shared.MovieBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetMoviesFilter200ApplicationJSON) GetStatus() *string {
+func (o *GetMoviesFilterResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -302,7 +302,7 @@ type GetMoviesFilterResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetMoviesFilter200ApplicationJSONObject *GetMoviesFilter200ApplicationJSON
+	Object *GetMoviesFilterResponseBody
 }
 
 func (o *GetMoviesFilterResponse) GetContentType() string {
@@ -326,9 +326,9 @@ func (o *GetMoviesFilterResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetMoviesFilterResponse) GetGetMoviesFilter200ApplicationJSONObject() *GetMoviesFilter200ApplicationJSON {
+func (o *GetMoviesFilterResponse) GetObject() *GetMoviesFilterResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetMoviesFilter200ApplicationJSONObject
+	return o.Object
 }

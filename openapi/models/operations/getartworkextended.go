@@ -20,21 +20,21 @@ func (o *GetArtworkExtendedRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetArtworkExtended200ApplicationJSON - response
-type GetArtworkExtended200ApplicationJSON struct {
+// GetArtworkExtendedResponseBody - response
+type GetArtworkExtendedResponseBody struct {
 	// extended artwork record
 	Data   *shared.ArtworkExtendedRecord `json:"data,omitempty"`
 	Status *string                       `json:"status,omitempty"`
 }
 
-func (o *GetArtworkExtended200ApplicationJSON) GetData() *shared.ArtworkExtendedRecord {
+func (o *GetArtworkExtendedResponseBody) GetData() *shared.ArtworkExtendedRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetArtworkExtended200ApplicationJSON) GetStatus() *string {
+func (o *GetArtworkExtendedResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetArtworkExtendedResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetArtworkExtended200ApplicationJSONObject *GetArtworkExtended200ApplicationJSON
+	Object *GetArtworkExtendedResponseBody
 }
 
 func (o *GetArtworkExtendedResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetArtworkExtendedResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetArtworkExtendedResponse) GetGetArtworkExtended200ApplicationJSONObject() *GetArtworkExtended200ApplicationJSON {
+func (o *GetArtworkExtendedResponse) GetObject() *GetArtworkExtendedResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetArtworkExtended200ApplicationJSONObject
+	return o.Object
 }

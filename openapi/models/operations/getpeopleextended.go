@@ -10,28 +10,28 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetPeopleExtendedMeta - meta
-type GetPeopleExtendedMeta string
+// GetPeopleExtendedQueryParamMeta - meta
+type GetPeopleExtendedQueryParamMeta string
 
 const (
-	GetPeopleExtendedMetaTranslations GetPeopleExtendedMeta = "translations"
+	GetPeopleExtendedQueryParamMetaTranslations GetPeopleExtendedQueryParamMeta = "translations"
 )
 
-func (e GetPeopleExtendedMeta) ToPointer() *GetPeopleExtendedMeta {
+func (e GetPeopleExtendedQueryParamMeta) ToPointer() *GetPeopleExtendedQueryParamMeta {
 	return &e
 }
 
-func (e *GetPeopleExtendedMeta) UnmarshalJSON(data []byte) error {
+func (e *GetPeopleExtendedQueryParamMeta) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "translations":
-		*e = GetPeopleExtendedMeta(v)
+		*e = GetPeopleExtendedQueryParamMeta(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetPeopleExtendedMeta: %v", v)
+		return fmt.Errorf("invalid value for GetPeopleExtendedQueryParamMeta: %v", v)
 	}
 }
 
@@ -39,7 +39,7 @@ type GetPeopleExtendedRequest struct {
 	// id
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 	// meta
-	Meta *GetPeopleExtendedMeta `queryParam:"style=form,explode=true,name=meta"`
+	Meta *GetPeopleExtendedQueryParamMeta `queryParam:"style=form,explode=true,name=meta"`
 }
 
 func (o *GetPeopleExtendedRequest) GetID() int64 {
@@ -49,28 +49,28 @@ func (o *GetPeopleExtendedRequest) GetID() int64 {
 	return o.ID
 }
 
-func (o *GetPeopleExtendedRequest) GetMeta() *GetPeopleExtendedMeta {
+func (o *GetPeopleExtendedRequest) GetMeta() *GetPeopleExtendedQueryParamMeta {
 	if o == nil {
 		return nil
 	}
 	return o.Meta
 }
 
-// GetPeopleExtended200ApplicationJSON - response
-type GetPeopleExtended200ApplicationJSON struct {
+// GetPeopleExtendedResponseBody - response
+type GetPeopleExtendedResponseBody struct {
 	// extended people record
 	Data   *shared.PeopleExtendedRecord `json:"data,omitempty"`
 	Status *string                      `json:"status,omitempty"`
 }
 
-func (o *GetPeopleExtended200ApplicationJSON) GetData() *shared.PeopleExtendedRecord {
+func (o *GetPeopleExtendedResponseBody) GetData() *shared.PeopleExtendedRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetPeopleExtended200ApplicationJSON) GetStatus() *string {
+func (o *GetPeopleExtendedResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -85,7 +85,7 @@ type GetPeopleExtendedResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetPeopleExtended200ApplicationJSONObject *GetPeopleExtended200ApplicationJSON
+	Object *GetPeopleExtendedResponseBody
 }
 
 func (o *GetPeopleExtendedResponse) GetContentType() string {
@@ -109,9 +109,9 @@ func (o *GetPeopleExtendedResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetPeopleExtendedResponse) GetGetPeopleExtended200ApplicationJSONObject() *GetPeopleExtended200ApplicationJSON {
+func (o *GetPeopleExtendedResponse) GetObject() *GetPeopleExtendedResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetPeopleExtended200ApplicationJSONObject
+	return o.Object
 }

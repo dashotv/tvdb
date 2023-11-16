@@ -8,20 +8,20 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// GetSeasonTypes200ApplicationJSON - response
-type GetSeasonTypes200ApplicationJSON struct {
+// GetSeasonTypesResponseBody - response
+type GetSeasonTypesResponseBody struct {
 	Data   []shared.SeasonType `json:"data,omitempty"`
 	Status *string             `json:"status,omitempty"`
 }
 
-func (o *GetSeasonTypes200ApplicationJSON) GetData() []shared.SeasonType {
+func (o *GetSeasonTypesResponseBody) GetData() []shared.SeasonType {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetSeasonTypes200ApplicationJSON) GetStatus() *string {
+func (o *GetSeasonTypesResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -36,7 +36,7 @@ type GetSeasonTypesResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetSeasonTypes200ApplicationJSONObject *GetSeasonTypes200ApplicationJSON
+	Object *GetSeasonTypesResponseBody
 }
 
 func (o *GetSeasonTypesResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *GetSeasonTypesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSeasonTypesResponse) GetGetSeasonTypes200ApplicationJSONObject() *GetSeasonTypes200ApplicationJSON {
+func (o *GetSeasonTypesResponse) GetObject() *GetSeasonTypesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetSeasonTypes200ApplicationJSONObject
+	return o.Object
 }

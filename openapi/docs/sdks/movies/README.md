@@ -20,15 +20,17 @@ returns list of movie base records
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -40,7 +42,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetAllMovie200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -57,7 +59,9 @@ func main() {
 ### Response
 
 **[*operations.GetAllMovieResponse](../../models/operations/getallmovieresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetMovieBase
 
@@ -69,15 +73,17 @@ Returns movie base record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -89,7 +95,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetMovieBase200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -106,7 +112,9 @@ func main() {
 ### Response
 
 **[*operations.GetMovieBaseResponse](../../models/operations/getmoviebaseresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetMovieBaseBySlug
 
@@ -118,15 +126,17 @@ Returns movie base record search by slug
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -138,7 +148,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetMovieBaseBySlug200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -155,7 +165,9 @@ func main() {
 ### Response
 
 **[*operations.GetMovieBaseBySlugResponse](../../models/operations/getmoviebasebyslugresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetMovieExtended
 
@@ -167,22 +179,24 @@ Returns movie extended record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"github.com/dashotv/tvdb/openapi/models/operations"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
-	"github.com/dashotv/tvdb/openapi/models/operations"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
     var id int64 = 459744
 
-    var meta *operations.GetMovieExtendedMeta = operations.GetMovieExtendedMetaTranslations
+    var meta *operations.QueryParamMeta = operations.QueryParamMetaTranslations
 
     var short *bool = false
 
@@ -192,7 +206,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetMovieExtended200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -204,14 +218,16 @@ func main() {
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |                                                                                                            |
 | `id`                                                                                                       | *int64*                                                                                                    | :heavy_check_mark:                                                                                         | id                                                                                                         |                                                                                                            |
-| `meta`                                                                                                     | [*operations.GetMovieExtendedMeta](../../models/operations/getmovieextendedmeta.md)                        | :heavy_minus_sign:                                                                                         | meta                                                                                                       | translations                                                                                               |
+| `meta`                                                                                                     | [*operations.QueryParamMeta](../../models/operations/queryparammeta.md)                                    | :heavy_minus_sign:                                                                                         | meta                                                                                                       | translations                                                                                               |
 | `short`                                                                                                    | **bool*                                                                                                    | :heavy_minus_sign:                                                                                         | reduce the payload and returns the short version of this record without characters, artworks and trailers. |                                                                                                            |
 
 
 ### Response
 
 **[*operations.GetMovieExtendedResponse](../../models/operations/getmovieextendedresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetMovieTranslation
 
@@ -223,15 +239,17 @@ Returns movie translation record
 package main
 
 import(
+	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"github.com/dashotv/tvdb/openapi"
-	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
 
@@ -245,7 +263,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetMovieTranslation200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -263,7 +281,9 @@ func main() {
 ### Response
 
 **[*operations.GetMovieTranslationResponse](../../models/operations/getmovietranslationresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetMoviesFilter
 
@@ -275,16 +295,18 @@ Search movies based on filter parameters
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/dashotv/tvdb/openapi"
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi"
+	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"log"
 )
 
 func main() {
     s := openapi.New(
-        openapi.WithSecurity(""),
+        openapi.WithSecurity(shared.Security{
+            BearerAuth: "",
+        }),
     )
 
     ctx := context.Background()
@@ -292,7 +314,7 @@ func main() {
         Company: openapi.Int64(1),
         ContentRating: openapi.Int64(245),
         Country: "usa",
-        Genre: operations.GetMoviesFilterGenreThree.ToPointer(),
+        Genre: operations.GenreThree.ToPointer(),
         Lang: "eng",
         Year: openapi.Int64(2020),
     })
@@ -300,7 +322,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetMoviesFilter200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -317,4 +339,6 @@ func main() {
 ### Response
 
 **[*operations.GetMoviesFilterResponse](../../models/operations/getmoviesfilterresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

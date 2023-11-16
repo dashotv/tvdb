@@ -10,23 +10,23 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/operations"
 	"github.com/dashotv/tvdb/openapi/models/sdkerrors"
-	"github.com/dashotv/tvdb/openapi/utils"
 )
 
-type series struct {
+type Series struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSeries(sdkConfig sdkConfiguration) *series {
-	return &series{
+func newSeries(sdkConfig sdkConfiguration) *Series {
+	return &Series{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAllSeries - returns list of series base records
-func (s *series) GetAllSeries(ctx context.Context, page *int64) (*operations.GetAllSeriesResponse, error) {
+func (s *Series) GetAllSeries(ctx context.Context, page *int64) (*operations.GetAllSeriesResponse, error) {
 	request := operations.GetAllSeriesRequest{
 		Page: page,
 	}
@@ -73,23 +73,28 @@ func (s *series) GetAllSeries(ctx context.Context, page *int64) (*operations.Get
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetAllSeries200ApplicationJSON
+			var out operations.GetAllSeriesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetAllSeries200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesArtworks - Returns series artworks base on language and type. <br> Note&#58; Artwork type is an id that can be found using **/artwork/types** endpoint.
-func (s *series) GetSeriesArtworks(ctx context.Context, id int64, lang *string, type_ *int64) (*operations.GetSeriesArtworksResponse, error) {
+func (s *Series) GetSeriesArtworks(ctx context.Context, id int64, lang *string, type_ *int64) (*operations.GetSeriesArtworksResponse, error) {
 	request := operations.GetSeriesArtworksRequest{
 		ID:   id,
 		Lang: lang,
@@ -141,12 +146,12 @@ func (s *series) GetSeriesArtworks(ctx context.Context, id int64, lang *string, 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesArtworks200ApplicationJSON
+			var out operations.GetSeriesArtworksResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesArtworks200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -155,13 +160,18 @@ func (s *series) GetSeriesArtworks(ctx context.Context, id int64, lang *string, 
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesBase - Returns series base record
-func (s *series) GetSeriesBase(ctx context.Context, id int64) (*operations.GetSeriesBaseResponse, error) {
+func (s *Series) GetSeriesBase(ctx context.Context, id int64) (*operations.GetSeriesBaseResponse, error) {
 	request := operations.GetSeriesBaseRequest{
 		ID: id,
 	}
@@ -207,12 +217,12 @@ func (s *series) GetSeriesBase(ctx context.Context, id int64) (*operations.GetSe
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesBase200ApplicationJSON
+			var out operations.GetSeriesBaseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesBase200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -221,13 +231,18 @@ func (s *series) GetSeriesBase(ctx context.Context, id int64) (*operations.GetSe
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesBaseBySlug - Returns series base record searched by slug
-func (s *series) GetSeriesBaseBySlug(ctx context.Context, slug string) (*operations.GetSeriesBaseBySlugResponse, error) {
+func (s *Series) GetSeriesBaseBySlug(ctx context.Context, slug string) (*operations.GetSeriesBaseBySlugResponse, error) {
 	request := operations.GetSeriesBaseBySlugRequest{
 		Slug: slug,
 	}
@@ -273,12 +288,12 @@ func (s *series) GetSeriesBaseBySlug(ctx context.Context, slug string) (*operati
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesBaseBySlug200ApplicationJSON
+			var out operations.GetSeriesBaseBySlugResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesBaseBySlug200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -287,13 +302,18 @@ func (s *series) GetSeriesBaseBySlug(ctx context.Context, slug string) (*operati
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesEpisodes - Returns series episodes from the specified season type, default returns the episodes in the series default season type
-func (s *series) GetSeriesEpisodes(ctx context.Context, request operations.GetSeriesEpisodesRequest) (*operations.GetSeriesEpisodesResponse, error) {
+func (s *Series) GetSeriesEpisodes(ctx context.Context, request operations.GetSeriesEpisodesRequest) (*operations.GetSeriesEpisodesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/series/{id}/episodes/{season-type}", request, nil)
 	if err != nil {
@@ -339,12 +359,12 @@ func (s *series) GetSeriesEpisodes(ctx context.Context, request operations.GetSe
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesEpisodes200ApplicationJSON
+			var out operations.GetSeriesEpisodesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesEpisodes200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -353,13 +373,18 @@ func (s *series) GetSeriesEpisodes(ctx context.Context, request operations.GetSe
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesExtended - Returns series extended record
-func (s *series) GetSeriesExtended(ctx context.Context, id int64, meta *operations.GetSeriesExtendedMeta, short *bool) (*operations.GetSeriesExtendedResponse, error) {
+func (s *Series) GetSeriesExtended(ctx context.Context, id int64, meta *operations.GetSeriesExtendedQueryParamMeta, short *bool) (*operations.GetSeriesExtendedResponse, error) {
 	request := operations.GetSeriesExtendedRequest{
 		ID:    id,
 		Meta:  meta,
@@ -411,12 +436,12 @@ func (s *series) GetSeriesExtended(ctx context.Context, id int64, meta *operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesExtended200ApplicationJSON
+			var out operations.GetSeriesExtendedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesExtended200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -425,13 +450,18 @@ func (s *series) GetSeriesExtended(ctx context.Context, id int64, meta *operatio
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesFilter - Search series based on filter parameters
-func (s *series) GetSeriesFilter(ctx context.Context, request operations.GetSeriesFilterRequest) (*operations.GetSeriesFilterResponse, error) {
+func (s *Series) GetSeriesFilter(ctx context.Context, request operations.GetSeriesFilterRequest) (*operations.GetSeriesFilterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/series/filter"
 
@@ -474,25 +504,30 @@ func (s *series) GetSeriesFilter(ctx context.Context, request operations.GetSeri
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesFilter200ApplicationJSON
+			var out operations.GetSeriesFilterResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesFilter200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesNextAired - Returns series base record including the nextAired field. <br> Note&#58; nextAired was included in the base record endpoint but that field will deprecated in the future so developers should use the nextAired endpoint.
-func (s *series) GetSeriesNextAired(ctx context.Context, id int64) (*operations.GetSeriesNextAiredResponse, error) {
+func (s *Series) GetSeriesNextAired(ctx context.Context, id int64) (*operations.GetSeriesNextAiredResponse, error) {
 	request := operations.GetSeriesNextAiredRequest{
 		ID: id,
 	}
@@ -538,12 +573,12 @@ func (s *series) GetSeriesNextAired(ctx context.Context, id int64) (*operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesNextAired200ApplicationJSON
+			var out operations.GetSeriesNextAiredResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesNextAired200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -552,13 +587,18 @@ func (s *series) GetSeriesNextAired(ctx context.Context, id int64) (*operations.
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesSeasonEpisodesTranslated - Returns series base record with episodes from the specified season type and language. Default returns the episodes in the series default season type.
-func (s *series) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id int64, lang string, page int64, seasonType string) (*operations.GetSeriesSeasonEpisodesTranslatedResponse, error) {
+func (s *Series) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id int64, lang string, page int64, seasonType string) (*operations.GetSeriesSeasonEpisodesTranslatedResponse, error) {
 	request := operations.GetSeriesSeasonEpisodesTranslatedRequest{
 		ID:         id,
 		Lang:       lang,
@@ -611,12 +651,12 @@ func (s *series) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id int64
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesSeasonEpisodesTranslated200ApplicationJSON
+			var out operations.GetSeriesSeasonEpisodesTranslatedResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesSeasonEpisodesTranslated200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -625,13 +665,18 @@ func (s *series) GetSeriesSeasonEpisodesTranslated(ctx context.Context, id int64
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
 // GetSeriesTranslation - Returns series translation record
-func (s *series) GetSeriesTranslation(ctx context.Context, id int64, language string) (*operations.GetSeriesTranslationResponse, error) {
+func (s *Series) GetSeriesTranslation(ctx context.Context, id int64, language string) (*operations.GetSeriesTranslationResponse, error) {
 	request := operations.GetSeriesTranslationRequest{
 		ID:       id,
 		Language: language,
@@ -678,12 +723,12 @@ func (s *series) GetSeriesTranslation(ctx context.Context, id int64, language st
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetSeriesTranslation200ApplicationJSON
+			var out operations.GetSeriesTranslationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetSeriesTranslation200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -692,6 +737,11 @@ func (s *series) GetSeriesTranslation(ctx context.Context, id int64, language st
 	case httpRes.StatusCode == 401:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

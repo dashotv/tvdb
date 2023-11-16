@@ -20,21 +20,21 @@ func (o *GetEpisodeBaseRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetEpisodeBase200ApplicationJSON - response
-type GetEpisodeBase200ApplicationJSON struct {
+// GetEpisodeBaseResponseBody - response
+type GetEpisodeBaseResponseBody struct {
 	// base episode record
 	Data   *shared.EpisodeBaseRecord `json:"data,omitempty"`
 	Status *string                   `json:"status,omitempty"`
 }
 
-func (o *GetEpisodeBase200ApplicationJSON) GetData() *shared.EpisodeBaseRecord {
+func (o *GetEpisodeBaseResponseBody) GetData() *shared.EpisodeBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetEpisodeBase200ApplicationJSON) GetStatus() *string {
+func (o *GetEpisodeBaseResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetEpisodeBaseResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetEpisodeBase200ApplicationJSONObject *GetEpisodeBase200ApplicationJSON
+	Object *GetEpisodeBaseResponseBody
 }
 
 func (o *GetEpisodeBaseResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetEpisodeBaseResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetEpisodeBaseResponse) GetGetEpisodeBase200ApplicationJSONObject() *GetEpisodeBase200ApplicationJSON {
+func (o *GetEpisodeBaseResponse) GetObject() *GetEpisodeBaseResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetEpisodeBase200ApplicationJSONObject
+	return o.Object
 }

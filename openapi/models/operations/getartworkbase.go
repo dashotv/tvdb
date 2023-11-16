@@ -20,21 +20,21 @@ func (o *GetArtworkBaseRequest) GetID() int64 {
 	return o.ID
 }
 
-// GetArtworkBase200ApplicationJSON - response
-type GetArtworkBase200ApplicationJSON struct {
+// GetArtworkBaseResponseBody - response
+type GetArtworkBaseResponseBody struct {
 	// base artwork record
 	Data   *shared.ArtworkBaseRecord `json:"data,omitempty"`
 	Status *string                   `json:"status,omitempty"`
 }
 
-func (o *GetArtworkBase200ApplicationJSON) GetData() *shared.ArtworkBaseRecord {
+func (o *GetArtworkBaseResponseBody) GetData() *shared.ArtworkBaseRecord {
 	if o == nil {
 		return nil
 	}
 	return o.Data
 }
 
-func (o *GetArtworkBase200ApplicationJSON) GetStatus() *string {
+func (o *GetArtworkBaseResponseBody) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
@@ -49,7 +49,7 @@ type GetArtworkBaseResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// response
-	GetArtworkBase200ApplicationJSONObject *GetArtworkBase200ApplicationJSON
+	Object *GetArtworkBaseResponseBody
 }
 
 func (o *GetArtworkBaseResponse) GetContentType() string {
@@ -73,9 +73,9 @@ func (o *GetArtworkBaseResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetArtworkBaseResponse) GetGetArtworkBase200ApplicationJSONObject() *GetArtworkBase200ApplicationJSON {
+func (o *GetArtworkBaseResponse) GetObject() *GetArtworkBaseResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetArtworkBase200ApplicationJSONObject
+	return o.Object
 }

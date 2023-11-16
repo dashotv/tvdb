@@ -5,6 +5,7 @@ import (
 
 	"github.com/dashotv/tvdb/openapi"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
 type Client struct {
@@ -39,7 +40,7 @@ func Login(apikey string) (*Client, error) {
 
 // New creates a client with an existing token
 func New(apikey, token string) *Client {
-	s := openapi.New(openapi.WithSecurity(token))
+	s := openapi.New(openapi.WithSecurity(shared.Security{BearerAuth: token}))
 	return &Client{
 		Key:   apikey,
 		Token: token,
