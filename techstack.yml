@@ -1,11 +1,11 @@
 repo_name: dashotv/tvdb
-report_id: ece94f8d421f82331d047ec7822af4b0
+report_id: 7a50a611cce803681cf1b72c85a3da58
 repo_type: Public
-timestamp: '2023-11-10T00:16:49+00:00'
+timestamp: '2023-12-14T10:04:25+00:00'
 requested_by: shawncatz
 provider: github
 branch: main
-detected_tools_count: 6
+detected_tools_count: 11
 tools:
 - name: Golang
   description: An open source programming language that makes it easy to build simple,
@@ -71,3 +71,72 @@ tools:
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
   detection_source: Repo Metadata
+- name: check.v1
+  description: Package check is a rich testing extension for Go's testing package
+  package_url: https://pkg.go.dev/gopkg.in/check.v1
+  version: 0.0.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/dashotv/tvdb/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: Shawn Catanzarite
+  last_updated_on: 2023-10-19 02:22:24.000000000 Z
+- name: errors
+  description: Simple error handling primitives
+  package_url: https://pkg.go.dev/github.com/pkg/errors
+  version: 0.9.1
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/dashotv/tvdb/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: Shawn Catanzarite
+  last_updated_on: 2023-10-19 04:31:07.000000000 Z
+- name: go-difflib
+  description: Partial port of Python difflib package to Go
+  package_url: https://pkg.go.dev/github.com/pmezard/go-difflib
+  version: 1.0.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/dashotv/tvdb/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: Shawn Catanzarite
+  last_updated_on: 2023-10-19 02:22:24.000000000 Z
+- name: go-spew
+  description: Implements a deep pretty printer for Go data structures to aid in debugging
+  package_url: https://pkg.go.dev/github.com/davecgh/go-spew
+  version: 1.1.1
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/dashotv/tvdb/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: Shawn Catanzarite
+  last_updated_on: 2023-10-19 02:22:24.000000000 Z
+- name: pretty
+  description: Pretty printing for Go values
+  package_url: https://pkg.go.dev/github.com/kr/pretty
+  version: 0.3.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/dashotv/tvdb/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: Shawn Catanzarite
+  last_updated_on: 2023-10-19 04:39:46.000000000 Z
