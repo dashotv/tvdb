@@ -1,7 +1,8 @@
 repo_name: dashotv/tvdb
-report_id: 7a50a611cce803681cf1b72c85a3da58
+report_id: ece94f8d421f82331d047ec7822af4b0
+version: 0.1
 repo_type: Public
-timestamp: '2023-12-14T10:04:25+00:00'
+timestamp: '2024-01-05T09:04:34+00:00'
 requested_by: shawncatz
 provider: github
 branch: main
@@ -17,6 +18,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1005/O6AczwfV_400x400.png
+  detection_source_url: https://github.com/dashotv/tvdb
   detection_source: Repo Metadata
 - name: Ruby
   description: A dynamic, interpreted, open source programming language with a focus
@@ -27,6 +29,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/989/ruby.png
+  detection_source_url: https://github.com/dashotv/tvdb
   detection_source: Repo Metadata
 - name: Drone.io
   description: Open source continuous integration platform built on Docker
@@ -36,6 +39,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/668/R_wMcCqN_400x400.png
+  detection_source_url: https://github.com/dashotv/tvdb/blob/main/.drone.yml
   detection_source: ".drone.yml"
   last_updated_by: Shawn Catanzarite
   last_updated_on: 2023-10-19 06:08:38.000000000 Z
@@ -47,6 +51,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/dashotv/tvdb
   detection_source: Repo Metadata
 - name: Testify
   description: A toolkit with common assertions and mocks that plays nicely with the
@@ -58,6 +63,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Go Testing
   image_url: https://img.stackshare.io/service/8695/stretchr.png
+  detection_source_url: https://github.com/dashotv/tvdb/blob/main/go.mod
   detection_source: go.mod
   last_updated_by: Shawn Catanzarite
   last_updated_on: 2023-10-19 02:22:24.000000000 Z
@@ -70,6 +76,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/dashotv/tvdb
   detection_source: Repo Metadata
 - name: check.v1
   description: Package check is a rich testing extension for Go's testing package
