@@ -2231,7 +2231,7 @@ paths:
           name: since
           required: true
           schema:
-            type: number
+            type: integer
         - in: query
           name: type
           required: false
