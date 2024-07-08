@@ -10,10 +10,10 @@ import (
 
 type GetAllSeasonsRequest struct {
 	// page number
-	Page *int64 `queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 }
 
-func (o *GetAllSeasonsRequest) GetPage() *int64 {
+func (o *GetAllSeasonsRequest) GetPage() *float64 {
 	if o == nil {
 		return nil
 	}

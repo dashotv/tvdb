@@ -10,19 +10,19 @@ import (
 
 type GetSeriesNextAiredRequest struct {
 	// id
-	ID int64 `pathParam:"style=simple,explode=false,name=id"`
+	ID float64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetSeriesNextAiredRequest) GetID() int64 {
+func (o *GetSeriesNextAiredRequest) GetID() float64 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.ID
 }
 
 // GetSeriesNextAiredResponseBody - response
 type GetSeriesNextAiredResponseBody struct {
-	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 	Data   *shared.SeriesBaseRecord `json:"data,omitempty"`
 	Status *string                  `json:"status,omitempty"`
 }

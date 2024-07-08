@@ -2,7 +2,7 @@
 
 package shared
 
-// SeriesBaseRecord - The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+// SeriesBaseRecord - The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 type SeriesBaseRecord struct {
 	Aliases              []Alias             `json:"aliases,omitempty"`
 	AverageRuntime       *int64              `json:"averageRuntime,omitempty"`
@@ -20,7 +20,6 @@ type SeriesBaseRecord struct {
 	NextAired            *string             `json:"nextAired,omitempty"`
 	OriginalCountry      *string             `json:"originalCountry,omitempty"`
 	OriginalLanguage     *string             `json:"originalLanguage,omitempty"`
-	Overview             *string             `json:"overview,omitempty"`
 	OverviewTranslations []string            `json:"overviewTranslations,omitempty"`
 	Score                *float64            `json:"score,omitempty"`
 	Slug                 *string             `json:"slug,omitempty"`
@@ -139,13 +138,6 @@ func (o *SeriesBaseRecord) GetOriginalLanguage() *string {
 		return nil
 	}
 	return o.OriginalLanguage
-}
-
-func (o *SeriesBaseRecord) GetOverview() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Overview
 }
 
 func (o *SeriesBaseRecord) GetOverviewTranslations() []string {

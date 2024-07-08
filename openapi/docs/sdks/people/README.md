@@ -27,19 +27,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var page *int64 = 859253
-
+    var page *float64 = openapi.Float64(8592.53)
     ctx := context.Background()
     res, err := s.People.GetAllPeople(ctx, page)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -51,7 +47,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `page`                                                | **int64*                                              | :heavy_minus_sign:                                    | page number                                           |
+| `page`                                                | **float64*                                            | :heavy_minus_sign:                                    | page number                                           |
 
 
 ### Response
@@ -59,7 +55,7 @@ func main() {
 **[*operations.GetAllPeopleResponse](../../models/operations/getallpeopleresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetPeopleBase
 
@@ -80,19 +76,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var id int64 = 741973
-
+    var id float64 = 7419.73
     ctx := context.Background()
     res, err := s.People.GetPeopleBase(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -104,7 +96,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -112,7 +104,7 @@ func main() {
 **[*operations.GetPeopleBaseResponse](../../models/operations/getpeoplebaseresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetPeopleExtended
 
@@ -134,21 +126,17 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 9525.83
 
-
-    var id int64 = 952583
-
-    var meta *operations.GetPeopleExtendedQueryParamMeta = operations.GetPeopleExtendedQueryParamMetaTranslations
-
+    var meta *operations.GetPeopleExtendedQueryParamMeta = operations.GetPeopleExtendedQueryParamMetaTranslations.ToPointer()
     ctx := context.Background()
     res, err := s.People.GetPeopleExtended(ctx, id, meta)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -160,7 +148,7 @@ func main() {
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                     | :heavy_check_mark:                                                                                        | The context to use for the request.                                                                       |                                                                                                           |
-| `id`                                                                                                      | *int64*                                                                                                   | :heavy_check_mark:                                                                                        | id                                                                                                        |                                                                                                           |
+| `id`                                                                                                      | *float64*                                                                                                 | :heavy_check_mark:                                                                                        | id                                                                                                        |                                                                                                           |
 | `meta`                                                                                                    | [*operations.GetPeopleExtendedQueryParamMeta](../../models/operations/getpeopleextendedqueryparammeta.md) | :heavy_minus_sign:                                                                                        | meta                                                                                                      | translations                                                                                              |
 
 
@@ -169,7 +157,7 @@ func main() {
 **[*operations.GetPeopleExtendedResponse](../../models/operations/getpeopleextendedresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetPeopleTranslation
 
@@ -190,21 +178,17 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 150.51
 
-
-    var id int64 = 15051
-
-    var language string = "string"
-
+    var language string = "<value>"
     ctx := context.Background()
     res, err := s.People.GetPeopleTranslation(ctx, id, language)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -216,7 +200,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 | `language`                                            | *string*                                              | :heavy_check_mark:                                    | language                                              |
 
 
@@ -225,4 +209,4 @@ func main() {
 **[*operations.GetPeopleTranslationResponse](../../models/operations/getpeopletranslationresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

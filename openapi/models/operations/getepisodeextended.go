@@ -20,7 +20,6 @@ const (
 func (e Meta) ToPointer() *Meta {
 	return &e
 }
-
 func (e *Meta) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -37,14 +36,14 @@ func (e *Meta) UnmarshalJSON(data []byte) error {
 
 type GetEpisodeExtendedRequest struct {
 	// id
-	ID int64 `pathParam:"style=simple,explode=false,name=id"`
+	ID float64 `pathParam:"style=simple,explode=false,name=id"`
 	// meta
 	Meta *Meta `queryParam:"style=form,explode=true,name=meta"`
 }
 
-func (o *GetEpisodeExtendedRequest) GetID() int64 {
+func (o *GetEpisodeExtendedRequest) GetID() float64 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.ID
 }

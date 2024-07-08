@@ -17,26 +17,25 @@ package main
 import(
 	"github.com/dashotv/tvdb/openapi/models/shared"
 	"github.com/dashotv/tvdb/openapi"
-	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
+    request := operations.PostLoginRequestBody{
+        Apikey: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Login.PostLogin(ctx, operations.PostLoginRequestBody{
-        Apikey: "string",
-    })
+    res, err := s.Login.PostLogin(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -56,4 +55,4 @@ func main() {
 **[*operations.PostLoginResponse](../../models/operations/postloginresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

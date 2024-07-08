@@ -10,133 +10,6 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// QueryParamGenre - Genre id. This id can be found using **/genres** endpoint.
-type QueryParamGenre int64
-
-const (
-	QueryParamGenreOne         QueryParamGenre = 1
-	QueryParamGenreTwo         QueryParamGenre = 2
-	QueryParamGenreThree       QueryParamGenre = 3
-	QueryParamGenreFour        QueryParamGenre = 4
-	QueryParamGenreFive        QueryParamGenre = 5
-	QueryParamGenreSix         QueryParamGenre = 6
-	QueryParamGenreSeven       QueryParamGenre = 7
-	QueryParamGenreEight       QueryParamGenre = 8
-	QueryParamGenreNine        QueryParamGenre = 9
-	QueryParamGenreTen         QueryParamGenre = 10
-	QueryParamGenreEleven      QueryParamGenre = 11
-	QueryParamGenreTwelve      QueryParamGenre = 12
-	QueryParamGenreThirteen    QueryParamGenre = 13
-	QueryParamGenreFourteen    QueryParamGenre = 14
-	QueryParamGenreFifteen     QueryParamGenre = 15
-	QueryParamGenreSixteen     QueryParamGenre = 16
-	QueryParamGenreSeventeen   QueryParamGenre = 17
-	QueryParamGenreEighteen    QueryParamGenre = 18
-	QueryParamGenreNineteen    QueryParamGenre = 19
-	QueryParamGenreTwentyOne   QueryParamGenre = 21
-	QueryParamGenreTwentyTwo   QueryParamGenre = 22
-	QueryParamGenreTwentyThree QueryParamGenre = 23
-	QueryParamGenreTwentyFour  QueryParamGenre = 24
-	QueryParamGenreTwentyFive  QueryParamGenre = 25
-	QueryParamGenreTwentySix   QueryParamGenre = 26
-	QueryParamGenreTwentySeven QueryParamGenre = 27
-	QueryParamGenreTwentyEight QueryParamGenre = 28
-	QueryParamGenreTwentyNine  QueryParamGenre = 29
-	QueryParamGenreThirty      QueryParamGenre = 30
-	QueryParamGenreThirtyOne   QueryParamGenre = 31
-	QueryParamGenreThirtyTwo   QueryParamGenre = 32
-	QueryParamGenreThirtyThree QueryParamGenre = 33
-	QueryParamGenreThirtyFour  QueryParamGenre = 34
-	QueryParamGenreThirtyFive  QueryParamGenre = 35
-	QueryParamGenreThirtySix   QueryParamGenre = 36
-)
-
-func (e QueryParamGenre) ToPointer() *QueryParamGenre {
-	return &e
-}
-
-func (e *QueryParamGenre) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		fallthrough
-	case 5:
-		fallthrough
-	case 6:
-		fallthrough
-	case 7:
-		fallthrough
-	case 8:
-		fallthrough
-	case 9:
-		fallthrough
-	case 10:
-		fallthrough
-	case 11:
-		fallthrough
-	case 12:
-		fallthrough
-	case 13:
-		fallthrough
-	case 14:
-		fallthrough
-	case 15:
-		fallthrough
-	case 16:
-		fallthrough
-	case 17:
-		fallthrough
-	case 18:
-		fallthrough
-	case 19:
-		fallthrough
-	case 21:
-		fallthrough
-	case 22:
-		fallthrough
-	case 23:
-		fallthrough
-	case 24:
-		fallthrough
-	case 25:
-		fallthrough
-	case 26:
-		fallthrough
-	case 27:
-		fallthrough
-	case 28:
-		fallthrough
-	case 29:
-		fallthrough
-	case 30:
-		fallthrough
-	case 31:
-		fallthrough
-	case 32:
-		fallthrough
-	case 33:
-		fallthrough
-	case 34:
-		fallthrough
-	case 35:
-		fallthrough
-	case 36:
-		*e = QueryParamGenre(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for QueryParamGenre: %v", v)
-	}
-}
-
 // QueryParamSort - sort by results
 type QueryParamSort string
 
@@ -150,7 +23,6 @@ const (
 func (e QueryParamSort) ToPointer() *QueryParamSort {
 	return &e
 }
-
 func (e *QueryParamSort) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -182,7 +54,6 @@ const (
 func (e SortType) ToPointer() *SortType {
 	return &e
 }
-
 func (e *SortType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -199,46 +70,15 @@ func (e *SortType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamStatus - status
-type QueryParamStatus int64
-
-const (
-	QueryParamStatusOne   QueryParamStatus = 1
-	QueryParamStatusTwo   QueryParamStatus = 2
-	QueryParamStatusThree QueryParamStatus = 3
-)
-
-func (e QueryParamStatus) ToPointer() *QueryParamStatus {
-	return &e
-}
-
-func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		*e = QueryParamStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for QueryParamStatus: %v", v)
-	}
-}
-
 type GetSeriesFilterRequest struct {
 	// production company
-	Company *int64 `queryParam:"style=form,explode=true,name=company"`
+	Company *float64 `queryParam:"style=form,explode=true,name=company"`
 	// content rating id base on a country
-	ContentRating *int64 `queryParam:"style=form,explode=true,name=contentRating"`
+	ContentRating *float64 `queryParam:"style=form,explode=true,name=contentRating"`
 	// country of origin
 	Country string `queryParam:"style=form,explode=true,name=country"`
 	// Genre id. This id can be found using **/genres** endpoint.
-	Genre *QueryParamGenre `queryParam:"style=form,explode=true,name=genre"`
+	Genre *float64 `queryParam:"style=form,explode=true,name=genre"`
 	// original language
 	Lang string `queryParam:"style=form,explode=true,name=lang"`
 	// sort by results
@@ -246,19 +86,19 @@ type GetSeriesFilterRequest struct {
 	// sort type ascending or descending
 	SortType *SortType `queryParam:"style=form,explode=true,name=sortType"`
 	// status
-	Status *QueryParamStatus `queryParam:"style=form,explode=true,name=status"`
+	Status *float64 `queryParam:"style=form,explode=true,name=status"`
 	// release year
-	Year *int64 `queryParam:"style=form,explode=true,name=year"`
+	Year *float64 `queryParam:"style=form,explode=true,name=year"`
 }
 
-func (o *GetSeriesFilterRequest) GetCompany() *int64 {
+func (o *GetSeriesFilterRequest) GetCompany() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Company
 }
 
-func (o *GetSeriesFilterRequest) GetContentRating() *int64 {
+func (o *GetSeriesFilterRequest) GetContentRating() *float64 {
 	if o == nil {
 		return nil
 	}
@@ -272,7 +112,7 @@ func (o *GetSeriesFilterRequest) GetCountry() string {
 	return o.Country
 }
 
-func (o *GetSeriesFilterRequest) GetGenre() *QueryParamGenre {
+func (o *GetSeriesFilterRequest) GetGenre() *float64 {
 	if o == nil {
 		return nil
 	}
@@ -300,14 +140,14 @@ func (o *GetSeriesFilterRequest) GetSortType() *SortType {
 	return o.SortType
 }
 
-func (o *GetSeriesFilterRequest) GetStatus() *QueryParamStatus {
+func (o *GetSeriesFilterRequest) GetStatus() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *GetSeriesFilterRequest) GetYear() *int64 {
+func (o *GetSeriesFilterRequest) GetYear() *float64 {
 	if o == nil {
 		return nil
 	}

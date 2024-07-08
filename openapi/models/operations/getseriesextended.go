@@ -21,7 +21,6 @@ const (
 func (e GetSeriesExtendedQueryParamMeta) ToPointer() *GetSeriesExtendedQueryParamMeta {
 	return &e
 }
-
 func (e *GetSeriesExtendedQueryParamMeta) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -40,16 +39,16 @@ func (e *GetSeriesExtendedQueryParamMeta) UnmarshalJSON(data []byte) error {
 
 type GetSeriesExtendedRequest struct {
 	// id
-	ID int64 `pathParam:"style=simple,explode=false,name=id"`
+	ID float64 `pathParam:"style=simple,explode=false,name=id"`
 	// meta
 	Meta *GetSeriesExtendedQueryParamMeta `queryParam:"style=form,explode=true,name=meta"`
 	// reduce the payload and returns the short version of this record without characters and artworks
 	Short *bool `queryParam:"style=form,explode=true,name=short"`
 }
 
-func (o *GetSeriesExtendedRequest) GetID() int64 {
+func (o *GetSeriesExtendedRequest) GetID() float64 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.ID
 }
@@ -70,7 +69,7 @@ func (o *GetSeriesExtendedRequest) GetShort() *bool {
 
 // GetSeriesExtendedResponseBody - response
 type GetSeriesExtendedResponseBody struct {
-	// The extended record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+	// The extended record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 	Data   *shared.SeriesExtendedRecord `json:"data,omitempty"`
 	Status *string                      `json:"status,omitempty"`
 }

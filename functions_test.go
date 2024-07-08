@@ -10,7 +10,7 @@ import (
 
 func TestClient_GetArtworkBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = artwork_id_int64
+	var id float64 = artwork_id_float64
 	r, err := c.GetArtworkBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -18,7 +18,7 @@ func TestClient_GetArtworkBase(t *testing.T) {
 
 func TestClient_GetArtworkExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = artwork_id_int64
+	var id float64 = artwork_id_float64
 	r, err := c.GetArtworkExtended(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -42,7 +42,7 @@ func TestClient_GetAllArtworkTypes(t *testing.T) {
 
 func TestClient_GetAwardCategory(t *testing.T) {
 	c := testClient(t)
-	var id int64 = awardcategories_id_int64
+	var id float64 = awardcategories_id_float64
 	r, err := c.GetAwardCategory(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -50,7 +50,7 @@ func TestClient_GetAwardCategory(t *testing.T) {
 
 func TestClient_GetAwardCategoryExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = awardcategories_id_int64
+	var id float64 = awardcategories_id_float64
 	r, err := c.GetAwardCategoryExtended(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -66,7 +66,7 @@ func TestClient_GetAllAwards(t *testing.T) {
 
 func TestClient_GetAward(t *testing.T) {
 	c := testClient(t)
-	var id int64 = awards_id_int64
+	var id float64 = awards_id_float64
 	r, err := c.GetAward(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -74,7 +74,7 @@ func TestClient_GetAward(t *testing.T) {
 
 func TestClient_GetAwardExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = awards_id_int64
+	var id float64 = awards_id_float64
 	r, err := c.GetAwardExtended(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -82,7 +82,7 @@ func TestClient_GetAwardExtended(t *testing.T) {
 
 func TestClient_GetCharacterBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = characters_id_int64
+	var id float64 = characters_id_float64
 	r, err := c.GetCharacterBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -90,7 +90,7 @@ func TestClient_GetCharacterBase(t *testing.T) {
 
 func TestClient_GetAllCompanies(t *testing.T) {
 	c := testClient(t)
-	var page *int64 = nil
+	var page *float64 = nil
 	r, err := c.GetAllCompanies(page)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -98,7 +98,7 @@ func TestClient_GetAllCompanies(t *testing.T) {
 
 func TestClient_GetCompany(t *testing.T) {
 	c := testClient(t)
-	var id int64 = companies_id_int64
+	var id float64 = companies_id_float64
 	r, err := c.GetCompany(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -138,7 +138,7 @@ func TestClient_GetEntityTypes(t *testing.T) {
 
 func TestClient_GetAllEpisodes(t *testing.T) {
 	c := testClient(t)
-	var page *int64 = nil
+	var page *float64 = nil
 	r, err := c.GetAllEpisodes(page)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -146,7 +146,7 @@ func TestClient_GetAllEpisodes(t *testing.T) {
 
 func TestClient_GetEpisodeBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = episodes_id_int64
+	var id float64 = episodes_id_float64
 	r, err := c.GetEpisodeBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -154,7 +154,7 @@ func TestClient_GetEpisodeBase(t *testing.T) {
 
 func TestClient_GetEpisodeExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = episodes_id_int64
+	var id float64 = episodes_id_float64
 	var meta *operations.Meta = nil
 	r, err := c.GetEpisodeExtended(id, meta)
 	assert.NoError(t, err)
@@ -163,7 +163,7 @@ func TestClient_GetEpisodeExtended(t *testing.T) {
 
 func TestClient_GetEpisodeTranslation(t *testing.T) {
 	c := testClient(t)
-	var id int64 = episodes_id_int64
+	var id float64 = episodes_id_float64
 	var language string = episodes_language_string
 	r, err := c.GetEpisodeTranslation(id, language)
 	assert.NoError(t, err)
@@ -188,7 +188,7 @@ func TestClient_GetAllGenres(t *testing.T) {
 
 func TestClient_GetGenreBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = genres_id_int64
+	var id float64 = genres_id_float64
 	r, err := c.GetGenreBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -212,7 +212,7 @@ func TestClient_GetAllLanguages(t *testing.T) {
 
 func TestClient_GetAllLists(t *testing.T) {
 	c := testClient(t)
-	var page *int64 = nil
+	var page *float64 = nil
 	r, err := c.GetAllLists(page)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -220,7 +220,7 @@ func TestClient_GetAllLists(t *testing.T) {
 
 func TestClient_GetList(t *testing.T) {
 	c := testClient(t)
-	var id int64 = lists_id_int64
+	var id float64 = lists_id_float64
 	r, err := c.GetList(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -236,7 +236,7 @@ func TestClient_GetListBySlug(t *testing.T) {
 
 func TestClient_GetListExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = lists_id_int64
+	var id float64 = lists_id_float64
 	r, err := c.GetListExtended(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -244,7 +244,7 @@ func TestClient_GetListExtended(t *testing.T) {
 
 func TestClient_GetListTranslation(t *testing.T) {
 	c := testClient(t)
-	var id int64 = lists_id_int64
+	var id float64 = lists_id_float64
 	var language string = lists_language_string
 	r, err := c.GetListTranslation(id, language)
 	assert.NoError(t, err)
@@ -261,7 +261,7 @@ func TestClient_PostLogin(t *testing.T) {
 
 func TestClient_GetAllMovie(t *testing.T) {
 	c := testClient(t)
-	var page *int64 = nil
+	var page *float64 = nil
 	r, err := c.GetAllMovie(page)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -269,7 +269,7 @@ func TestClient_GetAllMovie(t *testing.T) {
 
 func TestClient_GetMovieBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = movies_id_int64
+	var id float64 = movies_id_float64
 	r, err := c.GetMovieBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -285,7 +285,7 @@ func TestClient_GetMovieBaseBySlug(t *testing.T) {
 
 func TestClient_GetMovieExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = movies_id_int64
+	var id float64 = movies_id_float64
 	var meta *operations.QueryParamMeta = nil
 	var short *bool = nil
 	r, err := c.GetMovieExtended(id, meta, short)
@@ -295,7 +295,7 @@ func TestClient_GetMovieExtended(t *testing.T) {
 
 func TestClient_GetMovieTranslation(t *testing.T) {
 	c := testClient(t)
-	var id int64 = movies_id_int64
+	var id float64 = movies_id_float64
 	var language string = movies_language_string
 	r, err := c.GetMovieTranslation(id, language)
 	assert.NoError(t, err)
@@ -320,7 +320,7 @@ func TestClient_GetAllMovieStatuses(t *testing.T) {
 
 func TestClient_GetAllPeople(t *testing.T) {
 	c := testClient(t)
-	var page *int64 = nil
+	var page *float64 = nil
 	r, err := c.GetAllPeople(page)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -328,7 +328,7 @@ func TestClient_GetAllPeople(t *testing.T) {
 
 func TestClient_GetPeopleBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = people_id_int64
+	var id float64 = people_id_float64
 	r, err := c.GetPeopleBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -336,7 +336,7 @@ func TestClient_GetPeopleBase(t *testing.T) {
 
 func TestClient_GetPeopleExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = people_id_int64
+	var id float64 = people_id_float64
 	var meta *operations.GetPeopleExtendedQueryParamMeta = nil
 	r, err := c.GetPeopleExtended(id, meta)
 	assert.NoError(t, err)
@@ -345,7 +345,7 @@ func TestClient_GetPeopleExtended(t *testing.T) {
 
 func TestClient_GetPeopleTranslation(t *testing.T) {
 	c := testClient(t)
-	var id int64 = people_id_int64
+	var id float64 = people_id_float64
 	var language string = people_language_string
 	r, err := c.GetPeopleTranslation(id, language)
 	assert.NoError(t, err)
@@ -378,7 +378,7 @@ func TestClient_GetSearchResultsByRemoteID(t *testing.T) {
 
 func TestClient_GetAllSeasons(t *testing.T) {
 	c := testClient(t)
-	var page *int64 = nil
+	var page *float64 = nil
 	r, err := c.GetAllSeasons(page)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -386,7 +386,7 @@ func TestClient_GetAllSeasons(t *testing.T) {
 
 func TestClient_GetSeasonBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = seasons_id_int64
+	var id float64 = seasons_id_float64
 	r, err := c.GetSeasonBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -394,7 +394,7 @@ func TestClient_GetSeasonBase(t *testing.T) {
 
 func TestClient_GetSeasonExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = seasons_id_int64
+	var id float64 = seasons_id_float64
 	r, err := c.GetSeasonExtended(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -410,7 +410,7 @@ func TestClient_GetSeasonTypes(t *testing.T) {
 
 func TestClient_GetAllSeries(t *testing.T) {
 	c := testClient(t)
-	var page *int64 = nil
+	var page *float64 = nil
 	r, err := c.GetAllSeries(page)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -418,7 +418,7 @@ func TestClient_GetAllSeries(t *testing.T) {
 
 func TestClient_GetSeriesArtworks(t *testing.T) {
 	c := testClient(t)
-	var id int64 = series_id_int64
+	var id float64 = series_id_float64
 	var lang *string = nil
 	var type_ *int64 = nil
 	r, err := c.GetSeriesArtworks(id, lang, type_)
@@ -428,7 +428,7 @@ func TestClient_GetSeriesArtworks(t *testing.T) {
 
 func TestClient_GetSeriesBase(t *testing.T) {
 	c := testClient(t)
-	var id int64 = series_id_int64
+	var id float64 = series_id_float64
 	r, err := c.GetSeriesBase(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -452,7 +452,7 @@ func TestClient_GetSeriesEpisodes(t *testing.T) {
 
 func TestClient_GetSeriesExtended(t *testing.T) {
 	c := testClient(t)
-	var id int64 = series_id_int64
+	var id float64 = series_id_float64
 	var meta *operations.GetSeriesExtendedQueryParamMeta = nil
 	var short *bool = nil
 	r, err := c.GetSeriesExtended(id, meta, short)
@@ -470,7 +470,7 @@ func TestClient_GetSeriesFilter(t *testing.T) {
 
 func TestClient_GetSeriesNextAired(t *testing.T) {
 	c := testClient(t)
-	var id int64 = series_id_int64
+	var id float64 = series_id_float64
 	r, err := c.GetSeriesNextAired(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
@@ -478,7 +478,7 @@ func TestClient_GetSeriesNextAired(t *testing.T) {
 
 func TestClient_GetSeriesSeasonEpisodesTranslated(t *testing.T) {
 	c := testClient(t)
-	var id int64 = series_id_int64
+	var id float64 = series_id_float64
 	var lang string = series_lang_string
 	var page int64 = series_page_int64
 	var seasonType string = series_seasonType_string
@@ -489,7 +489,7 @@ func TestClient_GetSeriesSeasonEpisodesTranslated(t *testing.T) {
 
 func TestClient_GetSeriesTranslation(t *testing.T) {
 	c := testClient(t)
-	var id int64 = series_id_int64
+	var id float64 = series_id_float64
 	var language string = series_language_string
 	r, err := c.GetSeriesTranslation(id, language)
 	assert.NoError(t, err)
@@ -516,7 +516,7 @@ func TestClient_Updates(t *testing.T) {
 	c := testClient(t)
 	var since int64 = updates_since_int64
 	var action *operations.Action = nil
-	var page *int64 = nil
+	var page *float64 = nil
 	var type_ *operations.Type = nil
 	r, err := c.Updates(since, action, page, type_)
 	assert.NoError(t, err)

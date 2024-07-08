@@ -10,133 +10,6 @@ import (
 	"github.com/dashotv/tvdb/openapi/models/shared"
 )
 
-// Genre - genre
-type Genre int64
-
-const (
-	GenreOne         Genre = 1
-	GenreTwo         Genre = 2
-	GenreThree       Genre = 3
-	GenreFour        Genre = 4
-	GenreFive        Genre = 5
-	GenreSix         Genre = 6
-	GenreSeven       Genre = 7
-	GenreEight       Genre = 8
-	GenreNine        Genre = 9
-	GenreTen         Genre = 10
-	GenreEleven      Genre = 11
-	GenreTwelve      Genre = 12
-	GenreThirteen    Genre = 13
-	GenreFourteen    Genre = 14
-	GenreFifteen     Genre = 15
-	GenreSixteen     Genre = 16
-	GenreSeventeen   Genre = 17
-	GenreEighteen    Genre = 18
-	GenreNineteen    Genre = 19
-	GenreTwentyOne   Genre = 21
-	GenreTwentyTwo   Genre = 22
-	GenreTwentyThree Genre = 23
-	GenreTwentyFour  Genre = 24
-	GenreTwentyFive  Genre = 25
-	GenreTwentySix   Genre = 26
-	GenreTwentySeven Genre = 27
-	GenreTwentyEight Genre = 28
-	GenreTwentyNine  Genre = 29
-	GenreThirty      Genre = 30
-	GenreThirtyOne   Genre = 31
-	GenreThirtyTwo   Genre = 32
-	GenreThirtyThree Genre = 33
-	GenreThirtyFour  Genre = 34
-	GenreThirtyFive  Genre = 35
-	GenreThirtySix   Genre = 36
-)
-
-func (e Genre) ToPointer() *Genre {
-	return &e
-}
-
-func (e *Genre) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		fallthrough
-	case 4:
-		fallthrough
-	case 5:
-		fallthrough
-	case 6:
-		fallthrough
-	case 7:
-		fallthrough
-	case 8:
-		fallthrough
-	case 9:
-		fallthrough
-	case 10:
-		fallthrough
-	case 11:
-		fallthrough
-	case 12:
-		fallthrough
-	case 13:
-		fallthrough
-	case 14:
-		fallthrough
-	case 15:
-		fallthrough
-	case 16:
-		fallthrough
-	case 17:
-		fallthrough
-	case 18:
-		fallthrough
-	case 19:
-		fallthrough
-	case 21:
-		fallthrough
-	case 22:
-		fallthrough
-	case 23:
-		fallthrough
-	case 24:
-		fallthrough
-	case 25:
-		fallthrough
-	case 26:
-		fallthrough
-	case 27:
-		fallthrough
-	case 28:
-		fallthrough
-	case 29:
-		fallthrough
-	case 30:
-		fallthrough
-	case 31:
-		fallthrough
-	case 32:
-		fallthrough
-	case 33:
-		fallthrough
-	case 34:
-		fallthrough
-	case 35:
-		fallthrough
-	case 36:
-		*e = Genre(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Genre: %v", v)
-	}
-}
-
 // Sort - sort by results
 type Sort string
 
@@ -149,7 +22,6 @@ const (
 func (e Sort) ToPointer() *Sort {
 	return &e
 }
-
 func (e *Sort) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -168,64 +40,33 @@ func (e *Sort) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Status - status
-type Status int64
-
-const (
-	StatusOne   Status = 1
-	StatusTwo   Status = 2
-	StatusThree Status = 3
-)
-
-func (e Status) ToPointer() *Status {
-	return &e
-}
-
-func (e *Status) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case 1:
-		fallthrough
-	case 2:
-		fallthrough
-	case 3:
-		*e = Status(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
-	}
-}
-
 type GetMoviesFilterRequest struct {
 	// production company
-	Company *int64 `queryParam:"style=form,explode=true,name=company"`
+	Company *float64 `queryParam:"style=form,explode=true,name=company"`
 	// content rating id base on a country
-	ContentRating *int64 `queryParam:"style=form,explode=true,name=contentRating"`
+	ContentRating *float64 `queryParam:"style=form,explode=true,name=contentRating"`
 	// country of origin
 	Country string `queryParam:"style=form,explode=true,name=country"`
 	// genre
-	Genre *Genre `queryParam:"style=form,explode=true,name=genre"`
+	Genre *float64 `queryParam:"style=form,explode=true,name=genre"`
 	// original language
 	Lang string `queryParam:"style=form,explode=true,name=lang"`
 	// sort by results
 	Sort *Sort `queryParam:"style=form,explode=true,name=sort"`
 	// status
-	Status *Status `queryParam:"style=form,explode=true,name=status"`
+	Status *float64 `queryParam:"style=form,explode=true,name=status"`
 	// release year
-	Year *int64 `queryParam:"style=form,explode=true,name=year"`
+	Year *float64 `queryParam:"style=form,explode=true,name=year"`
 }
 
-func (o *GetMoviesFilterRequest) GetCompany() *int64 {
+func (o *GetMoviesFilterRequest) GetCompany() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Company
 }
 
-func (o *GetMoviesFilterRequest) GetContentRating() *int64 {
+func (o *GetMoviesFilterRequest) GetContentRating() *float64 {
 	if o == nil {
 		return nil
 	}
@@ -239,7 +80,7 @@ func (o *GetMoviesFilterRequest) GetCountry() string {
 	return o.Country
 }
 
-func (o *GetMoviesFilterRequest) GetGenre() *Genre {
+func (o *GetMoviesFilterRequest) GetGenre() *float64 {
 	if o == nil {
 		return nil
 	}
@@ -260,14 +101,14 @@ func (o *GetMoviesFilterRequest) GetSort() *Sort {
 	return o.Sort
 }
 
-func (o *GetMoviesFilterRequest) GetStatus() *Status {
+func (o *GetMoviesFilterRequest) GetStatus() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *GetMoviesFilterRequest) GetYear() *int64 {
+func (o *GetMoviesFilterRequest) GetYear() *float64 {
 	if o == nil {
 		return nil
 	}

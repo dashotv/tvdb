@@ -5,5 +5,5 @@
 
 | Field                                               | Type                                                | Required                                            | Description                                         | Example                                             |
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `ID`                                                | *int64*                                             | :heavy_check_mark:                                  | id                                                  |                                                     |
+| `ID`                                                | *float64*                                           | :heavy_check_mark:                                  | id                                                  |                                                     |
 | `Meta`                                              | [*operations.Meta](../../models/operations/meta.md) | :heavy_minus_sign:                                  | meta                                                | translations                                        |

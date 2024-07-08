@@ -25,7 +25,7 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
 
@@ -34,7 +34,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -53,7 +52,7 @@ func main() {
 **[*operations.GetUserInfoResponse](../../models/operations/getuserinforesponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetUserInfoByID
 
@@ -74,19 +73,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var id int64 = 339298
-
+    var id float64 = 3392.98
     ctx := context.Background()
     res, err := s.UserInfo.GetUserInfoByID(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -98,7 +93,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -106,4 +101,4 @@ func main() {
 **[*operations.GetUserInfoByIDResponse](../../models/operations/getuserinfobyidresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

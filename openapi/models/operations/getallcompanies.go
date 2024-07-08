@@ -10,10 +10,10 @@ import (
 
 type GetAllCompaniesRequest struct {
 	// name
-	Page *int64 `queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 }
 
-func (o *GetAllCompaniesRequest) GetPage() *int64 {
+func (o *GetAllCompaniesRequest) GetPage() *float64 {
 	if o == nil {
 		return nil
 	}

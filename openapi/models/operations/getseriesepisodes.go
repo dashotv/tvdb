@@ -14,9 +14,9 @@ type GetSeriesEpisodesRequest struct {
 	AirDate       *string `queryParam:"style=form,explode=true,name=airDate"`
 	EpisodeNumber *int64  `default:"0" queryParam:"style=form,explode=true,name=episodeNumber"`
 	// id
-	ID     int64  `pathParam:"style=simple,explode=false,name=id"`
-	Page   int64  `default:"0" queryParam:"style=form,explode=true,name=page"`
-	Season *int64 `default:"0" queryParam:"style=form,explode=true,name=season"`
+	ID     float64 `pathParam:"style=simple,explode=false,name=id"`
+	Page   int64   `default:"0" queryParam:"style=form,explode=true,name=page"`
+	Season *int64  `default:"0" queryParam:"style=form,explode=true,name=season"`
 	// season-type
 	SeasonType string `pathParam:"style=simple,explode=false,name=season-type"`
 }
@@ -46,9 +46,9 @@ func (o *GetSeriesEpisodesRequest) GetEpisodeNumber() *int64 {
 	return o.EpisodeNumber
 }
 
-func (o *GetSeriesEpisodesRequest) GetID() int64 {
+func (o *GetSeriesEpisodesRequest) GetID() float64 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.ID
 }
@@ -76,7 +76,7 @@ func (o *GetSeriesEpisodesRequest) GetSeasonType() string {
 
 type GetSeriesEpisodesData struct {
 	Episodes []shared.EpisodeBaseRecord `json:"episodes,omitempty"`
-	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 	Series *shared.SeriesBaseRecord `json:"series,omitempty"`
 }
 

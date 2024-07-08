@@ -20,23 +20,21 @@ import(
 	"github.com/dashotv/tvdb/openapi"
 	"context"
 	"log"
-	"net/http"
 )
 
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
+    var request *shared.FavoriteRecord = &shared.FavoriteRecord{}
     ctx := context.Background()
-    res, err := s.Favorites.CreateUserFavorites(ctx, &shared.FavoriteRecord{})
+    res, err := s.Favorites.CreateUserFavorites(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -55,7 +53,7 @@ func main() {
 **[*operations.CreateUserFavoritesResponse](../../models/operations/createuserfavoritesresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetUserFavorites
 
@@ -76,7 +74,7 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
 
@@ -85,7 +83,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -104,4 +101,4 @@ func main() {
 **[*operations.GetUserFavoritesResponse](../../models/operations/getuserfavoritesresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

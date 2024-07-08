@@ -33,19 +33,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var page *int64 = 284450
-
+    var page *float64 = openapi.Float64(2844.5)
     ctx := context.Background()
     res, err := s.Series.GetAllSeries(ctx, page)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -57,7 +53,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `page`                                                | **int64*                                              | :heavy_minus_sign:                                    | page number                                           |
+| `page`                                                | **float64*                                            | :heavy_minus_sign:                                    | page number                                           |
 
 
 ### Response
@@ -65,7 +61,7 @@ func main() {
 **[*operations.GetAllSeriesResponse](../../models/operations/getallseriesresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesArtworks
 
@@ -86,23 +82,19 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 681.34
 
+    var lang *string = openapi.String("eng, spa")
 
-    var id int64 = 68134
-
-    var lang *string = "eng, spa"
-
-    var type_ *int64 = 1,2,3
-
+    var type_ *int64 = openapi.Int64(1,2,3)
     ctx := context.Background()
     res, err := s.Series.GetSeriesArtworks(ctx, id, lang, type_)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -114,7 +106,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |                                                       |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |                                                       |
 | `lang`                                                | **string*                                             | :heavy_minus_sign:                                    | lang                                                  | eng, spa                                              |
 | `type_`                                               | **int64*                                              | :heavy_minus_sign:                                    | type                                                  | 1,2,3                                                 |
 
@@ -124,7 +116,7 @@ func main() {
 **[*operations.GetSeriesArtworksResponse](../../models/operations/getseriesartworksresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesBase
 
@@ -145,19 +137,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var id int64 = 700404
-
+    var id float64 = 7004.04
     ctx := context.Background()
     res, err := s.Series.GetSeriesBase(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -169,7 +157,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -177,7 +165,7 @@ func main() {
 **[*operations.GetSeriesBaseResponse](../../models/operations/getseriesbaseresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesBaseBySlug
 
@@ -198,19 +186,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var slug string = "string"
-
+    var slug string = "<value>"
     ctx := context.Background()
     res, err := s.Series.GetSeriesBaseBySlug(ctx, slug)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -230,7 +214,7 @@ func main() {
 **[*operations.GetSeriesBaseBySlugResponse](../../models/operations/getseriesbasebyslugresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesEpisodes
 
@@ -244,28 +228,27 @@ package main
 import(
 	"github.com/dashotv/tvdb/openapi/models/shared"
 	"github.com/dashotv/tvdb/openapi"
-	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
+    request := operations.GetSeriesEpisodesRequest{
+        ID: 3113.63,
+        Page: 0,
+        SeasonType: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Series.GetSeriesEpisodes(ctx, operations.GetSeriesEpisodesRequest{
-        ID: 311363,
-        Page: 737433,
-        SeasonType: "string",
-    })
+    res, err := s.Series.GetSeriesEpisodes(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -285,7 +268,7 @@ func main() {
 **[*operations.GetSeriesEpisodesResponse](../../models/operations/getseriesepisodesresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesExtended
 
@@ -307,23 +290,19 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 4780.9
 
+    var meta *operations.GetSeriesExtendedQueryParamMeta = operations.GetSeriesExtendedQueryParamMetaTranslations.ToPointer()
 
-    var id int64 = 478090
-
-    var meta *operations.GetSeriesExtendedQueryParamMeta = operations.GetSeriesExtendedQueryParamMetaTranslations
-
-    var short *bool = false
-
+    var short *bool = openapi.Bool(false)
     ctx := context.Background()
     res, err := s.Series.GetSeriesExtended(ctx, id, meta, short)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -335,7 +314,7 @@ func main() {
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                     | :heavy_check_mark:                                                                                        | The context to use for the request.                                                                       |                                                                                                           |
-| `id`                                                                                                      | *int64*                                                                                                   | :heavy_check_mark:                                                                                        | id                                                                                                        |                                                                                                           |
+| `id`                                                                                                      | *float64*                                                                                                 | :heavy_check_mark:                                                                                        | id                                                                                                        |                                                                                                           |
 | `meta`                                                                                                    | [*operations.GetSeriesExtendedQueryParamMeta](../../models/operations/getseriesextendedqueryparammeta.md) | :heavy_minus_sign:                                                                                        | meta                                                                                                      | translations                                                                                              |
 | `short`                                                                                                   | **bool*                                                                                                   | :heavy_minus_sign:                                                                                        | reduce the payload and returns the short version of this record without characters and artworks           |                                                                                                           |
 
@@ -345,7 +324,7 @@ func main() {
 **[*operations.GetSeriesExtendedResponse](../../models/operations/getseriesextendedresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesFilter
 
@@ -359,31 +338,30 @@ package main
 import(
 	"github.com/dashotv/tvdb/openapi/models/shared"
 	"github.com/dashotv/tvdb/openapi"
-	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Series.GetSeriesFilter(ctx, operations.GetSeriesFilterRequest{
-        Company: openapi.Int64(1),
-        ContentRating: openapi.Int64(245),
+    request := operations.GetSeriesFilterRequest{
+        Company: openapi.Float64(1),
+        ContentRating: openapi.Float64(245),
         Country: "usa",
-        Genre: operations.QueryParamGenreThree.ToPointer(),
+        Genre: openapi.Float64(3),
         Lang: "eng",
-        Year: openapi.Int64(2020),
-    })
+        Year: openapi.Float64(2020),
+    }
+    ctx := context.Background()
+    res, err := s.Series.GetSeriesFilter(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -403,7 +381,7 @@ func main() {
 **[*operations.GetSeriesFilterResponse](../../models/operations/getseriesfilterresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesNextAired
 
@@ -424,19 +402,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var id int64 = 739964
-
+    var id float64 = 7399.64
     ctx := context.Background()
     res, err := s.Series.GetSeriesNextAired(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -448,7 +422,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -456,7 +430,7 @@ func main() {
 **[*operations.GetSeriesNextAiredResponse](../../models/operations/getseriesnextairedresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesSeasonEpisodesTranslated
 
@@ -477,25 +451,21 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 4718.81
 
+    var lang string = "<value>"
 
-    var id int64 = 471881
+    var page int64 = 0
 
-    var lang string = "string"
-
-    var page int64 = 498852
-
-    var seasonType string = "string"
-
+    var seasonType string = "<value>"
     ctx := context.Background()
     res, err := s.Series.GetSeriesSeasonEpisodesTranslated(ctx, id, lang, page, seasonType)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -507,7 +477,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 | `lang`                                                | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 | `page`                                                | *int64*                                               | :heavy_check_mark:                                    | N/A                                                   |
 | `seasonType`                                          | *string*                                              | :heavy_check_mark:                                    | season-type                                           |
@@ -518,7 +488,7 @@ func main() {
 **[*operations.GetSeriesSeasonEpisodesTranslatedResponse](../../models/operations/getseriesseasonepisodestranslatedresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSeriesTranslation
 
@@ -539,21 +509,17 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 8327.38
 
-
-    var id int64 = 832738
-
-    var language string = "string"
-
+    var language string = "<value>"
     ctx := context.Background()
     res, err := s.Series.GetSeriesTranslation(ctx, id, language)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -565,7 +531,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 | `language`                                            | *string*                                              | :heavy_check_mark:                                    | language                                              |
 
 
@@ -574,4 +540,4 @@ func main() {
 **[*operations.GetSeriesTranslationResponse](../../models/operations/getseriestranslationresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

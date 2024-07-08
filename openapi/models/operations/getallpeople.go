@@ -10,10 +10,10 @@ import (
 
 type GetAllPeopleRequest struct {
 	// page number
-	Page *int64 `queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 }
 
-func (o *GetAllPeopleRequest) GetPage() *int64 {
+func (o *GetAllPeopleRequest) GetPage() *float64 {
 	if o == nil {
 		return nil
 	}

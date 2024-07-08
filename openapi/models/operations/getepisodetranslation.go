@@ -10,14 +10,14 @@ import (
 
 type GetEpisodeTranslationRequest struct {
 	// id
-	ID int64 `pathParam:"style=simple,explode=false,name=id"`
+	ID float64 `pathParam:"style=simple,explode=false,name=id"`
 	// language
 	Language string `pathParam:"style=simple,explode=false,name=language"`
 }
 
-func (o *GetEpisodeTranslationRequest) GetID() int64 {
+func (o *GetEpisodeTranslationRequest) GetID() float64 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.ID
 }

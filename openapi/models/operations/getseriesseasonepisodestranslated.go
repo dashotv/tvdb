@@ -11,9 +11,9 @@ import (
 
 type GetSeriesSeasonEpisodesTranslatedRequest struct {
 	// id
-	ID   int64  `pathParam:"style=simple,explode=false,name=id"`
-	Lang string `pathParam:"style=simple,explode=false,name=lang"`
-	Page int64  `default:"0" queryParam:"style=form,explode=true,name=page"`
+	ID   float64 `pathParam:"style=simple,explode=false,name=id"`
+	Lang string  `pathParam:"style=simple,explode=false,name=lang"`
+	Page int64   `default:"0" queryParam:"style=form,explode=true,name=page"`
 	// season-type
 	SeasonType string `pathParam:"style=simple,explode=false,name=season-type"`
 }
@@ -29,9 +29,9 @@ func (g *GetSeriesSeasonEpisodesTranslatedRequest) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-func (o *GetSeriesSeasonEpisodesTranslatedRequest) GetID() int64 {
+func (o *GetSeriesSeasonEpisodesTranslatedRequest) GetID() float64 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.ID
 }
@@ -58,14 +58,15 @@ func (o *GetSeriesSeasonEpisodesTranslatedRequest) GetSeasonType() string {
 }
 
 type GetSeriesSeasonEpisodesTranslatedData struct {
-	Episodes []shared.EpisodeBaseRecord `json:"episodes,omitempty"`
+	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+	Series *shared.SeriesBaseRecord `json:"series,omitempty"`
 }
 
-func (o *GetSeriesSeasonEpisodesTranslatedData) GetEpisodes() []shared.EpisodeBaseRecord {
+func (o *GetSeriesSeasonEpisodesTranslatedData) GetSeries() *shared.SeriesBaseRecord {
 	if o == nil {
 		return nil
 	}
-	return o.Episodes
+	return o.Series
 }
 
 // GetSeriesSeasonEpisodesTranslatedResponseBody - response

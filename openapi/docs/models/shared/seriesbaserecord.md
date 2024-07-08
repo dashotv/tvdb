@@ -1,6 +1,6 @@
 # SeriesBaseRecord
 
-The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 
 
 ## Fields
@@ -23,7 +23,6 @@ The base record for a series. All series airs time like firstAired, lastAired, n
 | `NextAired`                                                            | **string*                                                              | :heavy_minus_sign:                                                     | N/A                                                                    |
 | `OriginalCountry`                                                      | **string*                                                              | :heavy_minus_sign:                                                     | N/A                                                                    |
 | `OriginalLanguage`                                                     | **string*                                                              | :heavy_minus_sign:                                                     | N/A                                                                    |
-| `Overview`                                                             | **string*                                                              | :heavy_minus_sign:                                                     | N/A                                                                    |
 | `OverviewTranslations`                                                 | []*string*                                                             | :heavy_minus_sign:                                                     | N/A                                                                    |
 | `Score`                                                                | **float64*                                                             | :heavy_minus_sign:                                                     | N/A                                                                    |
 | `Slug`                                                                 | **string*                                                              | :heavy_minus_sign:                                                     | N/A                                                                    |

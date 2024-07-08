@@ -29,19 +29,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var page *int64 = 963257
-
+    var page *float64 = openapi.Float64(9632.57)
     ctx := context.Background()
     res, err := s.Movies.GetAllMovie(ctx, page)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -53,7 +49,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `page`                                                | **int64*                                              | :heavy_minus_sign:                                    | page number                                           |
+| `page`                                                | **float64*                                            | :heavy_minus_sign:                                    | page number                                           |
 
 
 ### Response
@@ -61,7 +57,7 @@ func main() {
 **[*operations.GetAllMovieResponse](../../models/operations/getallmovieresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetMovieBase
 
@@ -82,19 +78,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var id int64 = 359232
-
+    var id float64 = 3592.32
     ctx := context.Background()
     res, err := s.Movies.GetMovieBase(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -106,7 +98,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 
 
 ### Response
@@ -114,7 +106,7 @@ func main() {
 **[*operations.GetMovieBaseResponse](../../models/operations/getmoviebaseresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetMovieBaseBySlug
 
@@ -135,19 +127,15 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-
-    var slug string = "string"
-
+    var slug string = "<value>"
     ctx := context.Background()
     res, err := s.Movies.GetMovieBaseBySlug(ctx, slug)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -167,7 +155,7 @@ func main() {
 **[*operations.GetMovieBaseBySlugResponse](../../models/operations/getmoviebasebyslugresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetMovieExtended
 
@@ -189,23 +177,19 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 4597.44
 
+    var meta *operations.QueryParamMeta = operations.QueryParamMetaTranslations.ToPointer()
 
-    var id int64 = 459744
-
-    var meta *operations.QueryParamMeta = operations.QueryParamMetaTranslations
-
-    var short *bool = false
-
+    var short *bool = openapi.Bool(false)
     ctx := context.Background()
     res, err := s.Movies.GetMovieExtended(ctx, id, meta, short)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -217,7 +201,7 @@ func main() {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                | Example                                                                                                    |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |                                                                                                            |
-| `id`                                                                                                       | *int64*                                                                                                    | :heavy_check_mark:                                                                                         | id                                                                                                         |                                                                                                            |
+| `id`                                                                                                       | *float64*                                                                                                  | :heavy_check_mark:                                                                                         | id                                                                                                         |                                                                                                            |
 | `meta`                                                                                                     | [*operations.QueryParamMeta](../../models/operations/queryparammeta.md)                                    | :heavy_minus_sign:                                                                                         | meta                                                                                                       | translations                                                                                               |
 | `short`                                                                                                    | **bool*                                                                                                    | :heavy_minus_sign:                                                                                         | reduce the payload and returns the short version of this record without characters, artworks and trailers. |                                                                                                            |
 
@@ -227,7 +211,7 @@ func main() {
 **[*operations.GetMovieExtendedResponse](../../models/operations/getmovieextendedresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetMovieTranslation
 
@@ -248,21 +232,17 @@ import(
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
+    var id float64 = 3544.29
 
-
-    var id int64 = 354429
-
-    var language string = "string"
-
+    var language string = "<value>"
     ctx := context.Background()
     res, err := s.Movies.GetMovieTranslation(ctx, id, language)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -274,7 +254,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *int64*                                               | :heavy_check_mark:                                    | id                                                    |
+| `id`                                                  | *float64*                                             | :heavy_check_mark:                                    | id                                                    |
 | `language`                                            | *string*                                              | :heavy_check_mark:                                    | language                                              |
 
 
@@ -283,7 +263,7 @@ func main() {
 **[*operations.GetMovieTranslationResponse](../../models/operations/getmovietranslationresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetMoviesFilter
 
@@ -297,31 +277,30 @@ package main
 import(
 	"github.com/dashotv/tvdb/openapi/models/shared"
 	"github.com/dashotv/tvdb/openapi"
-	"context"
 	"github.com/dashotv/tvdb/openapi/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := openapi.New(
         openapi.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BearerAuth: "<YOUR_BEARER_TOKEN_HERE>",
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Movies.GetMoviesFilter(ctx, operations.GetMoviesFilterRequest{
-        Company: openapi.Int64(1),
-        ContentRating: openapi.Int64(245),
+    request := operations.GetMoviesFilterRequest{
+        Company: openapi.Float64(1),
+        ContentRating: openapi.Float64(245),
         Country: "usa",
-        Genre: operations.GenreThree.ToPointer(),
+        Genre: openapi.Float64(3),
         Lang: "eng",
-        Year: openapi.Int64(2020),
-    })
+        Year: openapi.Float64(2020),
+    }
+    ctx := context.Background()
+    res, err := s.Movies.GetMoviesFilter(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -341,4 +320,4 @@ func main() {
 **[*operations.GetMoviesFilterResponse](../../models/operations/getmoviesfilterresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

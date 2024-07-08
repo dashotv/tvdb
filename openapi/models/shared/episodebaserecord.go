@@ -4,6 +4,7 @@ package shared
 
 // EpisodeBaseRecord - base episode record
 type EpisodeBaseRecord struct {
+	AbsoluteNumber    *int64  `json:"absoluteNumber,omitempty"`
 	Aired             *string `json:"aired,omitempty"`
 	AirsAfterSeason   *int64  `json:"airsAfterSeason,omitempty"`
 	AirsBeforeEpisode *int64  `json:"airsBeforeEpisode,omitempty"`
@@ -27,6 +28,13 @@ type EpisodeBaseRecord struct {
 	Seasons              []SeasonBaseRecord `json:"seasons,omitempty"`
 	SeriesID             *int64             `json:"seriesId,omitempty"`
 	Year                 *string            `json:"year,omitempty"`
+}
+
+func (o *EpisodeBaseRecord) GetAbsoluteNumber() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.AbsoluteNumber
 }
 
 func (o *EpisodeBaseRecord) GetAired() *string {

@@ -20,7 +20,6 @@ const (
 func (e Action) ToPointer() *Action {
 	return &e
 }
-
 func (e *Action) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -79,7 +78,6 @@ const (
 func (e Type) ToPointer() *Type {
 	return &e
 }
-
 func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -161,18 +159,11 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 }
 
 type UpdatesRequest struct {
-	Since  int64   `queryParam:"style=form,explode=true,name=since"`
 	Action *Action `queryParam:"style=form,explode=true,name=action"`
 	// name
-	Page *int64 `queryParam:"style=form,explode=true,name=page"`
-	Type *Type  `queryParam:"style=form,explode=true,name=type"`
-}
-
-func (o *UpdatesRequest) GetSince() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.Since
+	Page  *float64 `queryParam:"style=form,explode=true,name=page"`
+	Since int64    `queryParam:"style=form,explode=true,name=since"`
+	Type  *Type    `queryParam:"style=form,explode=true,name=type"`
 }
 
 func (o *UpdatesRequest) GetAction() *Action {
@@ -182,11 +173,18 @@ func (o *UpdatesRequest) GetAction() *Action {
 	return o.Action
 }
 
-func (o *UpdatesRequest) GetPage() *int64 {
+func (o *UpdatesRequest) GetPage() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Page
+}
+
+func (o *UpdatesRequest) GetSince() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Since
 }
 
 func (o *UpdatesRequest) GetType() *Type {

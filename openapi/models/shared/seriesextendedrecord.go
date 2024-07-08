@@ -2,7 +2,7 @@
 
 package shared
 
-// SeriesExtendedRecord - The extended record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+// SeriesExtendedRecord - The extended record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
 type SeriesExtendedRecord struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
 	// A series airs day record

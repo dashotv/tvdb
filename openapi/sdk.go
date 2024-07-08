@@ -8,8 +8,10 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/dashotv/tvdb/openapi/internal/hooks"
 	"github.com/dashotv/tvdb/openapi/internal/utils"
 	"github.com/dashotv/tvdb/openapi/models/shared"
+	"github.com/dashotv/tvdb/openapi/retry"
 )
 
 // ServerList contains the list of servers available to the SDK
@@ -41,8 +43,7 @@ func Float32(f float32) *float32 { return &f }
 func Float64(f float64) *float64 { return &f }
 
 type sdkConfiguration struct {
-	DefaultClient     HTTPClient
-	SecurityClient    HTTPClient
+	Client            HTTPClient
 	Security          func(context.Context) (interface{}, error)
 	ServerURL         string
 	ServerIndex       int
@@ -51,7 +52,8 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
-	RetryConfig       *utils.RetryConfig
+	RetryConfig       *retry.Config
+	Hooks             *hooks.Hooks
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -138,21 +140,14 @@ func WithServerIndex(serverIndex int) SDKOption {
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
 	return func(sdk *SDK) {
-		sdk.sdkConfiguration.DefaultClient = client
-	}
-}
-
-func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
-	return func(context.Context) (interface{}, error) {
-		return &security, nil
+		sdk.sdkConfiguration.Client = client
 	}
 }
 
 // WithSecurity configures the SDK to use the provided security details
-
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *SDK) {
-		sdk.sdkConfiguration.Security = withSecurity(security)
+		sdk.sdkConfiguration.Security = utils.AsSecuritySource(security)
 	}
 }
 
@@ -165,7 +160,7 @@ func WithSecuritySource(security func(context.Context) (shared.Security, error))
 	}
 }
 
-func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *SDK) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
 	}
@@ -176,10 +171,11 @@ func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "4.7.8",
-			SDKVersion:        "v0.3.0",
-			GenVersion:        "2.192.1",
-			UserAgent:         "speakeasy-sdk/go v0.3.0 2.192.1 4.7.8 github.com/dashotv/tvdb/openapi",
+			OpenAPIDocVersion: "4.7.10",
+			SDKVersion:        "0.6.0",
+			GenVersion:        "2.361.10",
+			UserAgent:         "speakeasy-sdk/go 0.6.0 2.361.10 4.7.10 github.com/dashotv/tvdb/openapi",
+			Hooks:             hooks.New(),
 		},
 	}
 	for _, opt := range opts {
@@ -187,15 +183,15 @@ func New(opts ...SDKOption) *SDK {
 	}
 
 	// Use WithClient to override the default client if you would like to customize the timeout
-	if sdk.sdkConfiguration.DefaultClient == nil {
-		sdk.sdkConfiguration.DefaultClient = &http.Client{Timeout: 60 * time.Second}
+	if sdk.sdkConfiguration.Client == nil {
+		sdk.sdkConfiguration.Client = &http.Client{Timeout: 60 * time.Second}
 	}
-	if sdk.sdkConfiguration.SecurityClient == nil {
-		if sdk.sdkConfiguration.Security != nil {
-			sdk.sdkConfiguration.SecurityClient = utils.ConfigureSecurityClient(sdk.sdkConfiguration.DefaultClient, sdk.sdkConfiguration.Security)
-		} else {
-			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
-		}
+
+	currentServerURL, _ := sdk.sdkConfiguration.GetServerDetails()
+	serverURL := currentServerURL
+	serverURL, sdk.sdkConfiguration.Client = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
+	if serverURL != currentServerURL {
+		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 
 	sdk.ArtworkStatuses = newArtworkStatuses(sdk.sdkConfiguration)

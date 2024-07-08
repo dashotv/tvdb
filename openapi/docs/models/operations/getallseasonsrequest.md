@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `Page`             | **int64*           | :heavy_minus_sign: | page number        |
+| `Page`             | **float64*         | :heavy_minus_sign: | page number        |

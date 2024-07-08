@@ -10,10 +10,10 @@ import (
 
 type GetAllMovieRequest struct {
 	// page number
-	Page *int64 `queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 }
 
-func (o *GetAllMovieRequest) GetPage() *int64 {
+func (o *GetAllMovieRequest) GetPage() *float64 {
 	if o == nil {
 		return nil
 	}
