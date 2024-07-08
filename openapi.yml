@@ -1971,10 +1971,12 @@ paths:
               schema:
                 properties:
                   data:
-                    type: object
-                    properties:
-                      series:
-                        $ref: "#/components/schemas/SeriesBaseRecord"
+                    $ref: "#/components/schemas/SeriesBaseRecord"
+                  # data:
+                  #   type: object
+                  #   properties:
+                  #     series:
+                  #       $ref: "#/components/schemas/SeriesBaseRecord"
                   status:
                     type: string
                 type: object

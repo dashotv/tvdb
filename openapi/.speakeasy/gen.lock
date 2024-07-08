@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
-id: 0ab71516-3b13-47ca-9913-b98b4e85038a
+id: ae5eef8d-98ca-4940-aa91-8d6694816366
 management:
-  docChecksum: 5b7ce2db9dcd009ad828aa989fad9ef4
+  docChecksum: a8ad5a485b08e9cea383b3b1f1e2c066
   docVersion: 4.7.10
   speakeasyVersion: 1.330.0
   generationVersion: 2.361.10
@@ -367,7 +367,6 @@ generatedFiles:
   - docs/models/operations/getseriesnextairedresponsebody.md
   - docs/models/operations/getseriesnextairedresponse.md
   - docs/models/operations/getseriesseasonepisodestranslatedrequest.md
-  - docs/models/operations/getseriesseasonepisodestranslateddata.md
   - docs/models/operations/getseriesseasonepisodestranslatedresponsebody.md
   - docs/models/operations/getseriesseasonepisodestranslatedresponse.md
   - docs/models/operations/getseriestranslationrequest.md

@@ -57,25 +57,14 @@ func (o *GetSeriesSeasonEpisodesTranslatedRequest) GetSeasonType() string {
 	return o.SeasonType
 }
 
-type GetSeriesSeasonEpisodesTranslatedData struct {
-	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
-	Series *shared.SeriesBaseRecord `json:"series,omitempty"`
-}
-
-func (o *GetSeriesSeasonEpisodesTranslatedData) GetSeries() *shared.SeriesBaseRecord {
-	if o == nil {
-		return nil
-	}
-	return o.Series
-}
-
 // GetSeriesSeasonEpisodesTranslatedResponseBody - response
 type GetSeriesSeasonEpisodesTranslatedResponseBody struct {
-	Data   *GetSeriesSeasonEpisodesTranslatedData `json:"data,omitempty"`
-	Status *string                                `json:"status,omitempty"`
+	// The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+	Data   *shared.SeriesBaseRecord `json:"data,omitempty"`
+	Status *string                  `json:"status,omitempty"`
 }
 
-func (o *GetSeriesSeasonEpisodesTranslatedResponseBody) GetData() *GetSeriesSeasonEpisodesTranslatedData {
+func (o *GetSeriesSeasonEpisodesTranslatedResponseBody) GetData() *shared.SeriesBaseRecord {
 	if o == nil {
 		return nil
 	}
