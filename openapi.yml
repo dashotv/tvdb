@@ -10,7 +10,7 @@ info:
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
-  version: 4.7.8
+  version: 4.7.10
 security:
   - bearerAuth: []
 paths:
@@ -59,7 +59,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -91,7 +91,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -192,7 +192,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -224,7 +224,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -256,7 +256,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -288,7 +288,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -320,7 +320,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -350,7 +350,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -403,7 +403,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -497,7 +497,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -528,7 +528,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -559,7 +559,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: meta
           in: query
           name: meta
@@ -598,7 +598,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: language
           in: path
           name: language
@@ -681,7 +681,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -755,7 +755,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -786,7 +786,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -848,7 +848,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -879,7 +879,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: language
           in: path
           name: language
@@ -918,7 +918,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -949,7 +949,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -980,7 +980,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: meta
           in: query
           name: meta
@@ -1026,14 +1026,14 @@ paths:
           name: company
           required: false
           schema:
-            type: integer
+            type: number
             example: 1
         - description: content rating id base on a country
           in: query
           name: contentRating
           required: false
           schema:
-            type: integer
+            type: number
             example: 245
         - description: country of origin
           in: query
@@ -1047,7 +1047,7 @@ paths:
           name: genre
           required: false
           schema:
-            type: integer
+            type: number
             example: 3
             enum:
               [
@@ -1106,14 +1106,14 @@ paths:
           name: status
           required: false
           schema:
-            type: integer
+            type: number
             enum: [1, 2, 3]
         - description: release year
           in: query
           name: year
           required: false
           schema:
-            type: integer
+            type: number
             example: 2020
       responses:
         "200":
@@ -1176,7 +1176,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: language
           in: path
           name: language
@@ -1234,7 +1234,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1266,7 +1266,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1297,7 +1297,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: meta
           in: query
           name: meta
@@ -1336,7 +1336,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: language
           in: path
           name: language
@@ -1408,7 +1408,7 @@ paths:
           in: query
           name: year
           schema:
-            type: integer
+            type: number
         - description: Restrict results to a specific company (original network, production company, studio, etc).  As an example, "The Walking Dead" would have companies of "AMC", "AMC+", and "Disney+".
           in: query
           name: company
@@ -1450,12 +1450,12 @@ paths:
           in: query
           name: offset
           schema:
-            type: integer
+            type: number
         - description: Limit results.
           in: query
           name: limit
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1517,7 +1517,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1546,7 +1546,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1577,7 +1577,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1630,7 +1630,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: language
           in: path
           name: language
@@ -1666,7 +1666,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1697,7 +1697,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1728,7 +1728,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: lang
           in: query
           name: lang
@@ -1773,7 +1773,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -1804,7 +1804,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: meta
           in: query
           name: meta
@@ -1856,7 +1856,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: season-type
           in: path
           name: season-type
@@ -1937,7 +1937,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: season-type
           in: path
           name: season-type
@@ -1973,10 +1973,8 @@ paths:
                   data:
                     type: object
                     properties:
-                      episodes:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/EpisodeBaseRecord"
+                      series:
+                        $ref: "#/components/schemas/SeriesBaseRecord"
                   status:
                     type: string
                 type: object
@@ -1998,14 +1996,14 @@ paths:
           name: company
           required: false
           schema:
-            type: integer
+            type: number
             example: 1
         - description: content rating id base on a country
           in: query
           name: contentRating
           required: false
           schema:
-            type: integer
+            type: number
             example: 245
         - description: country of origin
           in: query
@@ -2019,7 +2017,7 @@ paths:
           name: genre
           required: false
           schema:
-            type: integer
+            type: number
             example: 3
             enum:
               [
@@ -2085,14 +2083,14 @@ paths:
           name: status
           required: false
           schema:
-            type: integer
+            type: number
             enum: [1, 2, 3]
         - description: release year
           in: query
           name: year
           required: false
           schema:
-            type: integer
+            type: number
             example: 2020
       responses:
         "200":
@@ -2153,7 +2151,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
         - description: language
           in: path
           name: language
@@ -2233,7 +2231,7 @@ paths:
           name: since
           required: true
           schema:
-            type: integer
+            type: number
         - in: query
           name: type
           required: false
@@ -2288,7 +2286,7 @@ paths:
           in: query
           name: page
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -2344,7 +2342,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: number
       responses:
         "200":
           description: response
@@ -2698,6 +2696,7 @@ components:
           $ref: "#/components/schemas/RecordInfo"
         episodeId:
           type: integer
+          nullable: true
         id:
           format: int64
           type: integer
@@ -2709,6 +2708,7 @@ components:
           x-go-name: IsFeatured
         movieId:
           type: integer
+          nullable: true
         movie:
           $ref: "#/components/schemas/RecordInfo"
         name:
@@ -2731,6 +2731,7 @@ components:
           type: string
         seriesId:
           type: integer
+          nullable: true
         series:
           $ref: "#/components/schemas/RecordInfo"
         sort:
@@ -2787,6 +2788,7 @@ components:
           format: int64
           type: integer
           x-go-name: PrimaryCompanyType
+          nullable: true
         slug:
           type: string
           x-go-name: Slug
@@ -2806,6 +2808,7 @@ components:
       properties:
         id:
           type: integer
+          nullable: true
         name:
           type: string
         relation:
@@ -2816,6 +2819,7 @@ components:
       properties:
         id:
           type: integer
+          nullable: true
         typeName:
           type: string
     CompanyType:
@@ -2926,6 +2930,8 @@ components:
     EpisodeBaseRecord:
       description: base episode record
       properties:
+        absoluteNumber:
+          type: integer
         aired:
           type: string
         airsAfterSeason:
@@ -2945,6 +2951,7 @@ components:
           type: string
         imageType:
           type: integer
+          nullable: true
         isMovie:
           format: int64
           type: integer
@@ -2971,6 +2978,7 @@ components:
           x-go-name: OverviewTranslations
         runtime:
           type: integer
+          nullable: true
         seasonNumber:
           type: integer
         seasons:
@@ -3029,6 +3037,7 @@ components:
           type: string
         imageType:
           type: integer
+          nullable: true
         isMovie:
           format: int64
           type: integer
@@ -3071,6 +3080,7 @@ components:
           x-go-name: RemoteIDs
         runtime:
           type: integer
+          nullable: true
         seasonNumber:
           type: integer
         seasons:
@@ -3335,6 +3345,7 @@ components:
           $ref: "#/components/schemas/Status"
         runtime:
           type: integer
+          nullable: true
         year:
           type: string
       type: object
@@ -3440,6 +3451,7 @@ components:
           x-go-name: RemoteIDs
         runtime:
           type: integer
+          nullable: true
         score:
           format: double
           type: number
@@ -3688,9 +3700,6 @@ components:
           type: string
         overviews:
           $ref: "#/components/schemas/TranslationSimple"
-          # items:
-          #   $ref: "#/components/schemas/TranslationSimple"
-          # type: array
         overview_translated:
           items:
             type: string
@@ -3723,9 +3732,6 @@ components:
           type: string
         translations:
           $ref: "#/components/schemas/TranslationSimple"
-          # items:
-          #   $ref: "#/components/schemas/TranslationSimple"
-          # type: array
         translationsWithLang:
           items:
             type: string
@@ -3906,7 +3912,7 @@ components:
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesBaseRecord:
-      description: The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+      description: The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
       properties:
         aliases:
           items:
@@ -3915,6 +3921,7 @@ components:
           x-go-name: Aliases
         averageRuntime:
           type: integer
+          nullable: true
         country:
           type: string
         defaultSeasonType:
@@ -3953,8 +3960,6 @@ components:
           type: string
         originalLanguage:
           type: string
-        overview:
-          type: string
         overviewTranslations:
           items:
             type: string
@@ -3973,7 +3978,7 @@ components:
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesExtendedRecord:
-      description: The extended record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the showâ€™s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
+      description: The extended record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
       properties:
         abbreviation:
           type: string
@@ -3993,6 +3998,7 @@ components:
           x-go-name: Artworks
         averageRuntime:
           type: integer
+          nullable: true
         characters:
           items:
             $ref: "#/components/schemas/Character"
@@ -4132,6 +4138,7 @@ components:
           format: int64
           type: integer
           x-go-name: ID
+          nullable: true
         keepUpdated:
           type: boolean
           x-go-name: KeepUpdated
@@ -4242,13 +4249,13 @@ components:
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     TranslationSimple:
       description: translation simple record
-      type: object
       additionalProperties:
         type: string
-        x-go-name: Language
-      # properties:
-      #   language:
-      #     type: string
+      example: # Ejemplo específico del objeto
+        ara: "تدور قصة المسلسل حول..."
+        ces: "Během letu č. 815 společnosti Oceanic..."
+        deu: "Im Bruchteil einer Sekunde gerät das Leben..."
+      type: object
     TranslationExtended:
       description: translation extended record
       properties:
@@ -4354,8 +4361,10 @@ components:
       properties:
         prev:
           type: string
+          nullable: true
         self:
           type: string
+          nullable: true
         next:
           type: string
         total_items:
