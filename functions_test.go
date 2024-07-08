@@ -515,10 +515,11 @@ func TestClient_GetAllSourceTypes(t *testing.T) {
 func TestClient_Updates(t *testing.T) {
 	c := testClient(t)
 	var since int64 = updates_since_int64
-	var action *operations.Action = nil
-	var page *float64 = nil
-	var type_ *operations.Type = nil
+	var action *operations.Action = operations.ActionUpdate.ToPointer()
+	var page *float64 = Float64(0)
+	var type_ *operations.Type = operations.TypeSeries.ToPointer()
 	r, err := c.Updates(since, action, page, type_)
 	assert.NoError(t, err)
 	assert.NotNil(t, r)
+	assert.NotEmpty(t, r.Data)
 }
